@@ -192,6 +192,10 @@ dialog .sbin{width:auto}
 .sbm.on{background:var(--rec);color:#fff;border-color:var(--rec)}
 button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
 #sbq .row button{min-height:48px}
+/* ===== Cloud sync ===== */
+#cloud{min-width:44px;font-weight:600}
+#syncNote{margin:4px 0 0}
+#ghd .row button{min-height:48px}
 </style>
 </head>
 <body>
@@ -202,6 +206,7 @@ button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
   <label class="auto"><input type="checkbox" id="auto"> Auto-backup on every change</label>
   <button id="imp">Import</button><input type="file" id="impF" accept=".json,.csv" hidden></span>
   <button id="bk" class="pri" aria-label="Save a backup file to Downloads">Save</button>
+  <button id="cloud" aria-label="Cloud sync with GitHub">&#9729;</button>
   <button id="theme" aria-label="Toggle light or dark mode">Theme</button>
   <button class="mbtn" id="mbtn" aria-label="More options" aria-expanded="false">&#8943;</button>
 </header>
@@ -228,6 +233,7 @@ button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
         </select>
       </div>
       <p class="note" id="srNote">Voice works best in Chrome or Edge, over HTTPS or localhost.</p>
+      <p class="note" id="syncNote"></p>
     </section>
     <section class="card tools">
       <div class="row"><button class="pri" id="add">+ Add entry</button><button id="addCat">+ Category</button></div>
@@ -277,6 +283,20 @@ button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
   <h3 style="margin:0 0 6px">Delete this sidebye?</h3>
   <p id="sbqT" style="margin:0 0 14px;word-break:break-word"></p>
   <div class="row"><button type="button" id="sbqX">Cancel</button><button type="button" class="danger" id="sbqDel">Delete</button></div>
+</dialog>
+
+<dialog id="ghd">
+  <form id="ghf">
+    <h3 style="margin:0">Cloud sync (GitHub)</h3>
+    <p class="note">Your logs are saved as a JSON file in your repository, so every device shows the same data. Create a fine-grained token in GitHub under Settings, Developer settings, Personal access tokens. Limit it to this one repository with Contents set to Read and write.</p>
+    <label>Owner<input id="gO" required autocapitalize="off" autocorrect="off" spellcheck="false"></label>
+    <label>Repository<input id="gR" required autocapitalize="off" autocorrect="off" spellcheck="false"></label>
+    <div class="row"><label>Branch<input id="gB" autocapitalize="off" autocorrect="off" spellcheck="false"></label><label>Data file<input id="gP" autocapitalize="off" autocorrect="off" spellcheck="false"></label></div>
+    <label>Access token<input id="gT" type="password" required autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <p class="note">The token stays in this browser only. If the repository is public, anyone can read the data file.</p>
+    <div class="err" id="gE"></div>
+    <div class="row" style="margin-top:6px"><button type="button" id="gX">Cancel</button><button type="button" id="gDis" class="danger">Disconnect</button><button class="pri" type="submit">Save and sync</button></div>
+  </form>
 </dialog>
 
 <script>
@@ -418,11 +438,11 @@ $('#form').addEventListener('submit',async ev=>{
   if(listening)stopDictation();
   const mins=tmin($('#eE').value)-tmin($('#eS').value);
   if(mins<=0){$('#eErr').textContent='End time must be after the start time.';return}
-  const e={id:editing?.id||crypto.randomUUID(),title:$('#eT').value.trim(),date:$('#eD').value,start:$('#eS').value,end:$('#eE').value,mins,cat:$('#eC').value,side:SBedit.get()};
+  const e={id:editing?.id||crypto.randomUUID(),title:$('#eT').value.trim(),date:$('#eD').value,start:$('#eS').value,end:$('#eE').value,mins,cat:$('#eC').value,side:SBedit.get(),u:Date.now()};
   await dbPut(e);$('#dlg').close();cur=parseD(e.date);refresh();autoBackup();
 });
 $('#eX').onclick=()=>$('#dlg').close();
-$('#eDel').onclick=async()=>{if(confirm('Delete this entry?')){await dbDel(editing.id);$('#dlg').close();refresh();autoBackup()}};
+$('#eDel').onclick=async()=>{if(confirm('Delete this entry?')){await delEntry(editing.id);$('#dlg').close();refresh();autoBackup()}};
 
 /* ===== MIC: dictate text into the title box (does not save anything) ===== */
 /* Android app only: WebView has no speech recognition, so wrap the phone's own recognizer in the same API */
@@ -519,7 +539,7 @@ async function stopTimer(){
   timing=false;clearInterval(tick);lock?.release().catch(()=>{});
   if(listening)stopDictation();
   const s=new Date(t0),en=new Date(),title=$('#typed').value.trim()||'Untitled session';
-  const e={id:crypto.randomUUID(),title,date:ymd(s),start:hm(s),end:hm(en),mins:Math.max(1,Math.round((en-s)/60000)),cat:'Other',side:SBmain.get()};
+  const e={id:crypto.randomUUID(),title,date:ymd(s),start:hm(s),end:hm(en),mins:Math.max(1,Math.round((en-s)/60000)),cat:'Other',side:SBmain.get(),u:Date.now()};
   await dbPut(e);autoBackup();
   $('#timer').classList.remove('on');$('#tLabel').textContent='Start timer';
   $('#clock').textContent='00:00:00';$('#typed').value='';SBmain.set([]);
@@ -534,7 +554,7 @@ async function backup(){
   dl(`daylog-backup-${ymd(new Date())}.json`,JSON.stringify(all,null,1),'application/json');
   localStorage.setItem('dl-last',new Date().toISOString());showLast();
 }
-const autoBackup=()=>{if(localStorage.getItem('dl-auto')==='1')backup()};
+const autoBackup=()=>{queueSync();if(localStorage.getItem('dl-auto')==='1')backup()}; // every change also queues a cloud sync
 function showLast(){const t=localStorage.getItem('dl-last');$('#bk').textContent='Save';
   $('#bk').title=t?`Last saved ${new Date(t).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}`:'Save a backup file to Downloads'}
 $('#bk').onclick=async()=>{await backup();$('#bk').textContent='Saved \u2713';setTimeout(showLast,1800)};
@@ -542,6 +562,105 @@ $('#auto').checked=localStorage.getItem('dl-auto')==='1';
 $('#auto').onchange=e=>{localStorage.setItem('dl-auto',e.target.checked?'1':'0');if(e.target.checked)backup()};
 showLast();
 navigator.storage?.persist?.(); // ask the browser not to evict the in-app data
+
+/* ===== CLOUD SYNC: keeps one JSON file in the GitHub repository and merges it with this device ===== */
+const GHK='dl-gh',DELK='dl-del';
+const ghCfg=()=>{try{return JSON.parse(localStorage.getItem(GHK)||'null')}catch(e){return null}};
+const getDel=()=>{try{return JSON.parse(localStorage.getItem(DELK)||'{}')}catch(e){return{}}}; // ids deleted on this device, with the time
+const setDel=o=>localStorage.setItem(DELK,JSON.stringify(o));
+async function delEntry(id){await dbDel(id);const d=getDel();d[id]=Date.now();setDel(d)}
+const b64e=s=>{let x='';new TextEncoder().encode(s).forEach(c=>x+=String.fromCharCode(c));return btoa(x)};
+const b64d=s=>new TextDecoder().decode(Uint8Array.from(atob(s),c=>c.charCodeAt(0)));
+const ghApi=(c,p)=>`https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/${p}`;
+const ghFile=c=>ghApi(c,'contents/'+c.path.split('/').map(encodeURIComponent).join('/'));
+const ghH=c=>({Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'});
+async function ghErr(r){let m='';try{m=(await r.json()).message||''}catch(e){}
+  if(r.status===401)return 'GitHub rejected the token. Check that it is correct and not expired.';
+  if(r.status===403)return 'GitHub refused access (token permissions or rate limit). '+m;
+  if(r.status===404)return 'Repository or branch not found, or the token has no access to this repository.';
+  return `GitHub error ${r.status}. ${m}`}
+async function ghRead(c){
+  const r=await fetch(ghFile(c)+'?ref='+encodeURIComponent(c.branch)+'&t='+Date.now(),{headers:ghH(c),cache:'no-store'});
+  if(r.status===404)return{data:null,sha:null}; // file not created yet
+  if(!r.ok)throw new Error(await ghErr(r));
+  const j=await r.json();let txt;
+  if(j.content)txt=b64d(j.content.replace(/\n/g,''));
+  else{const b=await fetch(ghApi(c,'git/blobs/'+j.sha),{headers:ghH(c),cache:'no-store'}); // files over 1 MB come as blobs
+    if(!b.ok)throw new Error(await ghErr(b));txt=b64d((await b.json()).content.replace(/\n/g,''))}
+  return{data:JSON.parse(txt),sha:j.sha};
+}
+async function ghWrite(c,obj,sha){
+  const body={message:'Daylog sync '+new Date().toISOString(),content:b64e(JSON.stringify(obj,null,1)),branch:c.branch};
+  if(sha)body.sha=sha;
+  const r=await fetch(ghFile(c),{method:'PUT',headers:{...ghH(c),'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(r.status===409||r.status===422){const e=new Error(await ghErr(r));e.conflict=true;throw e} // someone else wrote first: read again and retry
+  if(!r.ok)throw new Error(await ghErr(r));
+}
+const sig=(l,d,k)=>l.map(e=>e.id+':'+(e.u||0)).sort().join()+'#'+Object.keys(d).map(i=>i+':'+d[i]).sort().join()+'#'+Object.keys(k).sort().map(n=>n+k[n]).join();
+function merge(local,ld,remote){ // newest edit wins; a deletion wins over an older edit
+  const del={...(remote?.deleted||{})};Object.keys(ld).forEach(k=>del[k]=Math.max(del[k]||0,ld[k]));
+  const m=new Map();
+  [...(remote?.entries||[]),...local].forEach(e=>{const o=m.get(e.id);if(!o||(e.u||0)>=(o.u||0))m.set(e.id,e)});
+  m.forEach((e,id)=>{if(del[id]&&del[id]>=(e.u||0))m.delete(id)});
+  return{entries:[...m.values()],deleted:del};
+}
+async function applyLocal(m,mc,local){
+  const keep=new Set(m.entries.map(e=>e.id));
+  await tx('readwrite',s=>{m.entries.forEach(e=>s.put(e));local.forEach(e=>{if(!keep.has(e.id))s.delete(e.id)})});
+  setDel(m.deleted);cats=mc;saveCats();await refresh();
+}
+function setStat(s,msg){
+  const b=$('#cloud'),n=$('#syncNote'),t=localStorage.getItem('dl-gh-last');
+  const last=t?new Date(t).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}):'';
+  const T={off:['\u2601','Cloud sync is off. Tap the cloud button to connect your GitHub repository.'],
+    pending:['\u2601\u2026','Changes waiting to sync...'],busy:['\u2601\u2026','Syncing with GitHub...'],
+    ok:['\u2601\u2713','Synced with GitHub'+(last?' at '+last:'')+'.'],
+    err:['\u2601!','Sync problem: '+msg+' Your data is safe on this device.']}[s];
+  b.textContent=T[0];n.textContent=T[1];n.style.color=s==='err'?'var(--rec)':'';
+}
+let syncing=false,again=false,syncT;
+function queueSync(){if(!ghCfg())return;clearTimeout(syncT);setStat('pending');syncT=setTimeout(()=>syncNow(),1500)}
+async function syncNow(force){
+  const c=ghCfg();if(!c){setStat('off');return null}
+  if(syncing){if(!force){again=true;return null}while(syncing)await new Promise(r=>setTimeout(r,200))}
+  syncing=true;clearTimeout(syncT);setStat('busy');let err=null;
+  try{
+    for(let n=0;;n++){
+      const{data,sha}=await ghRead(c);
+      const local=await dbAll(),ld=getDel(),m=merge(local,ld,data),mc={...(data?.cats||{}),...cats};
+      if(sig(local,ld,cats)!==sig(m.entries,m.deleted,mc))await applyLocal(m,mc,local);
+      if(sig(data?.entries||[],data?.deleted||{},data?.cats||{})!==sig(m.entries,m.deleted,mc)){
+        try{await ghWrite(c,{v:1,updated:new Date().toISOString(),entries:m.entries,deleted:m.deleted,cats:mc},sha)}
+        catch(e){if(e.conflict&&n<2)continue;throw e}
+      }
+      break;
+    }
+    localStorage.setItem('dl-gh-last',new Date().toISOString());setStat('ok');
+  }catch(e){err=e instanceof TypeError?'Could not reach GitHub. Are you offline?':e.message;setStat('err',err)}
+  finally{syncing=false;if(again){again=false;queueSync()}}
+  return err;
+}
+function openCloud(){
+  const c=ghCfg(),h=location.hostname.endsWith('.github.io')?location.hostname.split('.')[0]:'',p=location.pathname.split('/')[1]||'';
+  $('#gO').value=c?.owner||h||'ashwin-k-bang';$('#gR').value=c?.repo||(h&&p&&!p.endsWith('.html')?p:'daylog');
+  $('#gB').value=c?.branch||'main';$('#gP').value=c?.path||'data/daylog.json';$('#gT').value=c?.token||'';
+  $('#gE').textContent='';$('#gDis').style.display=c?'':'none';$('#ghd').showModal();
+}
+$('#cloud').onclick=openCloud;
+$('#gX').onclick=()=>$('#ghd').close();
+$('#gDis').onclick=()=>{if(confirm('Disconnect cloud sync? Your data stays on this device and in the repository.')){localStorage.removeItem(GHK);$('#ghd').close();setStat('off')}};
+$('#ghf').addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const c={owner:$('#gO').value.trim(),repo:$('#gR').value.trim(),branch:$('#gB').value.trim()||'main',path:$('#gP').value.trim().replace(/^\/+/,'')||'data/daylog.json',token:$('#gT').value.trim()};
+  const prev=localStorage.getItem(GHK);localStorage.setItem(GHK,JSON.stringify(c));
+  $('#gE').textContent='Connecting...';
+  const err=await syncNow(true);
+  if(err){if(prev)localStorage.setItem(GHK,prev);else localStorage.removeItem(GHK);$('#gE').textContent=err;setStat(prev?'ok':'off');return}
+  $('#ghd').close();
+});
+setInterval(()=>{if(document.visibilityState==='visible'&&ghCfg()&&!timing&&!$('#dlg').open)syncNow()},60000); // pick up changes from other devices
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&ghCfg())syncNow()});
+addEventListener('online',()=>{if(ghCfg())syncNow()});
 
 /* ===== EXPORT / IMPORT ===== */
 const dl=(name,txt,type)=>{
@@ -561,8 +680,8 @@ $('#impF').onchange=async ev=>{
   try{
     if(f.name.endsWith('.json'))list=JSON.parse(t);
     else list=parseCSV(t).slice(1).filter(r=>r.length>=7).map(r=>({id:r[0]||crypto.randomUUID(),date:r[1],start:r[2],end:r[3],mins:+r[4],cat:r[5]||'Other',title:r[6],side:(r[7]||'').split(' | ').map(x=>x.trim()).filter(Boolean)}));
-    list=list.filter(e=>e.date&&e.start&&e.end&&e.title).map(e=>({...e,id:e.id||crypto.randomUUID(),mins:e.mins||tmin(e.end)-tmin(e.start),cat:e.cat||'Other',side:Array.isArray(e.side)?e.side.map(String):[]}));
-    await dbPutMany(list);alert(`Imported ${list.length} entries.`);refresh();
+    list=list.filter(e=>e.date&&e.start&&e.end&&e.title).map(e=>({...e,id:e.id||crypto.randomUUID(),mins:e.mins||tmin(e.end)-tmin(e.start),cat:e.cat||'Other',side:Array.isArray(e.side)?e.side.map(String):[],u:e.u||Date.now()}));
+    await dbPutMany(list);alert(`Imported ${list.length} entries.`);refresh();queueSync();
   }catch(err){alert('Could not read that file.')}
   ev.target.value='';
 };
@@ -571,7 +690,7 @@ $('#impF').onchange=async ev=>{
 $('#viewSel').onchange=e=>{view=e.target.value;render()};
 // Keyboard shortcuts like Google Calendar: d w m h y = views, t = today, p / n = previous / next
 document.addEventListener('keydown',e=>{
-  if(e.target.closest('input,select,textarea')||$('#dlg').open||$('#sbq').open||e.ctrlKey||e.metaKey||e.altKey)return;
+  if(e.target.closest('input,select,textarea')||$('#dlg').open||$('#sbq').open||$('#ghd').open||e.ctrlKey||e.metaKey||e.altKey)return;
   const k=e.key.toLowerCase(),V={d:'day',w:'week',m:'month',h:'half',y:'year'};
   if(V[k]){view=V[k];render()}else if(k==='t'){cur=new Date();render()}else if(k==='p')step(-1);else if(k==='n')step(1);
 });
@@ -579,7 +698,7 @@ $('#prev').onclick=()=>step(-1);$('#next').onclick=()=>step(1);
 $('#today').onclick=()=>{cur=new Date();render()};
 $('#jump').onchange=e=>{if(e.target.value){cur=parseD(e.target.value);render()}};
 $('#add').onclick=()=>openEditor();
-$('#addCat').onclick=()=>{const n=prompt('New category name');if(n&&n.trim()&&!cats[n.trim()]){cats[n.trim()]=PALETTE[Object.keys(cats).length%8];saveCats();fillCats()}};
+$('#addCat').onclick=()=>{const n=prompt('New category name');if(n&&n.trim()&&!cats[n.trim()]){cats[n.trim()]=PALETTE[Object.keys(cats).length%8];saveCats();fillCats();queueSync()}};
 ['q','fc','f1','f2'].forEach(i=>$('#'+i).addEventListener('input',render));
 $('#clr').onclick=()=>{['q','fc','f1','f2'].forEach(i=>$('#'+i).value='');render()};
 $('#view').onclick=ev=>{ // one handler for every clickable thing in the views
@@ -595,7 +714,8 @@ mb.onclick=ev=>{ev.stopPropagation();const o=mp.classList.toggle('open');mb.setA
 document.addEventListener('click',ev=>{if(!ev.target.closest('#mbtn'))mp.classList.remove('open');mb.setAttribute('aria-expanded',mp.classList.contains('open'))});
 if(matchMedia('(min-width:901px)').matches)$('#fl').open=true; // filters collapsed on mobile, open on desktop
 ['q','fc','f1','f2'].forEach(i=>$('#'+i).addEventListener('input',()=>{if($('#q').value||$('#fc').value||$('#f1').value||$('#f2').value)$('#fl').open=true}));
-openDB().then(refresh);
+setStat(ghCfg()?'busy':'off');
+openDB().then(refresh).then(()=>syncNow());
 </script>
 </body>
 </html>
