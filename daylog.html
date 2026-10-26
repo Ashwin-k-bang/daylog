@@ -117,6 +117,9 @@ dialog .sbin{width:auto}
 .sbm.on{background:var(--rec);color:#fff;border-color:var(--rec)}
 button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
 #sbq .row button{min-height:48px}
+#mic.busy,#rng.busy,.sbm.busy{opacity:.5;pointer-events:none;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){#mic.busy,#rng.busy,.sbm.busy{animation:none}}
 /* ===== Cloud sync ===== */
 #cloud{min-width:44px;font-weight:600}
 #syncNote{margin:4px 0 0}
@@ -217,10 +220,15 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
       <div class="row" style="margin-top:8px">
         <select id="lang">
           <option value="en-IN">English (India)</option><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option>
-          <option value="hi-IN">Hindi</option><option value="mr-IN">Marathi</option><option value="es-ES">Spanish</option><option value="fr-FR">French</option><option value="de-DE">German</option>
+          <option value="hi-IN">Hindi</option><option value="mr-IN">Marathi</option><option value="es-ES">Spanish</option><option value="fr-FR">French</option><option value="de-DE">German</option><option value="auto">Auto-detect language</option>
+        </select>
+        <select id="eng" aria-label="Speech engine">
+          <option value="whisper">Whisper on-device (accurate)</option>
+          <option value="cloud">Whisper cloud (Groq, best)</option>
+          <option value="browser">Browser built-in (live)</option>
         </select>
       </div>
-      <p class="note" id="srNote">Voice works best in Chrome or Edge, over HTTPS or localhost.</p>
+      <p class="note" id="srNote">Voice uses Whisper. The first use downloads a small speech model once, then it works offline.</p>
       <p class="note" id="syncNote"></p>
     </section>
     <section class="card tools">
@@ -411,7 +419,7 @@ const durHint=()=>{const d=tmin($('#eE').value||'0:0')-tmin($('#eS').value||'0:0
 ['eS','eE'].forEach(i=>$('#'+i).addEventListener('input',durHint));
 $('#form').addEventListener('submit',async ev=>{
   ev.preventDefault();
-  if(listening)stopDictation();
+  if(listening||busy)await stopDictation();
   const mins=tmin($('#eE').value)-tmin($('#eS').value);
   if(mins<=0){$('#eErr').textContent='End time must be after the start time.';return}
   const e={id:editing?.id||crypto.randomUUID(),title:$('#eT').value.trim(),date:$('#eD').value,start:$('#eS').value,end:$('#eE').value,mins,cat:$('#eC').value,side:SBedit.get(),u:Date.now()};
@@ -439,22 +447,209 @@ if(window.AndroidBridge&&AndroidBridge.available()&&!window.SpeechRecognition&&!
   };
 }
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const CAN_REC=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder&&window.isSecureContext);
 let rec,listening=false,denied=false,base='',finalText='',lastStart=0,quick=0,active=null;
+let rs=null,busy=false,pending=Promise.resolve();
 const warn=m=>{$('#srNote').textContent=m;$('#srNote').style.color='var(--rec)';if($('#dlg').open)$('#eErr').textContent=m};
-if(!SR)warn('Speech recognition is not supported in this browser. Type the title instead. Chrome or Edge work best.');
-else if(!window.isSecureContext)warn('The mic is blocked because this page was opened from a file. Host it over HTTPS (for example Netlify Drop or GitHub Pages) or run it from localhost.');
+if(!SR&&!CAN_REC)warn('Voice input is not supported in this browser. Type instead. Chrome or Edge work best.');
+else if(!window.isSecureContext)warn('The mic is blocked because this page was opened from a file. Host it over HTTPS (for example GitHub Pages) or run it from localhost.');
 const MSG={'not-allowed':'Microphone is blocked. Allow the microphone in your browser\'s site settings, then reload. If you opened the file directly, run it from localhost or HTTPS instead.',
   'service-not-allowed':'This browser blocks speech recognition here. Use Chrome or Edge over HTTPS or localhost.',
   'network':'Speech recognition needs an internet connection. Brave and some privacy browsers block it.',
   'audio-capture':'No microphone was found.','language-not-supported':'This language is not supported. Pick another one.'};
 const say=m=>{if(active&&active.input===$('#typed'))$('#live').textContent=m};
-function startDictation(input=$('#typed'),mic=$('#mic')){
+const LANGS={'en-IN':'english','en-US':'english','en-GB':'english','hi-IN':'hindi','mr-IN':'marathi','es-ES':'spanish','fr-FR':'french','de-DE':'german'};
+const langSel=$('#lang'),engSel=$('#eng');
+langSel.value=localStorage.getItem('dl-lang')||'en-IN';if(!langSel.value)langSel.value='en-IN';
+engSel.value=localStorage.getItem('dl-eng')||'whisper';if(!engSel.value)engSel.value='whisper';
+langSel.onchange=()=>localStorage.setItem('dl-lang',langSel.value);
+engSel.onchange=()=>{
+  if(engSel.value==='cloud'&&!localStorage.getItem('dl-groq')){
+    const k=prompt('Paste your free Groq API key (console.groq.com/keys). It stays on this device and is only sent to Groq.');
+    if(!k||!k.trim()){engSel.value=localStorage.getItem('dl-eng')||'whisper';return}
+    localStorage.setItem('dl-groq',k.trim());
+  }
+  localStorage.setItem('dl-eng',engSel.value);
+};
+const engine=()=>{const e=engSel.value;if(e!=='browser'&&CAN_REC)return e;return SR?'browser':(CAN_REC?'whisper':'browser')};
+const kindOf=i=>i.id==='rangeIn'?'range':'text';
+
+/* ---- text clean-up ---- */
+const FILL=/\b(?:u+m+|u+h+|hmm+|mhm+)\b[,.]?\s*/gi;
+const HALL=/^(thank you|thanks|thanks for watching|thank you for watching|you|bye|please subscribe)[.! ]*$/i;
+function tidy(t,kind){
+  t=String(t||'').replace(/[\[(][^\])]*[\])]/g,' ').replace(FILL,'').replace(/\s+/g,' ').replace(/\s+([,.!?])/g,'$1').trim();
+  if(kind!=='range'){t=t.replace(/[.\u0964]+$/,'').trim();t=t.charAt(0).toUpperCase()+t.slice(1)}
+  return t;
+}
+
+/* ---- audio helpers: decode to 16 kHz mono, trim silence, normalise ---- */
+function resample(x,from,to){
+  if(from===to)return x;
+  const n=Math.round(x.length*to/from),y=new Float32Array(n),r=from/to;
+  for(let i=0;i<n;i++){const p=i*r,j=Math.floor(p),f=p-j;y[i]=(x[j]||0)*(1-f)+(x[j+1]||0)*f}
+  return y;
+}
+async function toPCM(blob){
+  const AC=window.AudioContext||window.webkitAudioContext;
+  let ctx;try{ctx=new AC({sampleRate:16000})}catch(e){ctx=new AC()}
+  try{
+    const a=await ctx.decodeAudioData(await blob.arrayBuffer());
+    const n=a.length,m=new Float32Array(n);
+    for(let c=0;c<a.numberOfChannels;c++){const d=a.getChannelData(c);for(let i=0;i<n;i++)m[i]+=d[i]/a.numberOfChannels}
+    return resample(m,a.sampleRate,16000);
+  }finally{ctx.close&&ctx.close()}
+}
+function prep(x){
+  const fr=320,n=Math.floor(x.length/fr),e=new Float32Array(n);let pk=0;
+  for(let i=0;i<n;i++){let q=0;for(let j=0;j<fr;j++){const v=x[i*fr+j];q+=v*v}e[i]=Math.sqrt(q/fr);if(e[i]>pk)pk=e[i]}
+  if(pk<0.003)return null;
+  const th=Math.max(0.003,pk*0.06);let a=0,b=n-1;
+  while(a<n&&e[a]<th)a++;while(b>a&&e[b]<th)b--;
+  a=Math.max(0,a-15);b=Math.min(n-1,b+15);
+  const y=x.slice(a*fr,(b+1)*fr);
+  let m=0;for(let i=0;i<y.length;i++){const v=Math.abs(y[i]);if(v>m)m=v}
+  if(m>0){const g=Math.min(8,0.95/m);for(let i=0;i<y.length;i++)y[i]*=g}
+  return y.length<4800?null:y;
+}
+function wav(f){
+  const b=new ArrayBuffer(44+f.length*2),v=new DataView(b),w=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))};
+  w(0,'RIFF');v.setUint32(4,36+f.length*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
+  v.setUint32(24,16000,true);v.setUint32(28,32000,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,f.length*2,true);
+  for(let i=0;i<f.length;i++){const x=Math.max(-1,Math.min(1,f[i]));v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}
+  return new Blob([b],{type:'audio/wav'});
+}
+
+/* ---- Whisper on-device (transformers.js; WebGPU if present, else WASM) ---- */
+let asr=null,asrP=null;
+function loadWhisper(){
+  if(asr)return Promise.resolve(asr);
+  if(asrP)return asrP;
+  asrP=(async()=>{
+    const{pipeline,env}=await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3');
+    env.allowLocalModels=false;
+    const q4={encoder_model:'fp32',decoder_model_merged:'q4'};
+    const plans=navigator.gpu?[
+      {id:'onnx-community/whisper-small',device:'webgpu',dtype:q4},
+      {id:'onnx-community/whisper-base',device:'webgpu',dtype:q4},
+      {id:'Xenova/whisper-base',device:'wasm',dtype:'q8'}
+    ]:[
+      {id:'Xenova/whisper-base',device:'wasm',dtype:'q8'},
+      {id:'Xenova/whisper-tiny',device:'wasm',dtype:'q8'}
+    ];
+    let last;
+    for(const pl of plans){
+      const files={};
+      try{
+        const r=await pipeline('automatic-speech-recognition',pl.id,{device:pl.device,dtype:pl.dtype,progress_callback:p=>{
+          if(p.status==='progress'&&p.total){files[p.file]=[p.loaded,p.total];let l=0,t=0;for(const k in files){l+=files[k][0];t+=files[k][1]}
+            const m='Downloading speech model, one time only: '+Math.round(l/t*100)+'%';$('#srNote').style.color='';$('#srNote').textContent=m;if(busy||listening)$('#live').textContent=m}}});
+        $('#srNote').textContent='Speech model ready.';return r;
+      }catch(e){last=e;console.warn('Whisper plan failed',pl.id,e)}
+    }
+    throw last||new Error('model unavailable');
+  })();
+  asrP.then(r=>{asr=r},()=>{asrP=null});
+  return asrP;
+}
+async function asrLocal(y,lang){
+  $('#live').textContent='Loading speech model...';
+  const pipe=await loadWhisper();
+  $('#live').textContent='Transcribing...';
+  const o={task:'transcribe',chunk_length_s:30,stride_length_s:5};
+  if(lang!=='auto'&&LANGS[lang])o.language=LANGS[lang];
+  const r=await pipe(y,o);
+  return(r.text||'').trim();
+}
+
+/* ---- Whisper large-v3 in the cloud (Groq). Supports a vocabulary prompt. ---- */
+function vocab(input){
+  if(input.id==='rangeIn')return 'Time range, for example: 10 PM to 12 AM, 9:30 AM to 11:15 AM, 2 PM to 4 PM.';
+  const t=[...entries].sort((a,b)=>(b.u||0)-(a.u||0)).slice(0,15).map(e=>e.title);
+  return('Daylog work session titles. Categories: '+Object.keys(cats).join(', ')+'. Recent: '+t.join('. ')+'.').slice(0,700);
+}
+async function asrCloud(blob,lang,prompt){
+  const k=localStorage.getItem('dl-groq');if(!k)throw new Error('no Groq key');
+  const fd=new FormData();fd.append('file',blob,'speech.wav');fd.append('model','whisper-large-v3');fd.append('temperature','0');fd.append('response_format','json');
+  if(lang!=='auto')fd.append('language',lang.slice(0,2));
+  if(prompt)fd.append('prompt',prompt);
+  const r=await fetch('https://api.groq.com/openai/v1/audio/transcriptions',{method:'POST',headers:{Authorization:'Bearer '+k},body:fd});
+  if(r.status===401){localStorage.removeItem('dl-groq');throw new Error('Groq rejected the key')}
+  if(!r.ok)throw new Error('Groq error '+r.status);
+  return((await r.json()).text||'').trim();
+}
+
+async function transcribe(blob,s){
+  const lang=langSel.value,kind=kindOf(s.input);
+  $('#live').textContent='Cleaning up audio...';
+  const y=prep(await toPCM(blob));
+  if(!y)return'';
+  let txt;
+  if(s.eng==='cloud'){
+    try{$('#live').textContent='Transcribing...';txt=await asrCloud(wav(y),lang,vocab(s.input))}
+    catch(e){$('#srNote').textContent='Cloud failed ('+(e instanceof TypeError?'offline':e.message)+'). Using on-device Whisper.';txt=await asrLocal(y,lang)}
+  }else txt=await asrLocal(y,lang);
+  txt=tidy(txt,kind);
+  if(y.length/16000<3&&HALL.test(txt))return'';
+  return txt;
+}
+
+/* ---- recording (Whisper engines) ---- */
+async function startRecord(input,mic,eng){
+  active={input,mic};listening=true;denied=false;mic.classList.add('on');
+  const tgt=input.id==='typed'||input.id==='rangeIn',s={input,mic,eng,chunks:[],t0:Date.now(),cancel:false,tgt};
+  rs=s;
+  if(eng==='whisper')loadWhisper().catch(()=>{});
+  let stream;
+  try{stream=await navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true}})}
+  catch(e){
+    if(s.cancel)return;
+    if(rs===s){rs=null;listening=false;active=null;mic.classList.remove('on')}
+    if(SR){warn('Could not open the microphone for Whisper. Using the browser engine instead.');return startBrowser(input,mic)}
+    warn(MSG['not-allowed']);return;
+  }
+  if(s.cancel||rs!==s){stream.getTracks().forEach(t=>t.stop());return}
+  const mime=['audio/webm;codecs=opus','audio/mp4','audio/webm','audio/ogg;codecs=opus'].find(t=>MediaRecorder.isTypeSupported(t))||'';
+  let mr;try{mr=new MediaRecorder(stream,mime?{mimeType:mime,audioBitsPerSecond:128000}:undefined)}catch(e){mr=new MediaRecorder(stream)}
+  s.stream=stream;s.mr=mr;
+  mr.ondataavailable=e=>{if(e.data&&e.data.size)s.chunks.push(e.data)};
+  mr.start(250);
+  $('#srNote').style.color='';$('#srNote').textContent='Microphone is on.';
+  const upd=()=>{if(!tgt)return;const t=Math.floor((Date.now()-s.t0)/1000);$('#live').textContent='Recording '+Math.floor(t/60)+':'+pad(t%60)+'. Tap the mic again when you are done.'};
+  upd();s.tick=setInterval(upd,500);
+}
+function finishRecord(discard){
+  const s=rs;rs=null;listening=false;active=null;
+  if(!s)return pending;
+  s.mic.classList.remove('on');
+  if(!s.mr){s.cancel=true;return Promise.resolve()}
+  const p=new Promise(res=>{
+    let done=false;
+    const fin=async()=>{
+      if(done)return;done=true;
+      clearInterval(s.tick);s.stream.getTracks().forEach(t=>t.stop());
+      if(discard||!s.chunks.length){res();return}
+      busy=true;s.mic.classList.add('busy');
+      try{
+        const txt=await transcribe(new Blob(s.chunks,{type:s.mr.mimeType||'audio/webm'}),s);
+        if(txt){const c=s.input.value.trim();s.input.value=c?c+' '+txt:txt}
+        if(s.tgt)$('#live').textContent=txt?(s.input.id==='typed'?'Title ready. Edit it if needed.':'Heard: '+txt):'I did not catch anything. Try again a little closer to the mic.';
+      }catch(e){warn('Whisper failed: '+(e&&e.message||e)+'. Check your connection once for the model download, or pick Browser built-in.');if(s.tgt)$('#live').textContent=''}
+      finally{busy=false;s.mic.classList.remove('busy');res()}
+    };
+    s.mr.onstop=fin;
+    try{if(s.mr.state!=='inactive')s.mr.stop();else fin()}catch(e){fin()}
+  });
+  pending=p;return p;
+}
+
+/* ---- browser built-in engine (live, lower accuracy) ---- */
+function startBrowser(input,mic){
   if(!SR){warn('Speech recognition is not supported in this browser.');return}
-  if(listening)stopDictation();
   active={input,mic};
   listening=true;denied=false;quick=0;base=input.value.trim();finalText='';
   mic.classList.add('on');say('Listening... tap the mic again when you are done.');
-  const r=new SR();rec=r;r.continuous=true;r.interimResults=true;r.lang=$('#lang').value;
+  const r=new SR();rec=r;r.continuous=true;r.interimResults=true;r.lang=langSel.value==='auto'?'en-IN':langSel.value;
   r.onstart=()=>{$('#srNote').style.color='';$('#srNote').textContent='Microphone is on.'};
   r.onresult=ev=>{if(r!==rec)return;let t='';
     for(let i=0;i<ev.results.length;i++)t+=ev.results[i][0].transcript+' ';
@@ -470,9 +665,21 @@ function startDictation(input=$('#typed'),mic=$('#mic')){
   lastStart=Date.now();
   try{r.start()}catch(e){warn('Could not start speech recognition: '+e.message)}
 }
-function stopDictation(){
-  const a=active;listening=false;active=null;try{rec?.stop()}catch(e){}
-  if(a){a.mic.classList.remove('on');if(a.input===$('#typed'))$('#live').textContent='Title ready. Edit it if needed.'}
+
+async function startDictation(input=$('#typed'),mic=$('#mic')){
+  if(busy)return;
+  if(listening)await stopDictation();
+  const e=engine();
+  if(e==='browser')return startBrowser(input,mic);
+  return startRecord(input,mic,e);
+}
+function stopDictation(discard){
+  if(rs)return finishRecord(discard);
+  const a=active;listening=false;active=null;try{rec&&rec.stop()}catch(e){}
+  if(a){a.mic.classList.remove('on');
+    if(!discard)a.input.value=tidy(a.input.value,kindOf(a.input));
+    if(a.input===$('#typed'))$('#live').textContent='Title ready. Edit it if needed.'}
+  return pending;
 }
 $('#mic').onclick=()=>listening&&active?.input===$('#typed')?stopDictation():startDictation();
 
@@ -483,7 +690,7 @@ function sideList(root){
   let items=[];
   const draw=()=>{ol.innerHTML=items.map((t,i)=>`<li data-i="${i}">${esc(t)}</li>`).join('')};
   const commit=()=>{const t=inp.value.trim();if(t){items.push(t);inp.value='';draw()}};
-  add.onclick=()=>{if(listening&&active?.input===inp)stopDictation();commit()};
+  add.onclick=async()=>{if(listening&&active?.input===inp)await stopDictation();else if(busy)await pending;commit()};
   inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit()}});
   mic.onclick=()=>listening&&active?.input===inp?stopDictation():startDictation(inp,mic);
   let timer,sx=0,sy=0;
@@ -499,7 +706,7 @@ function sideList(root){
 const SBmain=sideList($('#sbMain')),SBedit=sideList($('#sbEdit'));
 $('#sbqX').onclick=()=>{delCb=null;$('#sbq').close()};
 $('#sbqDel').onclick=()=>{delCb?.();delCb=null;$('#sbq').close()};
-$('#dlg').addEventListener('close',()=>{if(listening&&active&&$('#dlg').contains(active.input))stopDictation()});
+$('#dlg').addEventListener('close',()=>{if(listening&&active&&$('#dlg').contains(active.input))stopDictation(true)});
 
 /* ===== TIMER BUTTON ===== */
 let timing=false,t0=0,tick,lock;
@@ -514,8 +721,9 @@ function startTimer(){
 }
 async function stopTimer(){
   timing=false;clearInterval(tick);lock?.release().catch(()=>{});
-  if(listening)stopDictation();
-  const s=new Date(t0),en=new Date(),title=$('#typed').value.trim()||'Untitled session';
+  const en=new Date();
+  if(listening||busy)await stopDictation();
+  const s=new Date(t0),title=$('#typed').value.trim()||'Untitled session';
   const e={id:crypto.randomUUID(),title,date:ymd(s),start:hm(s),end:hm(en),mins:Math.max(1,Math.round((en-s)/60000)),cat:'Other',side:SBmain.get(),u:Date.now()};
   await dbPut(e);autoBackup();
   $('#timer').classList.remove('on');$('#timer').innerHTML='&#9201;';$('#tLabel').textContent='Start timer';
@@ -526,8 +734,21 @@ async function stopTimer(){
 $('#timer').onclick=()=>timing?stopTimer():startTimer();
 
 /* ===== VOICE TIME RANGE: say "10pm to 12am" to log a past session ===== */
+const NW={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19,twenty:20,thirty:30,forty:40,fifty:50};
+function normTime(s){
+  return s
+    .replace(/\b(twenty|thirty|forty|fifty)[\s-]+(one|two|three|four|five|six|seven|eight|nine)\b/g,(_,a,b)=>NW[a]+NW[b])
+    .replace(new RegExp('\\b('+Object.keys(NW).join('|')+')\\b','g'),w=>NW[w])
+    .replace(/\bo['\u2019]?\s?clock\b/g,'')
+    .replace(/\bhalf past (\d{1,2})\b/g,'$1:30')
+    .replace(/\bquarter past (\d{1,2})\b/g,'$1:15')
+    .replace(/\bquarter to (\d{1,2})\b/g,(_,h)=>((+h+10)%12+1)+':45')
+    .replace(/\b(\d{1,2})\s+(?:oh|o)\s+(\d)\b/g,'$1:0$2')
+    .replace(/\b(\d{1,2})\s+([0-5]\d)\b/g,'$1:$2')
+    .replace(/\b(\d{1,2})([0-5]\d)\b/g,(m,h,mi)=>+h<=24?h+':'+mi:m);
+}
 function parseRange(txt){
-  const s=txt.toLowerCase().replace(/\b([ap])\.?\s?m\b\.?/g,'$1m').replace(/midnight/g,'12am').replace(/noon/g,'12pm');
+  const s=normTime(txt.toLowerCase()).replace(/\b([ap])\.?\s?m\b\.?/g,'$1m').replace(/midnight/g,'12am').replace(/noon/g,'12pm');
   const re=/(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)?/g,m=[];let x;
   while(m.length<2&&(x=re.exec(s)))m.push({h:+x[1],mi:+(x[2]||0),ap:x[3]||''});
   if(m.length<2)return null;
@@ -554,8 +775,9 @@ async function logRange(){
   live(`Saved "${title}" (${fmt(e.mins)}, ${e.start} to ${e.end}). Tap it in the list to edit.`);
   cur=d;refresh();
 }
-rBtn.onclick=()=>{
-  if(listening&&active?.input===rIn){stopDictation();live('Processing...');setTimeout(logRange,900);return}
+rBtn.onclick=async()=>{
+  if(busy)return;
+  if(listening&&active?.input===rIn){live('Processing...');await stopDictation();logRange();return}
   rIn.value='';startDictation(rIn,rBtn);
   if(listening)live('Listening... say a time range like "10pm to 12am", then tap again.');
 };
