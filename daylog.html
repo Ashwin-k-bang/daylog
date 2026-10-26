@@ -40,9 +40,9 @@ main{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-widt
 .cap{text-align:center}
 .pair{display:flex;justify-content:center;gap:26px;margin:4px 0 10px}
 .pair .note{margin-top:6px}
-#mic,#timer{width:96px;height:96px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);font-size:38px;display:grid;place-items:center;margin:0 auto;transition:background .2s}
-#timer{background:var(--bg);color:var(--ink);border:2px solid var(--ink);font-size:30px}
-#mic.on,#timer.on{background:var(--rec);color:#fff;border-color:var(--rec)}
+#mic,#timer,#rng{width:96px;height:96px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);font-size:38px;display:grid;place-items:center;margin:0 auto;transition:background .2s}
+#timer,#rng{background:var(--bg);color:var(--ink);border:2px solid var(--ink);font-size:30px}
+#mic.on,#timer.on,#rng.on{background:var(--rec);color:#fff;border-color:var(--rec)}
 #timer.on{font-size:15px}
 #mic.on{animation:pulse 1.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--rec) 55%,transparent)}100%{box-shadow:0 0 0 26px transparent}}
@@ -158,8 +158,8 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
   input,select{font-size:16px}
   button:not(.hc):not(.day),input:not([type=file]),select{min-height:44px}
   .pair{gap:20px}
-  #mic,#timer{width:68px;height:68px;font-size:28px}
-  #timer{font-size:24px}
+  #mic,#timer,#rng{width:68px;height:68px;font-size:28px}
+  #timer,#rng{font-size:24px}
   #timer.on{font-size:15px}
   #clock{font-size:28px}
   #live{min-height:36px;max-height:90px;font-size:14px}
@@ -178,7 +178,7 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
   dialog{margin:auto 0 0;width:100%;max-width:none;max-height:92vh;max-height:92dvh;overflow:auto;border-radius:var(--r) var(--r) 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
   dialog .row button{min-height:48px}
 }
-@media(max-width:380px){.pair{gap:14px}#mic,#timer{width:60px;height:60px}}
+@media(max-width:380px){.pair{gap:14px}#mic,#timer,#rng{width:60px;height:60px}}
 </style>
 </head>
 <body>
@@ -203,7 +203,9 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
       <div class="pair">
         <div><button id="mic" aria-label="Dictate the session title">&#127908;</button><div class="note">Speak title</div></div>
         <div><button id="timer" aria-label="Start or stop the session timer">&#9201;</button><div class="note" id="tLabel">Start timer</div></div>
+        <div><button id="rng" aria-label="Say a time range to log a session">&#128345;</button><div class="note">Say time</div></div>
       </div>
+      <input id="rangeIn" hidden>
       <div id="clock">00:00:00</div>
       <input id="typed" style="width:100%;margin-top:8px">
       <div class="sb" id="sbMain">
@@ -522,6 +524,41 @@ async function stopTimer(){
   cur=s;refresh();
 }
 $('#timer').onclick=()=>timing?stopTimer():startTimer();
+
+/* ===== VOICE TIME RANGE: say "10pm to 12am" to log a past session ===== */
+function parseRange(txt){
+  const s=txt.toLowerCase().replace(/\b([ap])\.?\s?m\b\.?/g,'$1m').replace(/midnight/g,'12am').replace(/noon/g,'12pm');
+  const re=/(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)?/g,m=[];let x;
+  while(m.length<2&&(x=re.exec(s)))m.push({h:+x[1],mi:+(x[2]||0),ap:x[3]||''});
+  if(m.length<2)return null;
+  const[a,b]=m;
+  if(a.h>24||b.h>24||a.mi>59||b.mi>59)return null;
+  const conv=(o,ap)=>{if(o.h>12||!ap)return(o.h%24)*60+o.mi;return(o.h%12+(ap==='pm'?12:0))*60+o.mi};
+  let sm=conv(a,a.ap||b.ap),em=conv(b,b.ap||a.ap);
+  if(!a.ap&&b.ap&&a.h<=12&&sm>=em)sm=conv(a,b.ap==='pm'?'am':'pm');
+  if(sm===em)return null;
+  const mins=em>sm?em-sm:em+1440-sm,f=v=>`${pad(Math.floor(v/60)%24)}:${pad(v%60)}`;
+  return{sm,start:f(sm),end:f(em),mins};
+}
+const rIn=$('#rangeIn'),rBtn=$('#rng'),live=m=>$('#live').textContent=m;
+async function logRange(){
+  const t=rIn.value.trim();
+  if(!t){live('I did not hear anything. Tap the button and try again.');return}
+  const r=parseRange(t);
+  if(!r){live(`Could not understand "${t}". Say it like "10pm to 12am".`);return}
+  const title=$('#typed').value.trim()||'Untitled session',now=new Date();
+  const d=r.sm>now.getHours()*60+now.getMinutes()?addD(now,-1):now;
+  const e={id:crypto.randomUUID(),title,date:ymd(d),start:r.start,end:r.end,mins:r.mins,cat:'Other',side:SBmain.get(),u:Date.now()};
+  await dbPut(e);autoBackup();
+  if(!timing){$('#typed').value='';SBmain.set([])}
+  live(`Saved "${title}" (${fmt(e.mins)}, ${e.start} to ${e.end}). Tap it in the list to edit.`);
+  cur=d;refresh();
+}
+rBtn.onclick=()=>{
+  if(listening&&active?.input===rIn){stopDictation();live('Processing...');setTimeout(logRange,900);return}
+  rIn.value='';startDictation(rIn,rBtn);
+  if(listening)live('Listening... say a time range like "10pm to 12am", then tap again.');
+};
 
 /* ===== BACKUP TO DOWNLOADS ===== */
 async function backup(){
