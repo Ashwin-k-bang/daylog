@@ -1,38 +1,28 @@
-Running?
+Now?
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daylog</title>
 <style>
-/* ===== THEME TOKENS: black and white ===== */
-:root{--bg:#fff;--card:#fff;--ink:#000;--mute:#666;--line:#d9d9d9;--acc:#000;--rec:#E5242B;--r:14px}
-:root[data-theme=dark]{--bg:#000;--card:#0e0e0e;--ink:#fff;--mute:#9a9a9a;--line:#2b2b2b;--acc:#fff;--rec:#FF5A5F}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%;color-scheme:light}
-:root[data-theme=dark]{color-scheme:dark}
-button,input,select,summary{touch-action:manipulation}
+/* ===== THEME TOKENS: edit colors here ===== */
+:root{--bg:#EEF1EF;--card:#fff;--ink:#17302D;--mute:#667A77;--line:#D9E0DD;--acc:#0F766E;--rec:#E5484D;--r:14px}
+:root[data-theme=dark]{--bg:#0E1514;--card:#16201F;--ink:#E4EEEC;--mute:#8CA19E;--line:#263433;--acc:#2DD4BF;--rec:#FF6369}
+*{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Avenir Next","Segoe UI",system-ui,sans-serif}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 12px}
-@media(hover:hover){button:hover{border-color:var(--ink)}}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button:hover{border-color:var(--acc)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 input,select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 10px;min-width:0}
-button.pri{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
-header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--ink);padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-header h1{font-size:20px;margin:0 8px 0 0;letter-spacing:-.02em;font-weight:800}
+button.pri{background:var(--acc);border-color:var(--acc);color:var(--bg);font-weight:600}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+header h1{font-size:20px;margin:0 8px 0 0;letter-spacing:-.02em}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .sp{flex:1}
-.mbtn{display:none}
-.auto{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);padding:4px 6px;white-space:nowrap}
-.mp .auto input{min-height:0;width:20px;height:20px;padding:0}
-.mp{display:contents}
-input[type=checkbox]{accent-color:var(--ink)}
-details.fl summary{cursor:pointer;font-weight:600;font-size:15px;padding:12px 0 2px;list-style:none}
-details.fl summary::after{content:" \25BE";color:var(--mute)}
-details.fl[open] summary::after{content:" \25B4"}
-details.fl summary::-webkit-details-marker{display:none}
 main{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-width:1280px;margin:auto}
 @media(max-width:900px){main{grid-template-columns:1fr}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
@@ -41,10 +31,9 @@ main{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-widt
 .cap{text-align:center}
 .pair{display:flex;justify-content:center;gap:26px;margin:4px 0 10px}
 .pair .note{margin-top:6px}
-#mic,#timer,#rng{width:96px;height:96px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);font-size:38px;display:grid;place-items:center;margin:0 auto;transition:background .2s}
-#timer,#rng{background:var(--bg);color:var(--ink);border:2px solid var(--ink);font-size:30px}
-#mic.on,#timer.on,#rng.on{background:var(--rec);color:#fff;border-color:var(--rec)}
-#timer.on{font-size:15px}
+#mic,#timer{width:96px;height:96px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font-size:38px;display:grid;place-items:center;margin:0 auto;transition:background .2s}
+#timer{background:var(--ink);font-size:30px}
+#mic.on,#timer.on{background:var(--rec);color:#fff}
 #mic.on{animation:pulse 1.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--rec) 55%,transparent)}100%{box-shadow:0 0 0 26px transparent}}
 @media(prefers-reduced-motion:reduce){#mic.on{animation:none}}
@@ -59,32 +48,37 @@ main{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-widt
 .ent{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-left:5px solid var(--c);background:color-mix(in srgb,var(--c) 9%,var(--card));border-radius:8px;margin-bottom:6px;cursor:pointer}
 .ent small{color:var(--mute);display:block}
 .chip{font-size:12px;padding:1px 8px;border-radius:99px;background:color-mix(in srgb,var(--c) 22%,transparent)}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.week>div{min-width:0}
+.week h4,.mb h4{margin:0 0 6px;font-size:13px}
+.week .ent{display:block;font-size:12px;padding:5px 6px}
+.week .ent b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:700px){.week{grid-template-columns:1fr}}
 .mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
 .dow{font-size:12px;color:var(--mute);text-align:center}
 .day{min-height:68px;text-align:left;padding:5px;border-radius:8px;display:flex;flex-direction:column;gap:3px;overflow:hidden}
-.day.today{border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.day.today{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
 .day.out{visibility:hidden}
 .dots{display:flex;gap:3px;flex-wrap:wrap}
 .dots i{width:8px;height:8px;border-radius:50%;background:var(--c)}
 .day small{color:var(--mute);font-size:11px}
 .yr{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
-.mb h4{margin:0 0 6px;font-size:13px}
 .hm{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
 .hc{aspect-ratio:1;padding:0;border-radius:3px;border-color:transparent;background:color-mix(in srgb,var(--ink) 7%,var(--card))}
-.hc.l1{background:color-mix(in srgb,var(--ink) 20%,var(--card))}
-.hc.l2{background:color-mix(in srgb,var(--ink) 45%,var(--card))}
-.hc.l3{background:color-mix(in srgb,var(--ink) 70%,var(--card))}
-.hc.l4{background:var(--ink)}
+.hc.l1{background:color-mix(in srgb,var(--acc) 25%,var(--card))}
+.hc.l2{background:color-mix(in srgb,var(--acc) 50%,var(--card))}
+.hc.l3{background:color-mix(in srgb,var(--acc) 75%,var(--card))}
+.hc.l4{background:var(--acc)}
 .hm i{aspect-ratio:1}
 /* ===== Time grid (day and week views) ===== */
 .tg{border:1px solid var(--line);border-radius:10px;overflow-x:auto}
-.tgh,.tgi{display:grid;grid-template-columns:48px repeat(var(--n),1fr);min-width:calc(48px + var(--n)*var(--cw,86px))}
+.tgh,.tgi{display:grid;grid-template-columns:48px repeat(var(--n),1fr);min-width:calc(48px + var(--n)*86px)}
 .tgh{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card);z-index:2}
 .tgh a{text-align:center;padding:6px 2px;color:var(--mute);text-decoration:none;border-left:1px solid var(--line);display:flex;flex-direction:column;align-items:center;font-size:12px}
 .tgh a b{font-size:22px;font-weight:400;color:var(--ink);width:38px;height:38px;display:grid;place-items:center;border-radius:50%}
-.tgh a.tdy b{background:var(--ink);color:var(--bg)}
+.tgh a.tdy b{background:var(--acc);color:var(--bg)}
 .tgh a small{min-height:15px}
-.tgb{max-height:640px;overflow-y:auto;overscroll-behavior:contain}
+.tgb{max-height:640px;overflow-y:auto}
 .tgi{position:relative}
 .gut div{height:48px;font-size:11px;color:var(--mute);text-align:right;padding-right:6px;transform:translateY(-7px)}
 .col{position:relative;height:1152px;border-left:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 47px,var(--line) 47px,var(--line) 48px)}
@@ -94,8 +88,8 @@ main{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-widt
 .now{position:absolute;left:0;right:0;height:2px;background:var(--rec);z-index:1}
 /* ===== Summary ===== */
 .sum .line{display:grid;grid-template-columns:90px 1fr 64px;gap:8px;align-items:center;font-size:13px;margin:5px 0}
-.sum .track{height:10px;background:color-mix(in srgb,var(--ink) 8%,var(--card));border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.sum .track i{display:block;height:100%;background:var(--ink)}
+.sum .track{height:10px;background:color-mix(in srgb,var(--ink) 8%,var(--card));border-radius:6px;overflow:hidden}
+.sum .track i{display:block;height:100%;background:var(--c)}
 .stats{display:flex;gap:20px;margin-bottom:6px;flex-wrap:wrap}
 .stats b{font-size:22px;display:block}
 dialog{border:1px solid var(--line);border-radius:var(--r);background:var(--card);color:var(--ink);width:min(420px,94vw)}
@@ -103,102 +97,15 @@ dialog::backdrop{background:#0008}
 dialog label{display:block;font-size:13px;color:var(--mute);margin-top:10px}
 dialog input,dialog select{width:100%}
 .err{color:var(--rec);font-size:13px;min-height:18px}
-/* ===== Sidebyes ===== */
-.sb{text-align:left;margin-top:12px}
-.sbh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
-.sbh b{font-size:14px;text-transform:uppercase;letter-spacing:.04em}
-.sbl{list-style:none;margin:0 0 8px;padding:0;counter-reset:sb}
-.sbl li{counter-increment:sb;display:flex;gap:8px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;margin-bottom:6px;background:color-mix(in srgb,var(--ink) 5%,var(--card));word-break:break-word;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;transition:background .15s,transform .15s}
-.sbl li::before{content:counter(sb) ".";font-weight:700;min-width:1.7em;color:var(--mute)}
-.sbl li.pressing{background:color-mix(in srgb,var(--rec) 20%,var(--card));transform:scale(.985)}
-.sbl:empty::after{content:"No sidebyes yet";font-size:13px;color:var(--mute)}
-.sbadd{display:flex;gap:6px}
-.sbin{flex:1;min-width:0}
-dialog .sbin{width:auto}
-.sbm.on{background:var(--rec);color:#fff;border-color:var(--rec)}
-button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
-#sbq .row button{min-height:48px}
-#mic.busy,#rng.busy,.sbm.busy{opacity:.5;pointer-events:none;animation:blink 1s infinite}
-@keyframes blink{50%{opacity:.25}}
-@media(prefers-reduced-motion:reduce){#mic.busy,#rng.busy,.sbm.busy{animation:none}}
-/* ===== Cloud sync ===== */
-#cloud{min-width:44px;font-weight:600}
-#syncNote{margin:4px 0 0}
-
-/* ===== MOBILE ===== */
-header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
-@media(max-width:900px){
-  main{display:flex;flex-direction:column;gap:12px;padding:10px max(10px,env(safe-area-inset-right)) calc(150px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
-  .stack{display:contents}
-  .cap{order:1}.tools{order:2}.calc{order:3}.sum{order:4}
-  .pair{
-    position:fixed;
-    left:50%;
-    transform:translateX(-50%);
-    bottom:calc(14px + env(safe-area-inset-bottom));
-    z-index:8;
-    margin:0;
-    gap:22px;
-    padding:10px 22px 8px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    -webkit-backdrop-filter:blur(10px);
-    backdrop-filter:blur(10px);
-    border:1px solid var(--line);
-    border-radius:999px;
-    box-shadow:0 6px 24px #0003;
-  }
-  .pair .note{font-size:11px;margin-top:4px;text-align:center;white-space:nowrap}
-}
-@media(max-width:700px){
-  :root{--cw:72px}
-  body{font-size:16px}
-  header{padding-top:max(8px,env(safe-area-inset-top));padding-bottom:8px;gap:8px;flex-wrap:nowrap}
-  header h1{font-size:18px;margin:0}
-  .mbtn{display:inline-block;min-width:44px;font-size:20px;line-height:1;font-weight:700}
-  .mp{display:none;position:absolute;right:max(16px,env(safe-area-inset-right));top:calc(100% + 6px);flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px;min-width:170px;box-shadow:0 8px 24px #0004;z-index:20}
-  .mp.open{display:flex}
-  .mp button{text-align:left}
-  .card{padding:12px}
-  input,select{font-size:16px}
-  button:not(.hc):not(.day),input:not([type=file]),select{min-height:44px}
-  .pair{gap:20px}
-  #mic,#timer,#rng{width:68px;height:68px;font-size:28px}
-  #timer,#rng{font-size:24px}
-  #timer.on{font-size:15px}
-  #clock{font-size:28px}
-  #live{min-height:36px;max-height:90px;font-size:14px}
-  .bar{gap:6px}
-  .bar h2{order:10;flex:1 1 100%;margin:4px 0 0;font-size:17px}
-  #jump{order:11;flex:1 1 100%}
-  .bar #prev,.bar #next{min-width:44px;padding:7px 10px}
-  .bar #today{flex:1}
-  .tgb{max-height:68vh;max-height:68dvh}
-  .mgrid{gap:3px}
-  .day{min-height:58px;padding:4px}
-  .ent{padding:11px 12px}
-  .sum .line{grid-template-columns:72px 1fr 58px}
-  .stats{gap:14px}
-  .yr{grid-template-columns:repeat(2,1fr);gap:12px}
-  dialog{margin:auto 0 0;width:100%;max-width:none;max-height:92vh;max-height:92dvh;overflow:auto;border-radius:var(--r) var(--r) 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
-  dialog .row button{min-height:48px}
-}
-@media(max-width:380px){.pair{gap:14px}#mic,#timer,#rng{width:60px;height:60px}}
 </style>
 </head>
 <body>
 <header>
   <h1>Daylog</h1>
   <span class="sp"></span>
-  <span class="mp" id="mp">
-    <button id="exJ">Export JSON</button>
-    <button id="exC">Export CSV</button>
-    <label class="auto"><input type="checkbox" id="auto"> Auto-backup on every change</label>
-    <button id="imp">Import</button>
-    <input type="file" id="impF" accept=".json,.csv" hidden>
-  </span>
-  <button id="bk" class="pri" aria-label="Save a backup file to Downloads">Save</button>
-  <button id="cloud" aria-label="Save to GitHub">&#9729;</button>
-  <button class="mbtn" id="mbtn" aria-label="More options" aria-expanded="false">&#8943;</button>
+  <button id="exJ">Export JSON</button><button id="exC">Export CSV</button>
+  <button id="imp">Import</button><input type="file" id="impF" accept=".json,.csv" hidden>
+  <button id="theme" aria-label="Toggle light or dark mode">Theme</button>
 </header>
 
 <main>
@@ -207,43 +114,31 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
       <div class="pair">
         <div><button id="mic" aria-label="Dictate the session title">&#127908;</button><div class="note">Speak title</div></div>
         <div><button id="timer" aria-label="Start or stop the session timer">&#9201;</button><div class="note" id="tLabel">Start timer</div></div>
-        <div><button id="rng" aria-label="Say a time range to log a session">&#128345;</button><div class="note">Say time</div></div>
       </div>
-      <input id="rangeIn" hidden>
       <div id="clock">00:00:00</div>
-      <input id="typed" style="width:100%;margin-top:8px">
-      <div class="sb" id="sbMain">
-        <div class="sbh"><b>Sidebyes</b><span class="note">Hold an item to delete it</span></div>
-        <ol class="sbl"></ol>
-        <div class="sbadd"><input class="sbin" placeholder="Extra thing you did (speak or type)" enterkeyhint="done"><button type="button" class="sbm" aria-label="Dictate a sidebye">&#127908;</button><button type="button" class="sba pri">Add</button></div>
-      </div>
-      <div id="live" aria-live="polite"></div>
+      <input id="typed" placeholder="Session title (speak it or type it)" style="width:100%;margin-top:8px">
+      <div id="live" aria-live="polite">Tap the mic and say what you're doing. Tap the clock button to start timing.</div>
       <div class="row" style="margin-top:8px">
         <select id="lang">
           <option value="en-IN">English (India)</option><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option>
-          <option value="hi-IN">Hindi</option><option value="mr-IN">Marathi</option><option value="es-ES">Spanish</option><option value="fr-FR">French</option><option value="de-DE">German</option><option value="auto">Auto-detect language</option>
-        </select>
-        <select id="eng" aria-label="Speech engine">
-          <option value="whisper">Whisper on-device (accurate)</option>
-          <option value="cloud">Whisper cloud (Groq, best)</option>
-          <option value="browser">Browser built-in (live)</option>
+          <option value="hi-IN">Hindi</option><option value="mr-IN">Marathi</option><option value="es-ES">Spanish</option><option value="fr-FR">French</option><option value="de-DE">German</option>
         </select>
       </div>
-      <p class="note" id="srNote">Voice uses Whisper. The first use downloads a small speech model once, then it works offline.</p>
-      <p class="note" id="syncNote"></p>
+      <div class="row" style="margin-top:8px"><select id="eng" aria-label="Voice engine"><option value="local">Whisper on-device (fast)</option><option value="groq">Whisper cloud (Groq)</option><option value="browser">Browser built-in (live)</option></select></div>
+      <input id="gkey" type="password" placeholder="Groq API key (console.groq.com/keys)" style="width:100%;margin-top:8px;display:none">
+      <p class="note" id="srNote">Voice works best in Chrome or Edge, over HTTPS or localhost.</p>
     </section>
-    <section class="card tools">
+    <section class="card">
       <div class="row"><button class="pri" id="add">+ Add entry</button><button id="addCat">+ Category</button></div>
-      <details class="fl" id="fl"><summary>Search and filter</summary>
-      <input id="q" placeholder="Search titles" style="width:100%;margin:10px 0 8px">
+      <h3 style="margin:14px 0 8px;font-size:15px">Search and filter</h3>
+      <input id="q" placeholder="Search titles" style="width:100%;margin-bottom:8px">
       <div class="row"><select id="fc"></select><button id="clr">Clear</button></div>
       <div class="row" style="margin-top:8px"><input type="date" id="f1" aria-label="From date"><input type="date" id="f2" aria-label="To date"></div>
-      </details>
     </section>
   </div>
 
   <div class="stack">
-    <section class="card calc">
+    <section class="card">
       <div class="bar">
         <button id="prev" aria-label="Previous">&lsaquo;</button><button id="today">Today</button><button id="next" aria-label="Next">&rsaquo;</button>
         <h2 id="label"></h2>
@@ -262,11 +157,6 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
   <form id="form">
     <h3 id="dTitle" style="margin:0">Entry</h3>
     <label>Title<input id="eT" required></label>
-    <div class="sb" id="sbEdit">
-      <div class="sbh"><b>Sidebyes</b><span class="note">Hold an item to delete it</span></div>
-      <ol class="sbl"></ol>
-      <div class="sbadd"><input class="sbin" placeholder="Extra thing you did (speak or type)" enterkeyhint="done"><button type="button" class="sbm" aria-label="Dictate a sidebye">&#127908;</button><button type="button" class="sba pri">Add</button></div>
-    </div>
     <label>Date<input type="date" id="eD" required></label>
     <div class="row"><label>Start<input type="time" id="eS" required></label><label>End<input type="time" id="eE" required></label></div>
     <div id="eDur" class="note" style="margin-top:6px"></div>
@@ -274,12 +164,6 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
     <div class="err" id="eErr"></div>
     <div class="row" style="margin-top:6px"><button type="button" id="eDel">Delete</button><button type="button" id="eX">Cancel</button><button class="pri" type="submit">Save</button></div>
   </form>
-</dialog>
-
-<dialog id="sbq">
-  <h3 style="margin:0 0 6px">Delete this sidebye?</h3>
-  <p id="sbqT" style="margin:0 0 14px;word-break:break-word"></p>
-  <div class="row"><button type="button" id="sbqX">Cancel</button><button type="button" class="danger" id="sbqDel">Delete</button></div>
 </dialog>
 
 <script>
@@ -307,8 +191,7 @@ const dbPutMany=l=>tx('readwrite',s=>{l.forEach(e=>s.put(e))});
 const dbDel=id=>tx('readwrite',s=>s.delete(id));
 const PALETTE=['#2F6FED','#8B5CF6','#16A34A','#F59E0B','#E11D8F','#06B6D4','#EA580C','#64748B'];
 let cats=JSON.parse(localStorage.getItem('dl-cats')||'null')||{Work:'#2F6FED',Study:'#8B5CF6',Health:'#16A34A',Personal:'#F59E0B',Other:'#64748B'};
-const GR=['#555','#777','#999','#666','#888'];
-const col=n=>GR[Math.max(0,Object.keys(cats).indexOf(n))%5];
+const col=n=>cats[n]||'#64748B';
 const saveCats=()=>localStorage.setItem('dl-cats',JSON.stringify(cats));
 
 /* ===== STATE ===== */
@@ -340,14 +223,14 @@ function step(k){
     d.setDate(Math.min(cur.getDate(),new Date(d.getFullYear(),d.getMonth()+1,0).getDate()));cur=d}
   render();
 }
-function filtered(){
+function filtered(){ // search + category + date-range filters
   const q=$('#q').value.trim().toLowerCase(),c=$('#fc').value,a=$('#f1').value,b=$('#f2').value;
   const on=!!(q||c||a||b);
   return{on,list:entries.filter(e=>(!q||e.title.toLowerCase().includes(q))&&(!c||e.cat===c)&&(!a||e.date>=a)&&(!b||e.date<=b))};
 }
 
-/* ===== TIME GRID ===== */
-const HH=48;
+/* ===== TIME GRID: blocks positioned by start time and sized by duration ===== */
+const HH=48; // pixels per hour
 const t12=t=>{let[h,m]=t.split(':').map(Number);const a=h<12?'am':'pm';h=h%12||12;return m?`${h}:${pad(m)}${a}`:`${h}${a}`};
 function timeGrid(days){
   const n=days.length,today=ymd(new Date());
@@ -357,7 +240,7 @@ function timeGrid(days){
   const cols=days.map(d=>{const k=ymd(d),out=[];let cl=[],cend=0;
     const flush=()=>{const lanes=[];cl.forEach(o=>{let i=lanes.findIndex(x=>x<=o.s);if(i<0){i=lanes.length;lanes.push(0)}lanes[i]=o.en;o.lane=i});cl.forEach(o=>o.n=lanes.length);out.push(...cl);cl=[]};
     (byDate[k]||[]).forEach(e=>{const s=tmin(e.start);let en=tmin(e.end);if(en<=s)en=Math.min(1440,s+e.mins);
-      if(cl.length&&s>=cend)flush();cend=cl.length?Math.max(cend,en):en;cl.push({e,s,en})});flush();
+      if(cl.length&&s>=cend)flush();cend=cl.length?Math.max(cend,en):en;cl.push({e,s,en})});flush(); // side-by-side lanes for overlaps
     const blks=out.map(o=>{const h=Math.max((o.en-o.s)/60*HH,18),sh=h<36;
       return `<div class="blk${sh?' sh':''}" data-id="${o.e.id}" title="${esc(o.e.title)}" style="--c:${col(o.e.cat)};top:${o.s/60*HH}px;height:${h-1}px;left:calc(${o.lane/o.n*100}% + 1px);width:calc(${100/o.n}% - 3px)"><b>${esc(o.e.title)}</b>${sh?', '+t12(o.e.start):'<br>'+t12(o.e.start)+' – '+t12(o.e.end)}</div>`}).join('');
     const nw=new Date(),line=k===today?`<div class="now" style="top:${(nw.getHours()*60+nw.getMinutes())/60*HH}px"></div>`:'';
@@ -366,7 +249,7 @@ function timeGrid(days){
 }
 
 /* ===== RENDER ===== */
-const entHTML=e=>`<div class="ent" data-id="${e.id}" style="--c:${col(e.cat)}"><div><b>${esc(e.title)}</b><small>${e.start} to ${e.end}</small>${e.side&&e.side.length?`<small>${e.side.length} sidebye${e.side.length>1?'s':''}</small>`:''}</div><div style="text-align:right"><span class="chip">${esc(e.cat)}</span><small>${fmt(e.mins)}</small></div></div>`;
+const entHTML=e=>`<div class="ent" data-id="${e.id}" style="--c:${col(e.cat)}"><div><b>${esc(e.title)}</b><small>${e.start} to ${e.end}</small></div><div style="text-align:right"><span class="chip">${esc(e.cat)}</span><small>${fmt(e.mins)}</small></div></div>`;
 function render(){
   const[s,e]=range(),L=d=>d.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
   $('#label').textContent={day:cur.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long',year:'numeric'}),
@@ -375,7 +258,7 @@ function render(){
   $('#jump').value=ymd(cur);
   $('#viewSel').value=view;localStorage.setItem('dl-view',view);
   const f=filtered(),v=$('#view');
-  if(f.on){
+  if(f.on){ // search results replace the calendar view
     const l=[...f.list].sort((a,b)=>(b.date+b.start).localeCompare(a.date+a.start));
     v.innerHTML=`<p class="note">${l.length} matching entries</p>`+l.map(x=>`<div class="note" style="margin:8px 0 3px">${x.date}</div>`+entHTML(x)).join('');
     summary(l,'Matching entries');return;
@@ -384,517 +267,209 @@ function render(){
     const days=view==='day'?[cur]:Array.from({length:7},(_,i)=>addD(s,i));
     v.innerHTML=timeGrid(days);
     const ks=days.map(ymd),st=entries.filter(e=>ks.includes(e.date)).map(e=>tmin(e.start));
-    $('#tgb').scrollTop=Math.max(0,(st.length?Math.min(...st):420)/60*HH-24);
+    $('#tgb').scrollTop=Math.max(0,(st.length?Math.min(...st):420)/60*HH-24); // scroll to the first entry (or 7am)
   }
   else if(view==='month'){let h='<div class="mgrid">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="dow">${d}</div>`).join('');
     for(let i=0;i<(s.getDay()+6)%7;i++)h+='<div class="day out"></div>';
     for(let d=1;d<=e.getDate();d++){const dt=new Date(s.getFullYear(),s.getMonth(),d),k=ymd(dt),l=byDate[k]||[];
       h+=`<button class="day${k===ymd(new Date())?' today':''}" data-d="${k}"><span>${d}</span><span class="dots">${l.slice(0,8).map(x=>`<i style="--c:${col(x.cat)}"></i>`).join('')}</span>${l.length?`<small>${fmt(tot(k))}</small>`:''}</button>`}
     v.innerHTML=h+'</div>';}
-  else{
+  else{ // half-year and year: heatmap, one small grid per month
     let h='<div class="yr">';
     for(let m=s.getMonth();m<=e.getMonth();m++){const y=s.getFullYear(),n=new Date(y,m+1,0).getDate();
       h+=`<div class="mb"><h4>${new Date(y,m,1).toLocaleDateString(undefined,{month:'long'})}</h4><div class="hm">`+'<i></i>'.repeat((new Date(y,m,1).getDay()+6)%7);
       for(let d=1;d<=n;d++){const k=ymd(new Date(y,m,d)),t=tot(k),l=t===0?0:t<60?1:t<180?2:t<360?3:4;
         h+=`<button class="hc l${l}" data-d="${k}" title="${k}: ${fmt(t)}" aria-label="${k}: ${fmt(t)}"></button>`}
       h+='</div></div>'}
-    v.innerHTML=h+'</div>';
-  }
+    v.innerHTML=h+'</div>';}
   const sk=s,ek=e;summary(entries.filter(x=>x.date>=ymd(sk)&&x.date<=ymd(ek)),'Summary');
 }
-function summary(list,title){
+function summary(list,title){ // totals + bars per category
   const by={};let t=0;list.forEach(e=>{by[e.cat]=(by[e.cat]||0)+e.mins;t+=e.mins});
   const days=new Set(list.map(e=>e.date)).size,max=Math.max(1,...Object.values(by));
   $('#sum').innerHTML=`<h3 style="margin:0 0 10px;font-size:15px">${title}</h3><div class="stats"><div><b>${fmt(t)}</b>logged</div><div><b>${list.length}</b>entries</div><div><b>${days?fmt(Math.round(t/days)):'0m'}</b>per active day</div></div>`+
     Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([c,m])=>`<div class="line" style="--c:${col(c)}"><span>${esc(c)}</span><span class="track"><i style="width:${m/max*100}%"></i></span><span>${fmt(m)}</span></div>`).join('');
 }
 
-/* ===== ENTRY EDITOR ===== */
+/* ===== ENTRY EDITOR (used for manual add and for editing/correcting voice entries) ===== */
 let editing=null;
 function openEditor(e){
   editing=e||null;$('#dTitle').textContent=e?'Edit entry':'Add entry';$('#eDel').style.display=e?'':'none';
   $('#eT').value=e?.title||'';$('#eD').value=e?.date||ymd(cur);$('#eS').value=e?.start||'09:00';$('#eE').value=e?.end||'10:00';
-  $('#eC').value=e?.cat||'Other';$('#eErr').textContent='';SBedit.set(e?.side||[]);durHint();$('#dlg').showModal();
+  $('#eC').value=e?.cat||'Other';$('#eErr').textContent='';durHint();$('#dlg').showModal();
 }
 const durHint=()=>{const d=tmin($('#eE').value||'0:0')-tmin($('#eS').value||'0:0');$('#eDur').textContent=d>0?`Duration: ${fmt(d)}`:''};
 ['eS','eE'].forEach(i=>$('#'+i).addEventListener('input',durHint));
 $('#form').addEventListener('submit',async ev=>{
   ev.preventDefault();
-  if(listening||busy)await stopDictation();
   const mins=tmin($('#eE').value)-tmin($('#eS').value);
   if(mins<=0){$('#eErr').textContent='End time must be after the start time.';return}
-  const e={id:editing?.id||crypto.randomUUID(),title:$('#eT').value.trim(),date:$('#eD').value,start:$('#eS').value,end:$('#eE').value,mins,cat:$('#eC').value,side:SBedit.get(),u:Date.now()};
-  await dbPut(e);$('#dlg').close();cur=parseD(e.date);refresh();autoBackup();
+  const e={id:editing?.id||crypto.randomUUID(),title:$('#eT').value.trim(),date:$('#eD').value,start:$('#eS').value,end:$('#eE').value,mins,cat:$('#eC').value};
+  await dbPut(e);$('#dlg').close();cur=parseD(e.date);refresh();
 });
 $('#eX').onclick=()=>$('#dlg').close();
-$('#eDel').onclick=async()=>{if(confirm('Delete this entry?')){await delEntry(editing.id);$('#dlg').close();refresh();autoBackup()}};
+$('#eDel').onclick=async()=>{if(confirm('Delete this entry?')){await dbDel(editing.id);$('#dlg').close();refresh()}};
 
-/* ===== MIC: dictate text into the title box ===== */
-if(window.AndroidBridge&&AndroidBridge.available()&&!window.SpeechRecognition&&!window.webkitSpeechRecognition){
-  let cur=null;
-  const mk=(t,fin)=>{const a=[{transcript:t,confidence:1}];a.isFinal=fin;return{resultIndex:0,results:[a]}};
-  const ERR={1:'network',2:'network',3:'audio-capture',4:'network',5:'aborted',6:'no-speech',7:'no-speech',8:'aborted',9:'not-allowed',10:'aborted',11:'aborted',12:'language-not-supported',13:'language-not-supported'};
-  window.SpeechRecognition=class{
-    constructor(){this.lang='en-US'}
-    start(){cur=this;AndroidBridge.startListening(this.lang||'en-US')}
-    stop(){AndroidBridge.stopListening()}
-  };
-  window.__sr={
-    started(){cur&&cur.onstart&&cur.onstart()},
-    partial(t){cur&&cur.onresult&&cur.onresult(mk(t,false))},
-    final(t){cur&&cur.onresult&&cur.onresult(mk(t,true))},
-    error(c){cur&&cur.onerror&&cur.onerror({error:ERR[c]||'aborted'})},
-    end(){cur&&cur.onend&&cur.onend()}
-  };
-}
+/* ===== MIC: dictate text into the title box (does not save anything) ===== */
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-const CAN_REC=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder&&window.isSecureContext);
-let rec,listening=false,denied=false,base='',finalText='',lastStart=0,quick=0,active=null;
-let rs=null,busy=false,pending=Promise.resolve();
-const warn=m=>{$('#srNote').textContent=m;$('#srNote').style.color='var(--rec)';if($('#dlg').open)$('#eErr').textContent=m};
-if(!SR&&!CAN_REC)warn('Voice input is not supported in this browser. Type instead. Chrome or Edge work best.');
-else if(!window.isSecureContext)warn('The mic is blocked because this page was opened from a file. Host it over HTTPS (for example GitHub Pages) or run it from localhost.');
-const MSG={'not-allowed':'Microphone is blocked. Allow the microphone in your browser\'s site settings, then reload. If you opened the file directly, run it from localhost or HTTPS instead.',
+let rec,listening=false,denied=false,base='',finalText='',lastStart=0,quick=0;
+const warn=m=>{$('#srNote').textContent=m;$('#srNote').style.color='var(--rec)'};
+if(!SR)warn('Speech recognition is not supported in this browser. Type the title instead. Chrome or Edge work best.');
+const MSG={'not-allowed':'Microphone is blocked. Click the lock icon in the address bar, allow the microphone, and reload. If you opened the file directly, run it from localhost or HTTPS instead.',
   'service-not-allowed':'This browser blocks speech recognition here. Use Chrome or Edge over HTTPS or localhost.',
   'network':'Speech recognition needs an internet connection. Brave and some privacy browsers block it.',
   'audio-capture':'No microphone was found.','language-not-supported':'This language is not supported. Pick another one.'};
-const say=m=>{if(active&&active.input===$('#typed'))$('#live').textContent=m};
-const LANGS={'en-IN':'english','en-US':'english','en-GB':'english','hi-IN':'hindi','mr-IN':'marathi','es-ES':'spanish','fr-FR':'french','de-DE':'german'};
-const langSel=$('#lang'),engSel=$('#eng');
-langSel.value=localStorage.getItem('dl-lang')||'en-IN';if(!langSel.value)langSel.value='en-IN';
-engSel.value=localStorage.getItem('dl-eng')||'whisper';if(!engSel.value)engSel.value='whisper';
-langSel.onchange=()=>localStorage.setItem('dl-lang',langSel.value);
-engSel.onchange=()=>{
-  if(engSel.value==='cloud'&&!localStorage.getItem('dl-groq')){
-    const k=prompt('Paste your free Groq API key (console.groq.com/keys). It stays on this device and is only sent to Groq.');
-    if(!k||!k.trim()){engSel.value=localStorage.getItem('dl-eng')||'whisper';return}
-    localStorage.setItem('dl-groq',k.trim());
-  }
-  localStorage.setItem('dl-eng',engSel.value);
-};
-const engine=()=>{const e=engSel.value;if(e!=='browser'&&CAN_REC)return e;return SR?'browser':(CAN_REC?'whisper':'browser')};
-const kindOf=i=>i.id==='rangeIn'?'range':'text';
-
-/* ---- text clean-up ---- */
-const FILL=/\b(?:u+m+|u+h+|hmm+|mhm+)\b[,.]?\s*/gi;
-const HALL=/^(thank you|thanks|thanks for watching|thank you for watching|you|bye|please subscribe)[.! ]*$/i;
-function tidy(t,kind){
-  t=String(t||'').replace(/[\[(][^\])]*[\])]/g,' ').replace(FILL,'').replace(/\s+/g,' ').replace(/\s+([,.!?])/g,'$1').trim();
-  if(kind!=='range'){t=t.replace(/[.\u0964]+$/,'').trim();t=t.charAt(0).toUpperCase()+t.slice(1)}
-  return t;
-}
-
-/* ---- audio helpers: decode to 16 kHz mono, trim silence, normalise ---- */
-function resample(x,from,to){
-  if(from===to)return x;
-  const n=Math.round(x.length*to/from),y=new Float32Array(n),r=from/to;
-  for(let i=0;i<n;i++){const p=i*r,j=Math.floor(p),f=p-j;y[i]=(x[j]||0)*(1-f)+(x[j+1]||0)*f}
-  return y;
-}
-async function toPCM(blob){
-  const AC=window.AudioContext||window.webkitAudioContext;
-  let ctx;try{ctx=new AC({sampleRate:16000})}catch(e){ctx=new AC()}
-  try{
-    const a=await ctx.decodeAudioData(await blob.arrayBuffer());
-    const n=a.length,m=new Float32Array(n);
-    for(let c=0;c<a.numberOfChannels;c++){const d=a.getChannelData(c);for(let i=0;i<n;i++)m[i]+=d[i]/a.numberOfChannels}
-    return resample(m,a.sampleRate,16000);
-  }finally{ctx.close&&ctx.close()}
-}
-function prep(x){
-  const fr=320,n=Math.floor(x.length/fr),e=new Float32Array(n);let pk=0;
-  for(let i=0;i<n;i++){let q=0;for(let j=0;j<fr;j++){const v=x[i*fr+j];q+=v*v}e[i]=Math.sqrt(q/fr);if(e[i]>pk)pk=e[i]}
-  if(pk<0.003)return null;
-  const th=Math.max(0.003,pk*0.06);let a=0,b=n-1;
-  while(a<n&&e[a]<th)a++;while(b>a&&e[b]<th)b--;
-  a=Math.max(0,a-15);b=Math.min(n-1,b+15);
-  const y=x.slice(a*fr,(b+1)*fr);
-  let m=0;for(let i=0;i<y.length;i++){const v=Math.abs(y[i]);if(v>m)m=v}
-  if(m>0){const g=Math.min(8,0.95/m);for(let i=0;i<y.length;i++)y[i]*=g}
-  return y.length<4800?null:y;
-}
-function wav(f){
-  const b=new ArrayBuffer(44+f.length*2),v=new DataView(b),w=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))};
-  w(0,'RIFF');v.setUint32(4,36+f.length*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
-  v.setUint32(24,16000,true);v.setUint32(28,32000,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,f.length*2,true);
-  for(let i=0;i<f.length;i++){const x=Math.max(-1,Math.min(1,f[i]));v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}
-  return new Blob([b],{type:'audio/wav'});
-}
-
-/* ---- Whisper on-device (transformers.js; WebGPU if present, else WASM) ---- */
-let asr=null,asrP=null;
-function loadWhisper(){
-  if(asr)return Promise.resolve(asr);
-  if(asrP)return asrP;
-  asrP=(async()=>{
-    const{pipeline,env}=await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3');
-    env.allowLocalModels=false;
-    const q4={encoder_model:'fp32',decoder_model_merged:'q4'};
-    const plans=navigator.gpu?[
-      {id:'onnx-community/whisper-small',device:'webgpu',dtype:q4},
-      {id:'onnx-community/whisper-base',device:'webgpu',dtype:q4},
-      {id:'Xenova/whisper-base',device:'wasm',dtype:'q8'}
-    ]:[
-      {id:'Xenova/whisper-base',device:'wasm',dtype:'q8'},
-      {id:'Xenova/whisper-tiny',device:'wasm',dtype:'q8'}
-    ];
-    let last;
-    for(const pl of plans){
-      const files={};
-      try{
-        const r=await pipeline('automatic-speech-recognition',pl.id,{device:pl.device,dtype:pl.dtype,progress_callback:p=>{
-          if(p.status==='progress'&&p.total){files[p.file]=[p.loaded,p.total];let l=0,t=0;for(const k in files){l+=files[k][0];t+=files[k][1]}
-            const m='Downloading speech model, one time only: '+Math.round(l/t*100)+'%';$('#srNote').style.color='';$('#srNote').textContent=m;if(busy||listening)$('#live').textContent=m}}});
-        $('#srNote').textContent='Speech model ready.';return r;
-      }catch(e){last=e;console.warn('Whisper plan failed',pl.id,e)}
-    }
-    throw last||new Error('model unavailable');
-  })();
-  asrP.then(r=>{asr=r},()=>{asrP=null});
-  return asrP;
-}
-async function asrLocal(y,lang){
-  $('#live').textContent='Loading speech model...';
-  const pipe=await loadWhisper();
-  $('#live').textContent='Transcribing...';
-  const o={task:'transcribe',chunk_length_s:30,stride_length_s:5};
-  if(lang!=='auto'&&LANGS[lang])o.language=LANGS[lang];
-  const r=await pipe(y,o);
-  return(r.text||'').trim();
-}
-
-/* ---- Whisper large-v3 in the cloud (Groq). Supports a vocabulary prompt. ---- */
-function vocab(input){
-  if(input.id==='rangeIn')return 'Time range, for example: 10 PM to 12 AM, 9:30 AM to 11:15 AM, 2 PM to 4 PM.';
-  const t=[...entries].sort((a,b)=>(b.u||0)-(a.u||0)).slice(0,15).map(e=>e.title);
-  return('Daylog work session titles. Categories: '+Object.keys(cats).join(', ')+'. Recent: '+t.join('. ')+'.').slice(0,700);
-}
-async function asrCloud(blob,lang,prompt){
-  const k=localStorage.getItem('dl-groq');if(!k)throw new Error('no Groq key');
-  const fd=new FormData();fd.append('file',blob,'speech.wav');fd.append('model','whisper-large-v3');fd.append('temperature','0');fd.append('response_format','json');
-  if(lang!=='auto')fd.append('language',lang.slice(0,2));
-  if(prompt)fd.append('prompt',prompt);
-  const r=await fetch('https://api.groq.com/openai/v1/audio/transcriptions',{method:'POST',headers:{Authorization:'Bearer '+k},body:fd});
-  if(r.status===401){localStorage.removeItem('dl-groq');throw new Error('Groq rejected the key')}
-  if(!r.ok)throw new Error('Groq error '+r.status);
-  return((await r.json()).text||'').trim();
-}
-
-async function transcribe(blob,s){
-  const lang=langSel.value,kind=kindOf(s.input);
-  $('#live').textContent='Cleaning up audio...';
-  const y=prep(await toPCM(blob));
-  if(!y)return'';
-  let txt;
-  if(s.eng==='cloud'){
-    try{$('#live').textContent='Transcribing...';txt=await asrCloud(wav(y),lang,vocab(s.input))}
-    catch(e){$('#srNote').textContent='Cloud failed ('+(e instanceof TypeError?'offline':e.message)+'). Using on-device Whisper.';txt=await asrLocal(y,lang)}
-  }else txt=await asrLocal(y,lang);
-  txt=tidy(txt,kind);
-  if(y.length/16000<3&&HALL.test(txt))return'';
-  return txt;
-}
-
-/* ---- recording (Whisper engines) ---- */
-async function startRecord(input,mic,eng){
-  active={input,mic};listening=true;denied=false;mic.classList.add('on');
-  const tgt=input.id==='typed'||input.id==='rangeIn',s={input,mic,eng,chunks:[],t0:Date.now(),cancel:false,tgt};
-  rs=s;
-  if(eng==='whisper')loadWhisper().catch(()=>{});
-  let stream;
-  try{stream=await navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true}})}
-  catch(e){
-    if(s.cancel)return;
-    if(rs===s){rs=null;listening=false;active=null;mic.classList.remove('on')}
-    if(SR){warn('Could not open the microphone for Whisper. Using the browser engine instead.');return startBrowser(input,mic)}
-    warn(MSG['not-allowed']);return;
-  }
-  if(s.cancel||rs!==s){stream.getTracks().forEach(t=>t.stop());return}
-  const mime=['audio/webm;codecs=opus','audio/mp4','audio/webm','audio/ogg;codecs=opus'].find(t=>MediaRecorder.isTypeSupported(t))||'';
-  let mr;try{mr=new MediaRecorder(stream,mime?{mimeType:mime,audioBitsPerSecond:128000}:undefined)}catch(e){mr=new MediaRecorder(stream)}
-  s.stream=stream;s.mr=mr;
-  mr.ondataavailable=e=>{if(e.data&&e.data.size)s.chunks.push(e.data)};
-  mr.start(250);
-  $('#srNote').style.color='';$('#srNote').textContent='Microphone is on.';
-  const upd=()=>{if(!tgt)return;const t=Math.floor((Date.now()-s.t0)/1000);$('#live').textContent='Recording '+Math.floor(t/60)+':'+pad(t%60)+'. Tap the mic again when you are done.'};
-  upd();s.tick=setInterval(upd,500);
-}
-function finishRecord(discard){
-  const s=rs;rs=null;listening=false;active=null;
-  if(!s)return pending;
-  s.mic.classList.remove('on');
-  if(!s.mr){s.cancel=true;return Promise.resolve()}
-  const p=new Promise(res=>{
-    let done=false;
-    const fin=async()=>{
-      if(done)return;done=true;
-      clearInterval(s.tick);s.stream.getTracks().forEach(t=>t.stop());
-      if(discard||!s.chunks.length){res();return}
-      busy=true;s.mic.classList.add('busy');
-      try{
-        const txt=await transcribe(new Blob(s.chunks,{type:s.mr.mimeType||'audio/webm'}),s);
-        if(txt){const c=s.input.value.trim();s.input.value=c?c+' '+txt:txt}
-        if(s.tgt)$('#live').textContent=txt?(s.input.id==='typed'?'Title ready. Edit it if needed.':'Heard: '+txt):'I did not catch anything. Try again a little closer to the mic.';
-      }catch(e){warn('Whisper failed: '+(e&&e.message||e)+'. Check your connection once for the model download, or pick Browser built-in.');if(s.tgt)$('#live').textContent=''}
-      finally{busy=false;s.mic.classList.remove('busy');res()}
-    };
-    s.mr.onstop=fin;
-    try{if(s.mr.state!=='inactive')s.mr.stop();else fin()}catch(e){fin()}
-  });
-  pending=p;return p;
-}
-
-/* ---- browser built-in engine (live, lower accuracy) ---- */
-function startBrowser(input,mic){
+function startDictation(){
   if(!SR){warn('Speech recognition is not supported in this browser.');return}
-  active={input,mic};
-  listening=true;denied=false;quick=0;base=input.value.trim();finalText='';
-  mic.classList.add('on');say('Listening... tap the mic again when you are done.');
-  const r=new SR();rec=r;r.continuous=true;r.interimResults=true;r.lang=langSel.value==='auto'?'en-IN':langSel.value;
-  r.onstart=()=>{$('#srNote').style.color='';$('#srNote').textContent='Microphone is on.'};
-  r.onresult=ev=>{if(r!==rec)return;let t='';
-    for(let i=0;i<ev.results.length;i++)t+=ev.results[i][0].transcript+' ';
-    input.value=((base?base+' ':'')+t).trim()};
-  r.onerror=ev=>{if(r!==rec)return;if(MSG[ev.error]){warn(MSG[ev.error]);if(ev.error!=='network')denied=true}else if(ev.error!=='no-speech'&&ev.error!=='aborted')warn('Speech error: '+ev.error)};
-  r.onend=()=>{
-    if(r!==rec||!listening)return;
-    if(denied){stopDictation();return}
+  listening=true;denied=false;quick=0;base=$('#typed').value.trim();finalText='';
+  $('#mic').classList.add('on');$('#live').textContent='Listening... tap the mic again when you are done.';
+  rec=new SR();rec.continuous=true;rec.interimResults=true;rec.lang=$('#lang').value;
+  rec.onstart=()=>{$('#srNote').style.color='';$('#srNote').textContent='Microphone is on.'};
+  rec.onresult=ev=>{let interim='';
+    for(let i=ev.resultIndex;i<ev.results.length;i++){const r=ev.results[i];if(r.isFinal)finalText+=r[0].transcript+' ';else interim+=r[0].transcript}
+    $('#typed').value=((base?base+' ':'')+finalText+interim).trim()}; // live text goes straight into the title box
+  rec.onerror=ev=>{if(MSG[ev.error]){warn(MSG[ev.error]);if(ev.error!=='network')denied=true}else if(ev.error!=='no-speech'&&ev.error!=='aborted')warn('Speech error: '+ev.error)};
+  rec.onend=()=>{ // browsers stop on silence; restart while the mic is on, but give up if it fails repeatedly
+    if(!listening||denied)return;
     quick=(Date.now()-lastStart<1500)?quick+1:0;
-    if(quick>4){warn('Speech recognition keeps stopping. Type it instead.');stopDictation();return}
-    base=input.value.trim();finalText='';
-    setTimeout(()=>{if(r!==rec||!listening)return;try{lastStart=Date.now();r.start()}catch(e){}},300)};
+    if(quick>4){warn('Speech recognition keeps stopping. Type the title instead.');stopDictation();return}
+    base=$('#typed').value.trim();finalText=''; // keep what was already written
+    setTimeout(()=>{try{lastStart=Date.now();rec.start()}catch(e){}},300)};
   lastStart=Date.now();
-  try{r.start()}catch(e){warn('Could not start speech recognition: '+e.message)}
+  try{rec.start()}catch(e){warn('Could not start speech recognition: '+e.message)}
 }
+function stopDictation(){
+  listening=false;try{rec?.stop()}catch(e){}
+  $('#mic').classList.remove('on');$('#live').textContent='Title ready. Edit it if needed.';
+}
+/* ===== SPEECH ENGINES: on-device Whisper (worker, preloaded), Groq cloud, browser built-in ===== */
+const NAMES={hi:'hindi',mr:'marathi',es:'spanish',fr:'french',de:'german'};
+let eng=localStorage.getItem('dl-eng')||'local',mr,chunks=[],stream,wk,wKey='',rdy,pend;
+// The worker loads the model once at page load and keeps it in memory, so tapping the mic never waits on it.
+const WSRC=`
+import {pipeline} from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3';
+let p=null,key='';
+self.onmessage=async e=>{const m=e.data;
+ try{
+  if(m.type==='load'){
+    if(key!==m.model){p=null;
+      p=await pipeline('automatic-speech-recognition',m.model,{device:m.gpu?'webgpu':'wasm',
+        dtype:m.gpu?{encoder_model:'fp32',decoder_model_merged:'q4'}:'q8',
+        progress_callback:x=>{if(x.status==='progress')self.postMessage({type:'prog',pct:x.progress})}});
+      await p(new Float32Array(16000),m.lang?{language:m.lang,task:'transcribe'}:{}); // warm-up pass compiles kernels
+      key=m.model}
+    self.postMessage({type:'ready'});
+  }else if(m.type==='run'){
+    const o=await p(m.audio,m.lang?{language:m.lang,task:'transcribe'}:{});
+    self.postMessage({type:'done',text:o.text});
+  }
+ }catch(err){self.postMessage({type:'err',msg:String(err&&err.message||err)})}
+};`;
+function modelFor(){
+  const lc=$('#lang').value.slice(0,2),en=lc==='en',gpu=!!navigator.gpu;
+  if(gpu)return{gpu,model:'onnx-community/whisper-base',lang:en?'english':NAMES[lc]};
+  return{gpu,model:en?'Xenova/whisper-base.en':'Xenova/whisper-base',lang:en?undefined:NAMES[lc]}; // base + int8: much more accurate than tiny, still quick for short titles
+}
+function warmup(){
+  const m=modelFor(),k=m.model+'|'+m.lang;
+  if(!wk){
+    wk=new Worker(URL.createObjectURL(new Blob([WSRC],{type:'text/javascript'})),{type:'module'});
+    wk.onmessage=e=>{const d=e.data;
+      if(d.type==='prog'){$('#srNote').style.color='';$('#srNote').textContent=`Loading speech model... ${Math.round(d.pct||0)}% (one time only)`}
+      else if(d.type==='ready'){$('#srNote').textContent='Speech model ready.';rdy?.res()}
+      else if(d.type==='done')pend?.res(d.text);
+      else if(d.type==='err'){wKey='';rdy?.rej(new Error(d.msg));pend?.rej(new Error(d.msg))}};
+    wk.onerror=e=>{wKey='';const er=new Error(e.message||'worker failed');rdy?.rej(er);pend?.rej(er)};
+  }
+  if(wKey!==k){wKey=k;const p=new Promise((res,rej)=>{rdy={res,rej}});p.catch(()=>{});rdy.p=p;wk.postMessage({type:'load',...m})}
+  return rdy.p;
+}
+async function prep(blob){ // decode, mono 16 kHz, trim silence, normalise volume
+  const ac=new (window.AudioContext||window.webkitAudioContext)();
+  const dec=await ac.decodeAudioData(await blob.arrayBuffer());ac.close();
+  const off=new OfflineAudioContext(1,Math.max(1,Math.ceil(dec.duration*16000)),16000);
+  const s=off.createBufferSource();s.buffer=dec;s.connect(off.destination);s.start();
+  let a=(await off.startRendering()).getChannelData(0);
+  let i=0,j=a.length-1;while(i<j&&Math.abs(a[i])<0.01)i++;while(j>i&&Math.abs(a[j])<0.01)j--;
+  a=a.slice(Math.max(0,i-1600),Math.min(a.length,j+1600));
+  let mx=0;for(const v of a)mx=Math.max(mx,Math.abs(v));
+  if(mx>0.01){const g=0.9/mx;a=a.map(v=>v*g)}
+  return a;
+}
+async function viaLocal(blob){
+  await warmup();
+  const audio=await prep(blob);
+  if(audio.length<4000)return''; // under 0.25 s: nothing was said
+  return new Promise((res,rej)=>{pend={res,rej};wk.postMessage({type:'run',audio,lang:modelFor().lang})});
+}
+async function viaGroq(blob){
+  const key=$('#gkey').value.trim();if(!key)throw new Error('add your Groq key first');
+  const fd=new FormData();fd.append('file',blob,'a.webm');fd.append('model','whisper-large-v3');
+  fd.append('language',$('#lang').value.slice(0,2));fd.append('temperature','0');
+  fd.append('prompt',Object.keys(cats).join(', ')); // nudges spelling toward your category names
+  const r=await fetch('https://api.groq.com/openai/v1/audio/transcriptions',{method:'POST',headers:{Authorization:'Bearer '+key},body:fd});
+  if(!r.ok)throw new Error('Groq error '+r.status);
+  return (await r.json()).text||'';
+}
+const tidy=t=>{t=(t||'').replace(/\[[^\]]*\]|\([^)]*\)/g,' ').replace(/\b(um+|uh+|erm|hmm+)\b[,.]?/gi,' ').replace(/\s+/g,' ').trim();return t?t[0].toUpperCase()+t.slice(1):t};
+async function finishRec(){
+  const blob=new Blob(chunks,{type:mr.mimeType}),t=performance.now();
+  $('#live').textContent='Transcribing...';
+  try{
+    let text;
+    if(eng==='groq'){try{text=await viaGroq(blob)}catch(e){warn('Groq failed ('+e.message+'), using on-device.');text=await viaLocal(blob)}}
+    else text=await viaLocal(blob);
+    text=tidy(text);const old=$('#typed').value.trim();
+    if(text)$('#typed').value=(old?old+' ':'')+text;
+    $('#live').textContent=text?`Title ready (${((performance.now()-t)/1000).toFixed(1)}s). Edit it if needed.`:'Heard nothing. Try again.';
+  }catch(err){warn('Transcription failed: '+err.message+'. Switch engine or type the title.');$('#live').textContent=''}
+}
+async function startRec(){
+  try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}})}
+  catch(e){warn(MSG['not-allowed']);return}
+  chunks=[];mr=new MediaRecorder(stream);mr.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};mr.start();
+  listening=true;$('#mic').classList.add('on');$('#live').textContent='Listening... tap the mic again when you are done.';
+  if(eng==='local')warmup().catch(e=>warn('Speech model failed to load: '+e.message));
+}
+function stopRec(){
+  listening=false;$('#mic').classList.remove('on');stream?.getTracks().forEach(t=>t.stop());
+  return new Promise(r=>{mr.onstop=async()=>{await finishRec();r()};try{mr.stop()}catch(e){r()}});
+}
+const stopAny=()=>eng==='browser'?stopDictation():stopRec();
+$('#mic').onclick=()=>listening?stopAny():(eng==='browser'?startDictation():startRec());
+const syncEng=()=>{$('#gkey').style.display=eng==='groq'?'':'none';if(eng!=='browser')warmup().catch(e=>warn('Speech model failed to load: '+e.message))};
+$('#eng').value=eng;$('#gkey').value=localStorage.getItem('dl-gkey')||'';
+$('#eng').onchange=e=>{eng=e.target.value;localStorage.setItem('dl-eng',eng);syncEng()};
+$('#gkey').oninput=e=>localStorage.setItem('dl-gkey',e.target.value.trim());
+$('#lang').addEventListener('change',()=>{if(eng!=='browser')warmup().catch(()=>{})});
+syncEng(); // start loading the model now so the first tap is instant
 
-async function startDictation(input=$('#typed'),mic=$('#mic')){
-  if(busy)return;
-  if(listening)await stopDictation();
-  const e=engine();
-  if(e==='browser')return startBrowser(input,mic);
-  return startRecord(input,mic,e);
-}
-function stopDictation(discard){
-  if(rs)return finishRecord(discard);
-  const a=active;listening=false;active=null;try{rec&&rec.stop()}catch(e){}
-  if(a){a.mic.classList.remove('on');
-    if(!discard)a.input.value=tidy(a.input.value,kindOf(a.input));
-    if(a.input===$('#typed'))$('#live').textContent='Title ready. Edit it if needed.'}
-  return pending;
-}
-$('#mic').onclick=()=>listening&&active?.input===$('#typed')?stopDictation():startDictation();
-
-/* ===== SIDEBYES ===== */
-let delCb=null;
-function sideList(root){
-  const ol=root.querySelector('.sbl'),inp=root.querySelector('.sbin'),mic=root.querySelector('.sbm'),add=root.querySelector('.sba');
-  let items=[];
-  const draw=()=>{ol.innerHTML=items.map((t,i)=>`<li data-i="${i}">${esc(t)}</li>`).join('')};
-  const commit=()=>{const t=inp.value.trim();if(t){items.push(t);inp.value='';draw()}};
-  add.onclick=async()=>{if(listening&&active?.input===inp)await stopDictation();else if(busy)await pending;commit()};
-  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit()}});
-  mic.onclick=()=>listening&&active?.input===inp?stopDictation():startDictation(inp,mic);
-  let timer,sx=0,sy=0;
-  const cancel=()=>{clearTimeout(timer);ol.querySelectorAll('.pressing').forEach(x=>x.classList.remove('pressing'))};
-  ol.addEventListener('pointerdown',ev=>{const li=ev.target.closest('li');if(!li)return;cancel();sx=ev.clientX;sy=ev.clientY;li.classList.add('pressing');
-    timer=setTimeout(()=>{li.classList.remove('pressing');navigator.vibrate?.(25);const i=+li.dataset.i;
-      $('#sbqT').textContent=`${i+1}. ${items[i]}`;delCb=()=>{items.splice(i,1);draw()};$('#sbq').showModal()},550)});
-  ol.addEventListener('pointermove',ev=>{if(Math.abs(ev.clientX-sx)>10||Math.abs(ev.clientY-sy)>10)cancel()});
-  ['pointerup','pointercancel','pointerleave'].forEach(n=>ol.addEventListener(n,cancel));
-  ol.addEventListener('contextmenu',ev=>ev.preventDefault());
-  return{get:()=>{commit();return[...items]},set:a=>{items=[...a].map(String);inp.value='';draw()}};
-}
-const SBmain=sideList($('#sbMain')),SBedit=sideList($('#sbEdit'));
-$('#sbqX').onclick=()=>{delCb=null;$('#sbq').close()};
-$('#sbqDel').onclick=()=>{delCb?.();delCb=null;$('#sbq').close()};
-$('#dlg').addEventListener('close',()=>{if(listening&&active&&$('#dlg').contains(active.input))stopDictation(true)});
-
-/* ===== TIMER BUTTON ===== */
+/* ===== TIMER BUTTON: press once to note the start time, again to save the duration ===== */
 let timing=false,t0=0,tick,lock;
 function startTimer(){
   timing=true;t0=Date.now();
   $('#timer').classList.add('on');$('#tLabel').textContent='Stop and save';
   $('#live').textContent='Timing started at '+hm(new Date(t0))+'.';
-  const upd=()=>{const c=clock(Date.now()-t0);$('#clock').textContent=c;$('#timer').textContent=c.startsWith('00:')?c.slice(3):c};
-  upd();
-  tick=setInterval(upd,500);
+  tick=setInterval(()=>$('#clock').textContent=clock(Date.now()-t0),500); // timestamp based, accurate for hours
   navigator.wakeLock?.request('screen').then(l=>lock=l).catch(()=>{});
 }
 async function stopTimer(){
-  timing=false;clearInterval(tick);lock?.release().catch(()=>{});
-  const en=new Date();
-  if(listening||busy)await stopDictation();
+  timing=false;clearInterval(tick);lock?.release().catch(()=>{});const en=new Date(); // end time is the tap, not the end of transcription
+  if(listening)await stopAny(); // wait for the transcript so the title is not lost
   const s=new Date(t0),title=$('#typed').value.trim()||'Untitled session';
-  const e={id:crypto.randomUUID(),title,date:ymd(s),start:hm(s),end:hm(en),mins:Math.max(1,Math.round((en-s)/60000)),cat:'Other',side:SBmain.get(),u:Date.now()};
-  await dbPut(e);autoBackup();
-  $('#timer').classList.remove('on');$('#timer').innerHTML='&#9201;';$('#tLabel').textContent='Start timer';
-  $('#clock').textContent='00:00:00';$('#typed').value='';SBmain.set([]);
-  $('#live').textContent=`Saved "${title}" (${fmt(e.mins)}, ${e.start} to ${e.end}). Tap it in the list to edit.`;
+  const e={id:crypto.randomUUID(),title,date:ymd(s),start:hm(s),end:hm(en),mins:Math.max(1,Math.round((en-s)/60000)),cat:'Other'};
+  await dbPut(e);
+  $('#timer').classList.remove('on');$('#tLabel').textContent='Start timer';
+  $('#clock').textContent='00:00:00';$('#typed').value='';
+  $('#live').textContent=`Saved "${title}" (${fmt(e.mins)}, ${e.start} to ${e.end}). Click it in the list to edit.`;
   cur=s;refresh();
 }
 $('#timer').onclick=()=>timing?stopTimer():startTimer();
 
-/* ===== VOICE TIME RANGE: say "10pm to 12am" to log a past session ===== */
-const NW={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19,twenty:20,thirty:30,forty:40,fifty:50};
-function normTime(s){
-  return s
-    .replace(/\b(twenty|thirty|forty|fifty)[\s-]+(one|two|three|four|five|six|seven|eight|nine)\b/g,(_,a,b)=>NW[a]+NW[b])
-    .replace(new RegExp('\\b('+Object.keys(NW).join('|')+')\\b','g'),w=>NW[w])
-    .replace(/\bo['\u2019]?\s?clock\b/g,'')
-    .replace(/\bhalf past (\d{1,2})\b/g,'$1:30')
-    .replace(/\bquarter past (\d{1,2})\b/g,'$1:15')
-    .replace(/\bquarter to (\d{1,2})\b/g,(_,h)=>((+h+10)%12+1)+':45')
-    .replace(/\b(\d{1,2})\s+(?:oh|o)\s+(\d)\b/g,'$1:0$2')
-    .replace(/\b(\d{1,2})\s+([0-5]\d)\b/g,'$1:$2')
-    .replace(/\b(\d{1,2})([0-5]\d)\b/g,(m,h,mi)=>+h<=24?h+':'+mi:m);
-}
-function parseRange(txt){
-  const s=normTime(txt.toLowerCase()).replace(/\b([ap])\.?\s?m\b\.?/g,'$1m').replace(/midnight/g,'12am').replace(/noon/g,'12pm');
-  const re=/(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)?/g,m=[];let x;
-  while(m.length<2&&(x=re.exec(s)))m.push({h:+x[1],mi:+(x[2]||0),ap:x[3]||''});
-  if(m.length<2)return null;
-  const[a,b]=m;
-  if(a.h>24||b.h>24||a.mi>59||b.mi>59)return null;
-  const conv=(o,ap)=>{if(o.h>12||!ap)return(o.h%24)*60+o.mi;return(o.h%12+(ap==='pm'?12:0))*60+o.mi};
-  let sm=conv(a,a.ap||b.ap),em=conv(b,b.ap||a.ap);
-  if(!a.ap&&b.ap&&a.h<=12&&sm>=em)sm=conv(a,b.ap==='pm'?'am':'pm');
-  if(sm===em)return null;
-  const mins=em>sm?em-sm:em+1440-sm,f=v=>`${pad(Math.floor(v/60)%24)}:${pad(v%60)}`;
-  return{sm,start:f(sm),end:f(em),mins};
-}
-const rIn=$('#rangeIn'),rBtn=$('#rng'),live=m=>$('#live').textContent=m;
-async function logRange(){
-  const t=rIn.value.trim();
-  if(!t){live('I did not hear anything. Tap the button and try again.');return}
-  const r=parseRange(t);
-  if(!r){live(`Could not understand "${t}". Say it like "10pm to 12am".`);return}
-  const title=$('#typed').value.trim()||'Untitled session',now=new Date();
-  const d=r.sm>now.getHours()*60+now.getMinutes()?addD(now,-1):now;
-  const e={id:crypto.randomUUID(),title,date:ymd(d),start:r.start,end:r.end,mins:r.mins,cat:'Other',side:SBmain.get(),u:Date.now()};
-  await dbPut(e);autoBackup();
-  if(!timing){$('#typed').value='';SBmain.set([])}
-  live(`Saved "${title}" (${fmt(e.mins)}, ${e.start} to ${e.end}). Tap it in the list to edit.`);
-  cur=d;refresh();
-}
-rBtn.onclick=async()=>{
-  if(busy)return;
-  if(listening&&active?.input===rIn){live('Processing...');await stopDictation();logRange();return}
-  rIn.value='';startDictation(rIn,rBtn);
-  if(listening)live('Listening... say a time range like "10pm to 12am", then tap again.');
-};
-
-/* ===== BACKUP TO DOWNLOADS ===== */
-async function backup(){
-  const all=await dbAll();
-  dl(`daylog-backup-${ymd(new Date())}.json`,JSON.stringify(all,null,1),'application/json');
-  localStorage.setItem('dl-last',new Date().toISOString());showLast();
-}
-const autoBackup=()=>{queueSync();if(localStorage.getItem('dl-auto')==='1')backup()};
-function showLast(){const t=localStorage.getItem('dl-last');$('#bk').textContent='Save';
-  $('#bk').title=t?`Last saved ${new Date(t).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}`:'Save a backup file to Downloads'}
-$('#bk').onclick=async()=>{await backup();$('#bk').textContent='Saved \u2713';setTimeout(showLast,1800)};
-$('#auto').checked=localStorage.getItem('dl-auto')==='1';
-$('#auto').onchange=e=>{localStorage.setItem('dl-auto',e.target.checked?'1':'0');if(e.target.checked)backup()};
-showLast();
-navigator.storage?.persist?.();
-
-/* ===== CLOUD SYNC ===== */
-const DELK='dl-del';
-const ghCfg=()=>{const t=localStorage.getItem('dl-token');return t?{owner:'ashwin-k-bang',repo:'daylog',branch:'main',path:'data/daylog.json',token:t}:null};
-const getDel=()=>{try{return JSON.parse(localStorage.getItem(DELK)||'{}')}catch(e){return{}}};
-const setDel=o=>localStorage.setItem(DELK,JSON.stringify(o));
-async function delEntry(id){await dbDel(id);const d=getDel();d[id]=Date.now();setDel(d)}
-const b64e=s=>{let x='';new TextEncoder().encode(s).forEach(c=>x+=String.fromCharCode(c));return btoa(x)};
-const b64d=s=>new TextDecoder().decode(Uint8Array.from(atob(s),c=>c.charCodeAt(0)));
-const ghApi=(c,p)=>`https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/${p}`;
-const ghFile=c=>ghApi(c,'contents/'+c.path.split('/').map(encodeURIComponent).join('/'));
-const ghH=c=>({Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'});
-async function ghErr(r){let m='';try{m=(await r.json()).message||''}catch(e){}
-  if(r.status===401)return 'GitHub rejected the token. Check that it is correct and not expired.';
-  if(r.status===403)return 'GitHub refused access (token permissions or rate limit). '+m;
-  if(r.status===404)return 'Repository or branch not found, or the token has no access to this repository.';
-  return `GitHub error ${r.status}. ${m}`}
-async function ghRead(c){
-  const r=await fetch(ghFile(c)+'?ref='+encodeURIComponent(c.branch)+'&t='+Date.now(),{headers:ghH(c),cache:'no-store'});
-  if(r.status===404)return{data:null,sha:null};
-  if(!r.ok)throw new Error(await ghErr(r));
-  const j=await r.json();let txt;
-  if(j.content)txt=b64d(j.content.replace(/\n/g,''));
-  else{const b=await fetch(ghApi(c,'git/blobs/'+j.sha),{headers:ghH(c),cache:'no-store'});
-    if(!b.ok)throw new Error(await ghErr(b));txt=b64d((await b.json()).content.replace(/\n/g,''))}
-  return{data:JSON.parse(txt),sha:j.sha};
-}
-async function ghWrite(c,obj,sha){
-  const body={message:'Daylog sync '+new Date().toISOString(),content:b64e(JSON.stringify(obj,null,1)),branch:c.branch};
-  if(sha)body.sha=sha;
-  const r=await fetch(ghFile(c),{method:'PUT',headers:{...ghH(c),'Content-Type':'application/json'},body:JSON.stringify(body)});
-  if(r.status===409||r.status===422){const e=new Error(await ghErr(r));e.conflict=true;throw e}
-  if(!r.ok)throw new Error(await ghErr(r));
-}
-const sig=(l,d,k)=>l.map(e=>e.id+':'+(e.u||0)).sort().join()+'#'+Object.keys(d).map(i=>i+':'+d[i]).sort().join()+'#'+Object.keys(k).sort().map(n=>n+k[n]).join();
-function merge(local,ld,remote){
-  const del={...(remote?.deleted||{})};Object.keys(ld).forEach(k=>del[k]=Math.max(del[k]||0,ld[k]));
-  const m=new Map();
-  [...(remote?.entries||[]),...local].forEach(e=>{const o=m.get(e.id);if(!o||(e.u||0)>=(o.u||0))m.set(e.id,e)});
-  m.forEach((e,id)=>{if(del[id]&&del[id]>=(e.u||0))m.delete(id)});
-  return{entries:[...m.values()],deleted:del};
-}
-async function applyLocal(m,mc,local){
-  const keep=new Set(m.entries.map(e=>e.id));
-  await tx('readwrite',s=>{m.entries.forEach(e=>s.put(e));local.forEach(e=>{if(!keep.has(e.id))s.delete(e.id)})});
-  setDel(m.deleted);cats=mc;saveCats();await refresh();
-}
-function setStat(s,msg){
-  const b=$('#cloud'),n=$('#syncNote'),t=localStorage.getItem('dl-gh-last');
-  const last=t?new Date(t).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}):'';
-  const T={off:['\u2601',''],
-    pending:['\u2601\u2026','Changes waiting to sync...'],busy:['\u2601\u2026','Syncing with GitHub...'],
-    ok:['\u2601\u2713','Synced with GitHub'+(last?' at '+last:'')+'.'],
-    err:['\u2601!','Sync problem: '+msg+' Your data is safe on this device.']}[s];
-  b.textContent=T[0];n.textContent=T[1];n.style.color=s==='err'?'var(--rec)':'';
-}
-let syncing=false,again=false,syncT;
-function queueSync(){if(!ghCfg())return;clearTimeout(syncT);setStat('pending');syncT=setTimeout(()=>syncNow(),1500)}
-async function syncNow(force){
-  const c=ghCfg();if(!c){setStat('off');return null}
-  if(syncing){if(!force){again=true;return null}while(syncing)await new Promise(r=>setTimeout(r,200))}
-  syncing=true;clearTimeout(syncT);setStat('busy');let err=null;
-  try{
-    for(let n=0;;n++){
-      const{data,sha}=await ghRead(c);
-      const local=await dbAll(),ld=getDel(),m=merge(local,ld,data),mc={...(data?.cats||{}),...cats};
-      if(sig(local,ld,cats)!==sig(m.entries,m.deleted,mc))await applyLocal(m,mc,local);
-      if(sig(data?.entries||[],data?.deleted||{},data?.cats||{})!==sig(m.entries,m.deleted,mc)){
-        try{await ghWrite(c,{v:1,updated:new Date().toISOString(),entries:m.entries,deleted:m.deleted,cats:mc},sha)}
-        catch(e){if(e.conflict&&n<2)continue;throw e}
-      }
-      break;
-    }
-    localStorage.setItem('dl-gh-last',new Date().toISOString());setStat('ok');
-  }catch(e){err=e instanceof TypeError?'Could not reach GitHub. Are you offline?':e.message;setStat('err',err)}
-  finally{syncing=false;if(again){again=false;queueSync()}}
-  return err;
-}
-async function cloudTap(){
-  if(!localStorage.getItem('dl-token')){
-    const t=prompt('One-time setup: paste your GitHub token (Contents: Read and write on the daylog repo). It stays on this device.');
-    if(!t||!t.trim())return;
-    localStorage.setItem('dl-token',t.trim());
-  }
-  const err=await syncNow(true);
-  if(err&&/token/i.test(err))localStorage.removeItem('dl-token');
-}
-$('#cloud').onclick=cloudTap;
-setInterval(()=>{if(document.visibilityState==='visible'&&ghCfg()&&!timing&&!$('#dlg').open)syncNow()},60000);
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&ghCfg())syncNow()});
-addEventListener('online',()=>{if(ghCfg())syncNow()});
-
 /* ===== EXPORT / IMPORT ===== */
-const dl=(name,txt,type)=>{
-  if(window.AndroidBridge){const r=AndroidBridge.saveFile(name,type||'text/plain',txt);if(String(r).startsWith('ERROR'))alert('Could not save: '+r);return}
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click()};
+const dl=(name,txt,type)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click()};
 $('#exJ').onclick=()=>dl('daylog.json',JSON.stringify(entries,null,1),'application/json');
-$('#exC').onclick=()=>dl('daylog.csv','id,date,start,end,minutes,category,title,sidebyes\n'+entries.map(e=>[e.id,e.date,e.start,e.end,e.mins,e.cat,e.title,(e.side||[]).map(x=>String(x).replace(/\|/g,'/')).join(' | ')].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n'),'text/csv');
+$('#exC').onclick=()=>dl('daylog.csv','id,date,start,end,minutes,category,title\n'+entries.map(e=>[e.id,e.date,e.start,e.end,e.mins,e.cat,e.title].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n'),'text/csv');
 function parseCSV(t){const rows=[];let r=[],c='',q=false;
   for(let i=0;i<t.length;i++){const ch=t[i];
     if(q){if(ch=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=ch}
@@ -906,17 +481,18 @@ $('#impF').onchange=async ev=>{
   const f=ev.target.files[0];if(!f)return;const t=await f.text();let list;
   try{
     if(f.name.endsWith('.json'))list=JSON.parse(t);
-    else list=parseCSV(t).slice(1).filter(r=>r.length>=7).map(r=>({id:r[0]||crypto.randomUUID(),date:r[1],start:r[2],end:r[3],mins:+r[4],cat:r[5]||'Other',title:r[6],side:(r[7]||'').split(' | ').map(x=>x.trim()).filter(Boolean)}));
-    list=list.filter(e=>e.date&&e.start&&e.end&&e.title).map(e=>({...e,id:e.id||crypto.randomUUID(),mins:e.mins||tmin(e.end)-tmin(e.start),cat:e.cat||'Other',side:Array.isArray(e.side)?e.side.map(String):[],u:e.u||Date.now()}));
-    await dbPutMany(list);alert(`Imported ${list.length} entries.`);refresh();queueSync();
+    else list=parseCSV(t).slice(1).filter(r=>r.length>=7).map(r=>({id:r[0]||crypto.randomUUID(),date:r[1],start:r[2],end:r[3],mins:+r[4],cat:r[5]||'Other',title:r[6]}));
+    list=list.filter(e=>e.date&&e.start&&e.end&&e.title).map(e=>({...e,id:e.id||crypto.randomUUID(),mins:e.mins||tmin(e.end)-tmin(e.start),cat:e.cat||'Other'}));
+    await dbPutMany(list);alert(`Imported ${list.length} entries.`);refresh();
   }catch(err){alert('Could not read that file.')}
   ev.target.value='';
 };
 
 /* ===== WIRING ===== */
 $('#viewSel').onchange=e=>{view=e.target.value;render()};
+// Keyboard shortcuts like Google Calendar: d w m h y = views, t = today, p / n = previous / next
 document.addEventListener('keydown',e=>{
-  if(e.target.closest('input,select,textarea')||$('#dlg').open||$('#sbq').open||e.ctrlKey||e.metaKey||e.altKey)return;
+  if(e.target.closest('input,select,textarea')||$('#dlg').open||e.ctrlKey||e.metaKey||e.altKey)return;
   const k=e.key.toLowerCase(),V={d:'day',w:'week',m:'month',h:'half',y:'year'};
   if(V[k]){view=V[k];render()}else if(k==='t'){cur=new Date();render()}else if(k==='p')step(-1);else if(k==='n')step(1);
 });
@@ -924,23 +500,18 @@ $('#prev').onclick=()=>step(-1);$('#next').onclick=()=>step(1);
 $('#today').onclick=()=>{cur=new Date();render()};
 $('#jump').onchange=e=>{if(e.target.value){cur=parseD(e.target.value);render()}};
 $('#add').onclick=()=>openEditor();
-$('#addCat').onclick=()=>{const n=prompt('New category name');if(n&&n.trim()&&!cats[n.trim()]){cats[n.trim()]=PALETTE[Object.keys(cats).length%8];saveCats();fillCats();queueSync()}};
+$('#addCat').onclick=()=>{const n=prompt('New category name');if(n&&n.trim()&&!cats[n.trim()]){cats[n.trim()]=PALETTE[Object.keys(cats).length%8];saveCats();fillCats()}};
 ['q','fc','f1','f2'].forEach(i=>$('#'+i).addEventListener('input',render));
 $('#clr').onclick=()=>{['q','fc','f1','f2'].forEach(i=>$('#'+i).value='');render()};
-$('#view').onclick=ev=>{
+$('#view').onclick=ev=>{ // one handler for every clickable thing in the views
   const ent=ev.target.closest('.ent,.blk'),d=ev.target.closest('[data-d]');
   if(ent)openEditor(entries.find(e=>e.id===ent.dataset.id));
   else if(d){ev.preventDefault();cur=parseD(d.dataset.d);view='day';render()}
 };
+$('#theme').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.setItem('dl-theme',t)};
 document.documentElement.dataset.theme=localStorage.getItem('dl-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
 window.addEventListener('beforeunload',e=>{if(timing){e.preventDefault();e.returnValue=''}});
-const mp=$('#mp'),mb=$('#mbtn');
-mb.onclick=ev=>{ev.stopPropagation();const o=mp.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
-document.addEventListener('click',ev=>{if(!ev.target.closest('#mbtn'))mp.classList.remove('open');mb.setAttribute('aria-expanded',mp.classList.contains('open'))});
-if(matchMedia('(min-width:901px)').matches)$('#fl').open=true;
-['q','fc','f1','f2'].forEach(i=>$('#'+i).addEventListener('input',()=>{if($('#q').value||$('#fc').value||$('#f1').value||$('#f2').value)$('#fl').open=true}));
-setStat(ghCfg()?'busy':'off');
-openDB().then(refresh).then(()=>syncNow());
+openDB().then(refresh);
 </script>
 </body>
 </html>
