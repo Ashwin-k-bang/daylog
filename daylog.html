@@ -195,7 +195,6 @@ button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
 /* ===== Cloud sync ===== */
 #cloud{min-width:44px;font-weight:600}
 #syncNote{margin:4px 0 0}
-#ghd .row button{min-height:48px}
 </style>
 </head>
 <body>
@@ -206,7 +205,7 @@ button.danger{background:var(--rec);color:#fff;border-color:var(--rec)}
   <label class="auto"><input type="checkbox" id="auto"> Auto-backup on every change</label>
   <button id="imp">Import</button><input type="file" id="impF" accept=".json,.csv" hidden></span>
   <button id="bk" class="pri" aria-label="Save a backup file to Downloads">Save</button>
-  <button id="cloud" aria-label="Cloud sync with GitHub">&#9729;</button>
+  <button id="cloud" aria-label="Save to GitHub">&#9729;</button>
   <button id="theme" aria-label="Toggle light or dark mode">Theme</button>
   <button class="mbtn" id="mbtn" aria-label="More options" aria-expanded="false">&#8943;</button>
 </header>
@@ -550,7 +549,7 @@ showLast();
 navigator.storage?.persist?.(); // ask the browser not to evict the in-app data
 
 /* ===== CLOUD SYNC: keeps one JSON file in the GitHub repository and merges it with this device ===== */
-const GHK='dl-gh',DELK='dl-del';
+const DELK='dl-del';
 const ghCfg=()=>{const t=localStorage.getItem('dl-token');return t?{owner:'ashwin-k-bang',repo:'daylog',branch:'main',path:'data/daylog.json',token:t}:null};
 const getDel=()=>{try{return JSON.parse(localStorage.getItem(DELK)||'{}')}catch(e){return{}}}; // ids deleted on this device, with the time
 const setDel=o=>localStorage.setItem(DELK,JSON.stringify(o));
