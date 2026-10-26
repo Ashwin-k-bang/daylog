@@ -127,7 +127,6 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
   main{display:flex;flex-direction:column;gap:12px;padding:10px max(10px,env(safe-area-inset-right)) calc(150px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
   .stack{display:contents}
   .cap{order:1}.tools{order:2}.calc{order:3}.sum{order:4}
-  /* floating mic + timer, centered above the home bar */
   .pair{
     position:fixed;
     left:50%;
@@ -186,9 +185,13 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
 <header>
   <h1>Daylog</h1>
   <span class="sp"></span>
-  <span class="mp" id="mp"><button id="exJ">Export JSON</button><button id="exC">Export CSV</button>
-  <label class="auto"><input type="checkbox" id="auto"> Auto-backup on every change</label>
-  <button id="imp">Import</button><input type="file" id="impF" accept=".json,.csv" hidden></span>
+  <span class="mp" id="mp">
+    <button id="exJ">Export JSON</button>
+    <button id="exC">Export CSV</button>
+    <label class="auto"><input type="checkbox" id="auto"> Auto-backup on every change</label>
+    <button id="imp">Import</button>
+    <input type="file" id="impF" accept=".json,.csv" hidden>
+  </span>
   <button id="bk" class="pri" aria-label="Save a backup file to Downloads">Save</button>
   <button id="cloud" aria-label="Save to GitHub">&#9729;</button>
   <button id="theme" aria-label="Toggle light or dark mode">Theme</button>
@@ -250,10 +253,10 @@ header{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,e
     <h3 id="dTitle" style="margin:0">Entry</h3>
     <label>Title<input id="eT" required></label>
     <div class="sb" id="sbEdit">
-        <div class="sbh"><b>Sidebyes</b><span class="note">Hold an item to delete it</span></div>
-        <ol class="sbl"></ol>
-        <div class="sbadd"><input class="sbin" placeholder="Extra thing you did (speak or type)" enterkeyhint="done"><button type="button" class="sbm" aria-label="Dictate a sidebye">&#127908;</button><button type="button" class="sba pri">Add</button></div>
-      </div>
+      <div class="sbh"><b>Sidebyes</b><span class="note">Hold an item to delete it</span></div>
+      <ol class="sbl"></ol>
+      <div class="sbadd"><input class="sbin" placeholder="Extra thing you did (speak or type)" enterkeyhint="done"><button type="button" class="sbm" aria-label="Dictate a sidebye">&#127908;</button><button type="button" class="sba pri">Add</button></div>
+    </div>
     <label>Date<input type="date" id="eD" required></label>
     <div class="row"><label>Start<input type="time" id="eS" required></label><label>End<input type="time" id="eE" required></label></div>
     <div id="eDur" class="note" style="margin-top:6px"></div>
@@ -294,7 +297,7 @@ const dbPutMany=l=>tx('readwrite',s=>{l.forEach(e=>s.put(e))});
 const dbDel=id=>tx('readwrite',s=>s.delete(id));
 const PALETTE=['#2F6FED','#8B5CF6','#16A34A','#F59E0B','#E11D8F','#06B6D4','#EA580C','#64748B'];
 let cats=JSON.parse(localStorage.getItem('dl-cats')||'null')||{Work:'#2F6FED',Study:'#8B5CF6',Health:'#16A34A',Personal:'#F59E0B',Other:'#64748B'};
-const GR=['#555','#777','#999','#666','#888']; // grayscale shades for categories
+const GR=['#555','#777','#999','#666','#888'];
 const col=n=>GR[Math.max(0,Object.keys(cats).indexOf(n))%5];
 const saveCats=()=>localStorage.setItem('dl-cats',JSON.stringify(cats));
 
@@ -327,14 +330,14 @@ function step(k){
     d.setDate(Math.min(cur.getDate(),new Date(d.getFullYear(),d.getMonth()+1,0).getDate()));cur=d}
   render();
 }
-function filtered(){ // search + category + date-range filters
+function filtered(){
   const q=$('#q').value.trim().toLowerCase(),c=$('#fc').value,a=$('#f1').value,b=$('#f2').value;
   const on=!!(q||c||a||b);
   return{on,list:entries.filter(e=>(!q||e.title.toLowerCase().includes(q))&&(!c||e.cat===c)&&(!a||e.date>=a)&&(!b||e.date<=b))};
 }
 
-/* ===== TIME GRID: blocks positioned by start time and sized by duration ===== */
-const HH=48; // pixels per hour
+/* ===== TIME GRID ===== */
+const HH=48;
 const t12=t=>{let[h,m]=t.split(':').map(Number);const a=h<12?'am':'pm';h=h%12||12;return m?`${h}:${pad(m)}${a}`:`${h}${a}`};
 function timeGrid(days){
   const n=days.length,today=ymd(new Date());
@@ -344,7 +347,7 @@ function timeGrid(days){
   const cols=days.map(d=>{const k=ymd(d),out=[];let cl=[],cend=0;
     const flush=()=>{const lanes=[];cl.forEach(o=>{let i=lanes.findIndex(x=>x<=o.s);if(i<0){i=lanes.length;lanes.push(0)}lanes[i]=o.en;o.lane=i});cl.forEach(o=>o.n=lanes.length);out.push(...cl);cl=[]};
     (byDate[k]||[]).forEach(e=>{const s=tmin(e.start);let en=tmin(e.end);if(en<=s)en=Math.min(1440,s+e.mins);
-      if(cl.length&&s>=cend)flush();cend=cl.length?Math.max(cend,en):en;cl.push({e,s,en})});flush(); // side-by-side lanes for overlaps
+      if(cl.length&&s>=cend)flush();cend=cl.length?Math.max(cend,en):en;cl.push({e,s,en})});flush();
     const blks=out.map(o=>{const h=Math.max((o.en-o.s)/60*HH,18),sh=h<36;
       return `<div class="blk${sh?' sh':''}" data-id="${o.e.id}" title="${esc(o.e.title)}" style="--c:${col(o.e.cat)};top:${o.s/60*HH}px;height:${h-1}px;left:calc(${o.lane/o.n*100}% + 1px);width:calc(${100/o.n}% - 3px)"><b>${esc(o.e.title)}</b>${sh?', '+t12(o.e.start):'<br>'+t12(o.e.start)+' – '+t12(o.e.end)}</div>`}).join('');
     const nw=new Date(),line=k===today?`<div class="now" style="top:${(nw.getHours()*60+nw.getMinutes())/60*HH}px"></div>`:'';
@@ -362,7 +365,7 @@ function render(){
   $('#jump').value=ymd(cur);
   $('#viewSel').value=view;localStorage.setItem('dl-view',view);
   const f=filtered(),v=$('#view');
-  if(f.on){ // search results replace the calendar view
+  if(f.on){
     const l=[...f.list].sort((a,b)=>(b.date+b.start).localeCompare(a.date+a.start));
     v.innerHTML=`<p class="note">${l.length} matching entries</p>`+l.map(x=>`<div class="note" style="margin:8px 0 3px">${x.date}</div>`+entHTML(x)).join('');
     summary(l,'Matching entries');return;
@@ -371,31 +374,32 @@ function render(){
     const days=view==='day'?[cur]:Array.from({length:7},(_,i)=>addD(s,i));
     v.innerHTML=timeGrid(days);
     const ks=days.map(ymd),st=entries.filter(e=>ks.includes(e.date)).map(e=>tmin(e.start));
-    $('#tgb').scrollTop=Math.max(0,(st.length?Math.min(...st):420)/60*HH-24); // scroll to the first entry (or 7am)
+    $('#tgb').scrollTop=Math.max(0,(st.length?Math.min(...st):420)/60*HH-24);
   }
   else if(view==='month'){let h='<div class="mgrid">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="dow">${d}</div>`).join('');
     for(let i=0;i<(s.getDay()+6)%7;i++)h+='<div class="day out"></div>';
     for(let d=1;d<=e.getDate();d++){const dt=new Date(s.getFullYear(),s.getMonth(),d),k=ymd(dt),l=byDate[k]||[];
       h+=`<button class="day${k===ymd(new Date())?' today':''}" data-d="${k}"><span>${d}</span><span class="dots">${l.slice(0,8).map(x=>`<i style="--c:${col(x.cat)}"></i>`).join('')}</span>${l.length?`<small>${fmt(tot(k))}</small>`:''}</button>`}
     v.innerHTML=h+'</div>';}
-  else{ // half-year and year: heatmap, one small grid per month
+  else{
     let h='<div class="yr">';
     for(let m=s.getMonth();m<=e.getMonth();m++){const y=s.getFullYear(),n=new Date(y,m+1,0).getDate();
       h+=`<div class="mb"><h4>${new Date(y,m,1).toLocaleDateString(undefined,{month:'long'})}</h4><div class="hm">`+'<i></i>'.repeat((new Date(y,m,1).getDay()+6)%7);
       for(let d=1;d<=n;d++){const k=ymd(new Date(y,m,d)),t=tot(k),l=t===0?0:t<60?1:t<180?2:t<360?3:4;
         h+=`<button class="hc l${l}" data-d="${k}" title="${k}: ${fmt(t)}" aria-label="${k}: ${fmt(t)}"></button>`}
       h+='</div></div>'}
-    v.innerHTML=h+'</div>';}
+    v.innerHTML=h+'</div>';
+  }
   const sk=s,ek=e;summary(entries.filter(x=>x.date>=ymd(sk)&&x.date<=ymd(ek)),'Summary');
 }
-function summary(list,title){ // totals + bars per category
+function summary(list,title){
   const by={};let t=0;list.forEach(e=>{by[e.cat]=(by[e.cat]||0)+e.mins;t+=e.mins});
   const days=new Set(list.map(e=>e.date)).size,max=Math.max(1,...Object.values(by));
   $('#sum').innerHTML=`<h3 style="margin:0 0 10px;font-size:15px">${title}</h3><div class="stats"><div><b>${fmt(t)}</b>logged</div><div><b>${list.length}</b>entries</div><div><b>${days?fmt(Math.round(t/days)):'0m'}</b>per active day</div></div>`+
     Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([c,m])=>`<div class="line" style="--c:${col(c)}"><span>${esc(c)}</span><span class="track"><i style="width:${m/max*100}%"></i></span><span>${fmt(m)}</span></div>`).join('');
 }
 
-/* ===== ENTRY EDITOR (used for manual add and for editing/correcting voice entries) ===== */
+/* ===== ENTRY EDITOR ===== */
 let editing=null;
 function openEditor(e){
   editing=e||null;$('#dTitle').textContent=e?'Edit entry':'Add entry';$('#eDel').style.display=e?'':'none';
@@ -415,8 +419,7 @@ $('#form').addEventListener('submit',async ev=>{
 $('#eX').onclick=()=>$('#dlg').close();
 $('#eDel').onclick=async()=>{if(confirm('Delete this entry?')){await delEntry(editing.id);$('#dlg').close();refresh();autoBackup()}};
 
-/* ===== MIC: dictate text into the title box (does not save anything) ===== */
-/* Android app only: WebView has no speech recognition, so wrap the phone's own recognizer in the same API */
+/* ===== MIC: dictate text into the title box ===== */
 if(window.AndroidBridge&&AndroidBridge.available()&&!window.SpeechRecognition&&!window.webkitSpeechRecognition){
   let cur=null;
   const mk=(t,fin)=>{const a=[{transcript:t,confidence:1}];a.isFinal=fin;return{resultIndex:0,results:[a]}};
@@ -446,22 +449,22 @@ const MSG={'not-allowed':'Microphone is blocked. Allow the microphone in your br
 const say=m=>{if(active&&active.input===$('#typed'))$('#live').textContent=m};
 function startDictation(input=$('#typed'),mic=$('#mic')){
   if(!SR){warn('Speech recognition is not supported in this browser.');return}
-  if(listening)stopDictation(); // switching to another box
+  if(listening)stopDictation();
   active={input,mic};
   listening=true;denied=false;quick=0;base=input.value.trim();finalText='';
   mic.classList.add('on');say('Listening... tap the mic again when you are done.');
   const r=new SR();rec=r;r.continuous=true;r.interimResults=true;r.lang=$('#lang').value;
   r.onstart=()=>{$('#srNote').style.color='';$('#srNote').textContent='Microphone is on.'};
   r.onresult=ev=>{if(r!==rec)return;let t='';
-    for(let i=0;i<ev.results.length;i++)t+=ev.results[i][0].transcript+' '; // rebuild from every result so nothing repeats
-    input.value=((base?base+' ':'')+t).trim()}; // live text goes straight into the box
+    for(let i=0;i<ev.results.length;i++)t+=ev.results[i][0].transcript+' ';
+    input.value=((base?base+' ':'')+t).trim()};
   r.onerror=ev=>{if(r!==rec)return;if(MSG[ev.error]){warn(MSG[ev.error]);if(ev.error!=='network')denied=true}else if(ev.error!=='no-speech'&&ev.error!=='aborted')warn('Speech error: '+ev.error)};
-  r.onend=()=>{ // browsers stop on silence; restart while the mic is on, but give up if it fails repeatedly
+  r.onend=()=>{
     if(r!==rec||!listening)return;
     if(denied){stopDictation();return}
     quick=(Date.now()-lastStart<1500)?quick+1:0;
     if(quick>4){warn('Speech recognition keeps stopping. Type it instead.');stopDictation();return}
-    base=input.value.trim();finalText=''; // keep what was already written
+    base=input.value.trim();finalText='';
     setTimeout(()=>{if(r!==rec||!listening)return;try{lastStart=Date.now();r.start()}catch(e){}},300)};
   lastStart=Date.now();
   try{r.start()}catch(e){warn('Could not start speech recognition: '+e.message)}
@@ -472,12 +475,12 @@ function stopDictation(){
 }
 $('#mic').onclick=()=>listening&&active?.input===$('#typed')?stopDictation():startDictation();
 
-/* ===== SIDEBYES: numbered list of extra things done in a session. Voice or typed; long-press an item to delete it ===== */
+/* ===== SIDEBYES ===== */
 let delCb=null;
 function sideList(root){
   const ol=root.querySelector('.sbl'),inp=root.querySelector('.sbin'),mic=root.querySelector('.sbm'),add=root.querySelector('.sba');
   let items=[];
-  const draw=()=>{ol.innerHTML=items.map((t,i)=>`<li data-i="${i}">${esc(t)}</li>`).join('')}; // numbers come from CSS, so they re-order on their own
+  const draw=()=>{ol.innerHTML=items.map((t,i)=>`<li data-i="${i}">${esc(t)}</li>`).join('')};
   const commit=()=>{const t=inp.value.trim();if(t){items.push(t);inp.value='';draw()}};
   add.onclick=()=>{if(listening&&active?.input===inp)stopDictation();commit()};
   inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit()}});
@@ -489,7 +492,7 @@ function sideList(root){
       $('#sbqT').textContent=`${i+1}. ${items[i]}`;delCb=()=>{items.splice(i,1);draw()};$('#sbq').showModal()},550)});
   ol.addEventListener('pointermove',ev=>{if(Math.abs(ev.clientX-sx)>10||Math.abs(ev.clientY-sy)>10)cancel()});
   ['pointerup','pointercancel','pointerleave'].forEach(n=>ol.addEventListener(n,cancel));
-  ol.addEventListener('contextmenu',ev=>ev.preventDefault()); // stop the browser's own long-press menu
+  ol.addEventListener('contextmenu',ev=>ev.preventDefault());
   return{get:()=>{commit();return[...items]},set:a=>{items=[...a].map(String);inp.value='';draw()}};
 }
 const SBmain=sideList($('#sbMain')),SBedit=sideList($('#sbEdit'));
@@ -497,15 +500,15 @@ $('#sbqX').onclick=()=>{delCb=null;$('#sbq').close()};
 $('#sbqDel').onclick=()=>{delCb?.();delCb=null;$('#sbq').close()};
 $('#dlg').addEventListener('close',()=>{if(listening&&active&&$('#dlg').contains(active.input))stopDictation()});
 
-/* ===== TIMER BUTTON: press once to note the start time, again to save the duration ===== */
+/* ===== TIMER BUTTON ===== */
 let timing=false,t0=0,tick,lock;
 function startTimer(){
   timing=true;t0=Date.now();
   $('#timer').classList.add('on');$('#tLabel').textContent='Stop and save';
   $('#live').textContent='Timing started at '+hm(new Date(t0))+'.';
-  const upd=()=>{const c=clock(Date.now()-t0);$('#clock').textContent=c;$('#timer').textContent=c.startsWith('00:')?c.slice(3):c}; // also shown on the floating button
+  const upd=()=>{const c=clock(Date.now()-t0);$('#clock').textContent=c;$('#timer').textContent=c.startsWith('00:')?c.slice(3):c};
   upd();
-  tick=setInterval(upd,500); // timestamp based, accurate for hours
+  tick=setInterval(upd,500);
   navigator.wakeLock?.request('screen').then(l=>lock=l).catch(()=>{});
 }
 async function stopTimer(){
@@ -521,25 +524,25 @@ async function stopTimer(){
 }
 $('#timer').onclick=()=>timing?stopTimer():startTimer();
 
-/* ===== BACKUP TO DOWNLOADS: the browser saves each file to the phone's Download folder ===== */
+/* ===== BACKUP TO DOWNLOADS ===== */
 async function backup(){
   const all=await dbAll();
   dl(`daylog-backup-${ymd(new Date())}.json`,JSON.stringify(all,null,1),'application/json');
   localStorage.setItem('dl-last',new Date().toISOString());showLast();
 }
-const autoBackup=()=>{queueSync();if(localStorage.getItem('dl-auto')==='1')backup()}; // every change also queues a cloud sync
+const autoBackup=()=>{queueSync();if(localStorage.getItem('dl-auto')==='1')backup()};
 function showLast(){const t=localStorage.getItem('dl-last');$('#bk').textContent='Save';
   $('#bk').title=t?`Last saved ${new Date(t).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}`:'Save a backup file to Downloads'}
 $('#bk').onclick=async()=>{await backup();$('#bk').textContent='Saved \u2713';setTimeout(showLast,1800)};
 $('#auto').checked=localStorage.getItem('dl-auto')==='1';
 $('#auto').onchange=e=>{localStorage.setItem('dl-auto',e.target.checked?'1':'0');if(e.target.checked)backup()};
 showLast();
-navigator.storage?.persist?.(); // ask the browser not to evict the in-app data
+navigator.storage?.persist?.();
 
-/* ===== CLOUD SYNC: keeps one JSON file in the GitHub repository and merges it with this device ===== */
+/* ===== CLOUD SYNC ===== */
 const DELK='dl-del';
 const ghCfg=()=>{const t=localStorage.getItem('dl-token');return t?{owner:'ashwin-k-bang',repo:'daylog',branch:'main',path:'data/daylog.json',token:t}:null};
-const getDel=()=>{try{return JSON.parse(localStorage.getItem(DELK)||'{}')}catch(e){return{}}}; // ids deleted on this device, with the time
+const getDel=()=>{try{return JSON.parse(localStorage.getItem(DELK)||'{}')}catch(e){return{}}};
 const setDel=o=>localStorage.setItem(DELK,JSON.stringify(o));
 async function delEntry(id){await dbDel(id);const d=getDel();d[id]=Date.now();setDel(d)}
 const b64e=s=>{let x='';new TextEncoder().encode(s).forEach(c=>x+=String.fromCharCode(c));return btoa(x)};
@@ -554,11 +557,11 @@ async function ghErr(r){let m='';try{m=(await r.json()).message||''}catch(e){}
   return `GitHub error ${r.status}. ${m}`}
 async function ghRead(c){
   const r=await fetch(ghFile(c)+'?ref='+encodeURIComponent(c.branch)+'&t='+Date.now(),{headers:ghH(c),cache:'no-store'});
-  if(r.status===404)return{data:null,sha:null}; // file not created yet
+  if(r.status===404)return{data:null,sha:null};
   if(!r.ok)throw new Error(await ghErr(r));
   const j=await r.json();let txt;
   if(j.content)txt=b64d(j.content.replace(/\n/g,''));
-  else{const b=await fetch(ghApi(c,'git/blobs/'+j.sha),{headers:ghH(c),cache:'no-store'}); // files over 1 MB come as blobs
+  else{const b=await fetch(ghApi(c,'git/blobs/'+j.sha),{headers:ghH(c),cache:'no-store'});
     if(!b.ok)throw new Error(await ghErr(b));txt=b64d((await b.json()).content.replace(/\n/g,''))}
   return{data:JSON.parse(txt),sha:j.sha};
 }
@@ -566,11 +569,11 @@ async function ghWrite(c,obj,sha){
   const body={message:'Daylog sync '+new Date().toISOString(),content:b64e(JSON.stringify(obj,null,1)),branch:c.branch};
   if(sha)body.sha=sha;
   const r=await fetch(ghFile(c),{method:'PUT',headers:{...ghH(c),'Content-Type':'application/json'},body:JSON.stringify(body)});
-  if(r.status===409||r.status===422){const e=new Error(await ghErr(r));e.conflict=true;throw e} // someone else wrote first: read again and retry
+  if(r.status===409||r.status===422){const e=new Error(await ghErr(r));e.conflict=true;throw e}
   if(!r.ok)throw new Error(await ghErr(r));
 }
 const sig=(l,d,k)=>l.map(e=>e.id+':'+(e.u||0)).sort().join()+'#'+Object.keys(d).map(i=>i+':'+d[i]).sort().join()+'#'+Object.keys(k).sort().map(n=>n+k[n]).join();
-function merge(local,ld,remote){ // newest edit wins; a deletion wins over an older edit
+function merge(local,ld,remote){
   const del={...(remote?.deleted||{})};Object.keys(ld).forEach(k=>del[k]=Math.max(del[k]||0,ld[k]));
   const m=new Map();
   [...(remote?.entries||[]),...local].forEach(e=>{const o=m.get(e.id);if(!o||(e.u||0)>=(o.u||0))m.set(e.id,e)});
@@ -613,23 +616,23 @@ async function syncNow(force){
   finally{syncing=false;if(again){again=false;queueSync()}}
   return err;
 }
-async function cloudTap(){ // one tap: save everything to the repository (asks for the token only the first time)
+async function cloudTap(){
   if(!localStorage.getItem('dl-token')){
     const t=prompt('One-time setup: paste your GitHub token (Contents: Read and write on the daylog repo). It stays on this device.');
     if(!t||!t.trim())return;
     localStorage.setItem('dl-token',t.trim());
   }
   const err=await syncNow(true);
-  if(err&&/token/i.test(err))localStorage.removeItem('dl-token'); // bad token: ask again next tap
+  if(err&&/token/i.test(err))localStorage.removeItem('dl-token');
 }
 $('#cloud').onclick=cloudTap;
-setInterval(()=>{if(document.visibilityState==='visible'&&ghCfg()&&!timing&&!$('#dlg').open)syncNow()},60000); // pick up changes from other devices
+setInterval(()=>{if(document.visibilityState==='visible'&&ghCfg()&&!timing&&!$('#dlg').open)syncNow()},60000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&ghCfg())syncNow()});
 addEventListener('online',()=>{if(ghCfg())syncNow()});
 
 /* ===== EXPORT / IMPORT ===== */
 const dl=(name,txt,type)=>{
-  if(window.AndroidBridge){const r=AndroidBridge.saveFile(name,type||'text/plain',txt);if(String(r).startsWith('ERROR'))alert('Could not save: '+r);return} // Android app: writes to Download/Daylog
+  if(window.AndroidBridge){const r=AndroidBridge.saveFile(name,type||'text/plain',txt);if(String(r).startsWith('ERROR'))alert('Could not save: '+r);return}
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click()};
 $('#exJ').onclick=()=>dl('daylog.json',JSON.stringify(entries,null,1),'application/json');
 $('#exC').onclick=()=>dl('daylog.csv','id,date,start,end,minutes,category,title,sidebyes\n'+entries.map(e=>[e.id,e.date,e.start,e.end,e.mins,e.cat,e.title,(e.side||[]).map(x=>String(x).replace(/\|/g,'/')).join(' | ')].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n'),'text/csv');
@@ -653,7 +656,6 @@ $('#impF').onchange=async ev=>{
 
 /* ===== WIRING ===== */
 $('#viewSel').onchange=e=>{view=e.target.value;render()};
-// Keyboard shortcuts like Google Calendar: d w m h y = views, t = today, p / n = previous / next
 document.addEventListener('keydown',e=>{
   if(e.target.closest('input,select,textarea')||$('#dlg').open||$('#sbq').open||e.ctrlKey||e.metaKey||e.altKey)return;
   const k=e.key.toLowerCase(),V={d:'day',w:'week',m:'month',h:'half',y:'year'};
@@ -666,7 +668,7 @@ $('#add').onclick=()=>openEditor();
 $('#addCat').onclick=()=>{const n=prompt('New category name');if(n&&n.trim()&&!cats[n.trim()]){cats[n.trim()]=PALETTE[Object.keys(cats).length%8];saveCats();fillCats();queueSync()}};
 ['q','fc','f1','f2'].forEach(i=>$('#'+i).addEventListener('input',render));
 $('#clr').onclick=()=>{['q','fc','f1','f2'].forEach(i=>$('#'+i).value='');render()};
-$('#view').onclick=ev=>{ // one handler for every clickable thing in the views
+$('#view').onclick=ev=>{
   const ent=ev.target.closest('.ent,.blk'),d=ev.target.closest('[data-d]');
   if(ent)openEditor(entries.find(e=>e.id===ent.dataset.id));
   else if(d){ev.preventDefault();cur=parseD(d.dataset.d);view='day';render()}
@@ -677,7 +679,7 @@ window.addEventListener('beforeunload',e=>{if(timing){e.preventDefault();e.retur
 const mp=$('#mp'),mb=$('#mbtn');
 mb.onclick=ev=>{ev.stopPropagation();const o=mp.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
 document.addEventListener('click',ev=>{if(!ev.target.closest('#mbtn'))mp.classList.remove('open');mb.setAttribute('aria-expanded',mp.classList.contains('open'))});
-if(matchMedia('(min-width:901px)').matches)$('#fl').open=true; // filters collapsed on mobile, open on desktop
+if(matchMedia('(min-width:901px)').matches)$('#fl').open=true;
 ['q','fc','f1','f2'].forEach(i=>$('#'+i).addEventListener('input',()=>{if($('#q').value||$('#fc').value||$('#f1').value||$('#f2').value)$('#fl').open=true}));
 setStat(ghCfg()?'busy':'off');
 openDB().then(refresh).then(()=>syncNow());
