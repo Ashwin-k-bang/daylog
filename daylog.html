@@ -1,10 +1,16 @@
-Now?
-
+Mobile?
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EEF1EF">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Daylog">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
 <title>Daylog</title>
 <style>
 /* ===== THEME TOKENS: edit colors here ===== */
@@ -97,15 +103,44 @@ dialog::backdrop{background:#0008}
 dialog label{display:block;font-size:13px;color:var(--mute);margin-top:10px}
 dialog input,dialog select{width:100%}
 .err{color:var(--rec);font-size:13px;min-height:18px}
+/* ===== Mobile / installed app ===== */
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{overscroll-behavior-y:contain;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+header{padding-top:calc(10px + env(safe-area-inset-top))}
+.menu{position:relative}
+.menu summary{list-style:none;cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 14px;font-size:18px;line-height:1.2;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.mpop{position:absolute;right:0;top:calc(100% + 6px);z-index:20;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;min-width:160px;box-shadow:0 8px 24px #0004}
+.fab{display:none}
+.hc{min-height:0;min-width:0}
+@media(max-width:900px){
+  main{gap:12px;padding:12px}
+  .stack{display:contents}
+  .cap{order:1}#calc{order:2}#sum{order:3}#flt{order:4}
+  input,select,button,textarea{font-size:16px}
+  button,select,input{min-height:44px}
+  .hc{min-height:0}
+  .card{padding:14px}
+  .pair{gap:22px}
+  #mic,#timer{width:84px;height:84px}
+  #live{min-height:36px}
+  .bar h2{flex:1 1 100%;order:-1;margin:0 0 4px}
+  .tgb{max-height:min(640px,62dvh)}
+  .day{min-height:60px}
+  body{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+  .fab{display:grid;place-items:center;position:fixed;right:calc(16px + env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));width:60px;height:60px;min-height:0;border-radius:50%;border:0;padding:0;background:var(--acc);color:var(--bg);font-size:34px;line-height:1;box-shadow:0 6px 18px #0005;z-index:8}
+}
+@media(max-width:600px){
+  dialog{margin:auto auto 0;width:100%;max-width:100%;max-height:92dvh;overflow:auto;border-radius:18px 18px 0 0;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+}
 </style>
 </head>
 <body>
 <header>
   <h1>Daylog</h1>
   <span class="sp"></span>
-  <button id="exJ">Export JSON</button><button id="exC">Export CSV</button>
-  <button id="imp">Import</button><input type="file" id="impF" accept=".json,.csv" hidden>
   <button id="theme" aria-label="Toggle light or dark mode">Theme</button>
+  <details class="menu" id="menu"><summary aria-label="Export and import">&#8943;</summary><div class="mpop"><button id="exJ">Export JSON</button><button id="exC">Export CSV</button><button id="imp">Import</button><input type="file" id="impF" accept=".json,.csv" hidden></div></details>
 </header>
 
 <main>
@@ -128,7 +163,7 @@ dialog input,dialog select{width:100%}
       <input id="gkey" type="password" placeholder="Groq API key (console.groq.com/keys)" style="width:100%;margin-top:8px;display:none">
       <p class="note" id="srNote">Voice works best in Chrome or Edge, over HTTPS or localhost.</p>
     </section>
-    <section class="card">
+    <section class="card" id="flt">
       <div class="row"><button class="pri" id="add">+ Add entry</button><button id="addCat">+ Category</button></div>
       <h3 style="margin:14px 0 8px;font-size:15px">Search and filter</h3>
       <input id="q" placeholder="Search titles" style="width:100%;margin-bottom:8px">
@@ -138,7 +173,7 @@ dialog input,dialog select{width:100%}
   </div>
 
   <div class="stack">
-    <section class="card">
+    <section class="card" id="calc">
       <div class="bar">
         <button id="prev" aria-label="Previous">&lsaquo;</button><button id="today">Today</button><button id="next" aria-label="Next">&rsaquo;</button>
         <h2 id="label"></h2>
@@ -152,6 +187,8 @@ dialog input,dialog select{width:100%}
     <section class="card sum" id="sum"></section>
   </div>
 </main>
+
+<button class="fab" id="fab" aria-label="Add entry">+</button>
 
 <dialog id="dlg">
   <form id="form">
@@ -195,7 +232,7 @@ const col=n=>cats[n]||'#64748B';
 const saveCats=()=>localStorage.setItem('dl-cats',JSON.stringify(cats));
 
 /* ===== STATE ===== */
-let entries=[],byDate={},view=localStorage.getItem('dl-view')||'week',cur=new Date();
+let entries=[],byDate={},view=localStorage.getItem('dl-view')||(innerWidth<700?'day':'week'),cur=new Date();
 const tot=k=>(byDate[k]||[]).reduce((a,e)=>a+e.mins,0);
 async function refresh(){
   entries=await dbAll();byDate={};
@@ -314,7 +351,7 @@ $('#eDel').onclick=async()=>{if(confirm('Delete this entry?')){await dbDel(editi
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 let rec,listening=false,denied=false,base='',finalText='',lastStart=0,quick=0;
 const warn=m=>{$('#srNote').textContent=m;$('#srNote').style.color='var(--rec)'};
-if(!SR)warn('Speech recognition is not supported in this browser. Type the title instead. Chrome or Edge work best.');
+if(!SR&&localStorage.getItem('dl-eng')==='browser')warn('Speech recognition is not supported in this browser. Type the title instead. Chrome or Edge work best.');
 const MSG={'not-allowed':'Microphone is blocked. Click the lock icon in the address bar, allow the microphone, and reload. If you opened the file directly, run it from localhost or HTTPS instead.',
   'service-not-allowed':'This browser blocks speech recognition here. Use Chrome or Edge over HTTPS or localhost.',
   'network':'Speech recognition needs an internet connection. Brave and some privacy browsers block it.',
@@ -376,7 +413,7 @@ function warmup(){
     wk=new Worker(URL.createObjectURL(new Blob([WSRC],{type:'text/javascript'})),{type:'module'});
     wk.onmessage=e=>{const d=e.data;
       if(d.type==='prog'){$('#srNote').style.color='';$('#srNote').textContent=`Loading speech model... ${Math.round(d.pct||0)}% (one time only)`}
-      else if(d.type==='ready'){$('#srNote').textContent='Speech model ready.';rdy?.res()}
+      else if(d.type==='ready'){$('#srNote').textContent='Speech model ready.';localStorage.setItem('dl-mdl','1');rdy?.res()}
       else if(d.type==='done')pend?.res(d.text);
       else if(d.type==='err'){wKey='';rdy?.rej(new Error(d.msg));pend?.rej(new Error(d.msg))}};
     wk.onerror=e=>{wKey='';const er=new Error(e.message||'worker failed');rdy?.rej(er);pend?.rej(er)};
@@ -436,8 +473,13 @@ function stopRec(){
   return new Promise(r=>{mr.onstop=async()=>{await finishRec();r()};try{mr.stop()}catch(e){r()}});
 }
 const stopAny=()=>eng==='browser'?stopDictation():stopRec();
-$('#mic').onclick=()=>listening?stopAny():(eng==='browser'?startDictation():startRec());
-const syncEng=()=>{$('#gkey').style.display=eng==='groq'?'':'none';if(eng!=='browser')warmup().catch(e=>warn('Speech model failed to load: '+e.message))};
+$('#mic').onclick=()=>{navigator.vibrate?.(15);listening?stopAny():(eng==='browser'?startDictation():startRec())};
+const cn=navigator.connection,metered=!!cn&&(cn.saveData||cn.type==='cellular'||/^(slow-2g|2g|3g)$/.test(cn.effectiveType||''));
+const syncEng=()=>{$('#gkey').style.display=eng==='groq'?'':'none';
+  if(eng==='groq'){$('#srNote').textContent='Cloud transcription. No model download needed.';return}
+  if(eng!=='local')return;
+  if(metered&&!localStorage.getItem('dl-mdl')){$('#srNote').textContent='You are on mobile data, so the speech model (about 80 MB) downloads when you first tap the mic. Cloud (Groq) needs no download.';return}
+  warmup().catch(e=>warn('Speech model failed to load: '+e.message))};
 $('#eng').value=eng;$('#gkey').value=localStorage.getItem('dl-gkey')||'';
 $('#eng').onchange=e=>{eng=e.target.value;localStorage.setItem('dl-eng',eng);syncEng()};
 $('#gkey').oninput=e=>localStorage.setItem('dl-gkey',e.target.value.trim());
@@ -446,10 +488,11 @@ syncEng(); // start loading the model now so the first tap is instant
 
 /* ===== TIMER BUTTON: press once to note the start time, again to save the duration ===== */
 let timing=false,t0=0,tick,lock;
-function startTimer(){
-  timing=true;t0=Date.now();
+function startTimer(resume){
+  timing=true;t0=resume||Date.now();localStorage.setItem('dl-t0',t0);navigator.vibrate?.(30);
   $('#timer').classList.add('on');$('#tLabel').textContent='Stop and save';
   $('#live').textContent='Timing started at '+hm(new Date(t0))+'.';
+  $('#clock').textContent=clock(Date.now()-t0);
   tick=setInterval(()=>$('#clock').textContent=clock(Date.now()-t0),500); // timestamp based, accurate for hours
   navigator.wakeLock?.request('screen').then(l=>lock=l).catch(()=>{});
 }
@@ -458,7 +501,7 @@ async function stopTimer(){
   if(listening)await stopAny(); // wait for the transcript so the title is not lost
   const s=new Date(t0),title=$('#typed').value.trim()||'Untitled session';
   const e={id:crypto.randomUUID(),title,date:ymd(s),start:hm(s),end:hm(en),mins:Math.max(1,Math.round((en-s)/60000)),cat:'Other'};
-  await dbPut(e);
+  await dbPut(e);localStorage.removeItem('dl-t0');localStorage.removeItem('dl-draft');navigator.vibrate?.([20,40,20]);
   $('#timer').classList.remove('on');$('#tLabel').textContent='Start timer';
   $('#clock').textContent='00:00:00';$('#typed').value='';
   $('#live').textContent=`Saved "${title}" (${fmt(e.mins)}, ${e.start} to ${e.end}). Click it in the list to edit.`;
@@ -508,10 +551,36 @@ $('#view').onclick=ev=>{ // one handler for every clickable thing in the views
   if(ent)openEditor(entries.find(e=>e.id===ent.dataset.id));
   else if(d){ev.preventDefault();cur=parseD(d.dataset.d);view='day';render()}
 };
-$('#theme').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.setItem('dl-theme',t)};
-document.documentElement.dataset.theme=localStorage.getItem('dl-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+$('#theme').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.setItem('dl-theme',t);tc()};
+const tc=()=>document.querySelector('meta[name=theme-color]')?.setAttribute('content',document.documentElement.dataset.theme==='dark'?'#0E1514':'#EEF1EF');
+document.documentElement.dataset.theme=localStorage.getItem('dl-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');tc();
 window.addEventListener('beforeunload',e=>{if(timing){e.preventDefault();e.returnValue=''}});
 openDB().then(refresh);
+
+/* ===== MOBILE / INSTALLED APP ===== */
+$('#fab').onclick=()=>openEditor();
+$('#menu').addEventListener('click',e=>{if(e.target.closest('button'))setTimeout(()=>$('#menu').open=false,0)});
+document.addEventListener('click',e=>{if(!e.target.closest('#menu'))$('#menu').open=false});
+navigator.storage?.persist?.(); // ask the browser not to evict the saved entries
+// An interrupted timer survives a closed tab, a killed app or a phone lock
+const sv=+localStorage.getItem('dl-t0');
+if(sv){startTimer(sv);const d=localStorage.getItem('dl-draft');if(d&&!$('#typed').value)$('#typed').value=d}
+$('#typed').addEventListener('input',()=>localStorage.setItem('dl-draft',$('#typed').value));
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&timing){
+  $('#clock').textContent=clock(Date.now()-t0);navigator.wakeLock?.request('screen').then(l=>lock=l).catch(()=>{})}});
+// Swipe left or right on the calendar to move between days, months and years
+let sx=0,sy=0;
+$('#view').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+$('#view').addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+  if(view==='week'||Math.abs(dx)<70||Math.abs(dy)>45||$('#dlg').open)return;step(dx<0?1:-1)},{passive:true});
+// Installable app: runtime manifest (so it works from any file name) plus an offline service worker
+if(location.protocol.startsWith('http')){
+  const base=location.href.split('#')[0].split('?')[0];
+  const mf={name:'Daylog',short_name:'Daylog',start_url:base,scope:new URL('./',base).href,display:'standalone',orientation:'portrait',background_color:'#EEF1EF',theme_color:'#0F766E',
+    icons:[{src:new URL('icon-192.png',base).href,sizes:'192x192',type:'image/png',purpose:'any maskable'},{src:new URL('icon-512.png',base).href,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
+  const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}));document.head.appendChild(l);
+  navigator.serviceWorker?.register('sw.js').catch(()=>{});
+}
 </script>
 </body>
 </html>
