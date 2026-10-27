@@ -1,7 +1,7 @@
 {
 "v":1,
 "cats":{"Health":"#16A34A","Other":"#64748B","Personal":"#F59E0B","Study":"#8B5CF6","Work":"#2F6FED"},
-"run":{"none":true,"u":1793103028962},
+"run":{"id":"52fabfaf-44bb-4ebd-931e-92ee79833105","title":"","cat":"Other","t0":1793104342510,"u":1793104342510},
 "entries":[
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Other","u":0},
 {"id":"24efce54-cda7-4846-803a-00eee0132286","title":"Going to college.","date":"2026-10-26","start":"18:25","end":"18:25","mins":1,"cat":"Other","u":0},
