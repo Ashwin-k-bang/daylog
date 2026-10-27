@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793105952258,"gone":false},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"f94f3a42-f973-4ddb-86eb-86b8f2772b55","title":"Ml project + relationship podcast","cat":"College","t0":1793117997724,"u":1793118380630},
+"run":{"none":true,"u":1793120842380},
 "entries":[
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Chill","u":1793105952258},
@@ -31,6 +31,7 @@
 {"id":"dd54b047-bc72-4e51-92ae-df22048b7f1a","title":"Google Cloud","date":"2026-10-27","start":"21:16","end":"21:49","mins":33,"cat":"College","u":1793117992269},
 {"id":"de25fb78-7ca5-4e0c-bc50-f45ce1e34e01","title":"College drive / MATHS FC","date":"2026-10-27","start":"09:30","end":"10:06","mins":36,"cat":"Chill","u":1793105952258},
 {"id":"de5828bb-4f20-48a1-a396-205fde412f6a","title":"Application making daylog","date":"2026-10-27","start":"17:22","end":"17:40","mins":18,"cat":"Chill","u":1793105952258},
-{"id":"ee76e73c-6729-4f19-96ff-bdc7ef9ce3af","title":"Going college/ mandir/chakki","date":"2026-10-27","start":"09:20","end":"09:30","mins":10,"cat":"Chill","u":1793105952258}
+{"id":"ee76e73c-6729-4f19-96ff-bdc7ef9ce3af","title":"Going college/ mandir/chakki","date":"2026-10-27","start":"09:20","end":"09:30","mins":10,"cat":"Chill","u":1793105952258},
+{"id":"f94f3a42-f973-4ddb-86eb-86b8f2772b55","title":"Ml project + relationship podcast","date":"2026-10-27","start":"21:49","end":"22:37","mins":47,"cat":"College","u":1793120842366}
 ]
 }
