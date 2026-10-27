@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793105952258,"gone":false},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"77c86054-33bc-42f8-b5c1-bc93b05124a2","title":"SES assignment + Breaking bad","cat":"College","t0":1793106067398,"u":1793106274513},
+"run":{"id":"beca0026-630e-4afe-aa18-15edbb9200c1","title":"Break","cat":"Chill","t0":1793107971427,"u":1793107971427},
 "entries":[
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Chill","u":1793105952258},
 {"id":"24efce54-cda7-4846-803a-00eee0132286","title":"Going to college.","date":"2026-10-26","start":"18:25","end":"18:25","mins":1,"cat":"Chill","u":1793105952258},
@@ -14,6 +14,7 @@
 {"id":"5d127909-333d-4e0a-bff3-05424362eb29","title":"cleaning and ready/ Ssc formulas fc","date":"2026-10-27","start":"07:13","end":"08:20","mins":67,"cat":"Chill","u":1793105968632},
 {"id":"65e6ca7e-6162-485c-bb32-7a5d81ddde9a","title":"Bai assihnment","date":"2026-10-27","start":"12:22","end":"13:39","mins":77,"cat":"Chill","u":1793105952258},
 {"id":"72104012-f56a-4de7-bb3f-baef97261d82","title":"Chill","date":"2026-10-27","start":"14:47","end":"17:01","mins":134,"cat":"Chill","u":1793105952258},
+{"id":"77c86054-33bc-42f8-b5c1-bc93b05124a2","title":"SES assignment + Breaking bad","date":"2026-10-27","start":"18:31","end":"19:02","mins":31,"cat":"College","u":1793107940233},
 {"id":"87c129a3-2f0d-45c1-aa0f-d18a6e0d032e","title":"Untitled session","date":"2026-10-26","start":"18:20","end":"18:21","mins":1,"cat":"Chill","u":1793105952258},
 {"id":"a6ab1f4f-2fb2-4989-8af2-a663df274a11","title":"Hello","date":"2026-10-26","start":"10:21","end":"11:21","mins":60,"cat":"Chill","u":1793105952258},
 {"id":"a877c0c8-a175-4583-8106-a3804a347473","title":"Bai assignment","date":"2026-10-27","start":"11:21","end":"12:21","mins":60,"cat":"Chill","u":1793105952258},
