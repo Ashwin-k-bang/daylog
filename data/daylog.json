@@ -1,6 +1,7 @@
 {
 "v":1,
-"cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","Other":"#64748B","Personal":"#F59E0B","SSC":"#2F6FED","Study":"#8B5CF6","Timepass":"#F59E0B","Work":"#2F6FED","ssc":"#2F6FED"},
+"cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","SSC":"#2F6FED","Timepass":"#F59E0B"},
+"catDel":{"Chill":{"u":1793105952258,"gone":false},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
 "run":{"id":"77c86054-33bc-42f8-b5c1-bc93b05124a2","title":"SES assignment","cat":"College","t0":1793106067398,"u":1793106067398},
 "entries":[
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Chill","u":1793105952258},
