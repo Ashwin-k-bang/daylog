@@ -1,0 +1,8 @@
+{
+"v":1,
+"cats":{"Health":"#16A34A","Other":"#64748B","Personal":"#F59E0B","Study":"#8B5CF6","Work":"#2F6FED"},
+"run":null,
+"entries":[
+{"id":"c37a6caa-cef3-4712-be80-50754b07ffc5","title":"CHill","date":"2026-10-26","start":"17:46","end":"17:46","mins":1,"cat":"Other","u":1793016973799}
+]
+}
