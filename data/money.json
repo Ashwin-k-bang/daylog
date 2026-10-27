@@ -1,0 +1,28 @@
+{
+ "entries": [
+  {
+   "id": "mvqshfalp6h7",
+   "type": "out",
+   "amount": 100,
+   "note": "Aaro pasta canteen",
+   "date": "2026-10-27",
+   "ts": 1793111825325
+  },
+  {
+   "id": "mvqshr7ya16z",
+   "type": "out",
+   "amount": 100,
+   "note": "Notebook and files for me and gurdeep",
+   "date": "2026-10-27",
+   "ts": 1793111840782
+  },
+  {
+   "id": "mvqso3ciwue3",
+   "type": "out",
+   "amount": 50,
+   "note": "Sambar samosa in canteen",
+   "date": "2026-10-27",
+   "ts": 1793112136434
+  }
+ ]
+}
