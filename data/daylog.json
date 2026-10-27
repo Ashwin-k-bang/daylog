@@ -1,6 +1,7 @@
 {
 "v":1,
-"cats":{"College":"#8B5CF6","Health":"#16A34A","Other":"#64748B","Personal":"#F59E0B","SSC":"#2F6FED","Study":"#8B5CF6","Work":"#2F6FED","ssc":"#2F6FED"},
+"cats":{"College":"#8B5CF6","Health":"#16A34A","Other":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
+"catDel":{"College":{"u":1793105883118,"gone":false},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
 "run":{"none":true,"u":1793104348530},
 "entries":[
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Other","u":0},
