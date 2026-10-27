@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Money log</title>
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--ink:#1d2a24;--mut:#6b7a72;--line:#dfe4de;--in:#17803d;--out:#b3361f;--acc:#1d2a24}
+@media(prefers-color-scheme:dark){:root{--bg:#121714;--card:#1b231e;--ink:#e8eee9;--mut:#8fa095;--line:#2b362f;--in:#4cc27a;--out:#ef7b64;--acc:#e8eee9}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;padding:max(16px,env(safe-area-inset-top)) 16px 40px}
+main{max-width:520px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+h1{font-size:20px;margin:0}
+a{color:var(--mut);font-size:14px}
+#st{font-size:13px;color:var(--mut);cursor:pointer;border:1px solid var(--line);border-radius:99px;padding:4px 10px;background:var(--card)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.nav{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.nav input{flex:1}
+button,input,select{font:inherit;color:var(--ink)}
+button{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
+input,select{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
+.tot{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.tot b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.tot span{font-size:13px;color:var(--mut)}
+.in{color:var(--in)}.out{color:var(--out)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.seg button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.row{display:flex;gap:8px;margin-bottom:8px}
+.add{width:100%;background:var(--acc);color:var(--bg);border-color:var(--acc);font-weight:600}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+li:first-child{border-top:0}
+li .m{flex:1;min-width:0}li .m small{display:block;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+li .a{font-variant-numeric:tabular-nums;font-weight:600}
+li button{padding:2px 9px;color:var(--mut)}
+.empty{color:var(--mut);text-align:center;padding:10px 0}
+h2{font-size:15px;margin:0 0 8px}
+.mo{font-size:14px;color:var(--mut);margin-top:10px;text-align:center}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);max-width:420px;width:calc(100% - 32px)}
+dialog p{font-size:14px;color:var(--mut)}
+</style>
+</head>
+<body>
+<main>
+<header><h1>₹ Money log</h1><div><a href="index.html">Daylog</a> &nbsp; <span id="st">Sync off</span></div></header>
+
+<div class="card">
+  <div class="nav"><button id="prev" aria-label="Previous day">‹</button><input type="date" id="date"><button id="next" aria-label="Next day">›</button><button id="today">Today</button></div>
+  <div class="tot"><div><span>Income</span><b class="in" id="tin">0</b></div><div><span>Spent</span><b class="out" id="tout">0</b></div><div><span>Net</span><b id="tnet">0</b></div></div>
+  <div class="mo" id="mo"></div>
+</div>
+
+<div class="card">
+  <div class="seg"><button id="bOut" class="on">Spent</button><button id="bIn">Income</button></div>
+  <div class="row"><input id="amt" type="number" inputmode="decimal" min="0" step="any" placeholder="Amount ₹"></div>
+  <div class="row"><input id="note" placeholder="Note (optional)"></div>
+  <button class="add" id="add">Add</button>
+</div>
+
+<div class="card"><h2>Entries</h2><ul id="list"></ul></div>
+<div class="card"><h2>Recent days</h2><ul id="days"></ul></div>
+</main>
+
+<dialog id="dlg">
+  <h2>Sync across devices</h2>
+  <p>Entries are saved to <b>data/money.json</b> in your GitHub repo, so every device shows the same log. Use the same token as Daylog (needs repo contents write access). If the repo is public, anyone can read this file.</p>
+  <div class="row"><input id="repo" placeholder="owner/repo"></div>
+  <div class="row"><input id="tok" type="password" placeholder="GitHub token"></div>
+  <div class="row"><button id="save" class="add">Turn on sync</button><button id="off">Turn off</button><button id="close">Close</button></div>
+</dialog>
+
+<script>
+const $=id=>document.getElementById(id);
+const ls={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const PATH="data/money.json";
+let entries=[];try{entries=JSON.parse(ls.get("money_entries")||"[]")}catch(e){}
+let type="out",day=today(),sha=null,busy=false,dirty=false,lastErr="";
+let repo=ls.get("money_repo")||"ashwin-k-bang/daylog",tok=ls.get("money_tok")||ls.get("gh_token")||ls.get("token")||"";
+const syncOn=()=>!!(ls.get("money_sync")&&tok&&repo);
+
+function pad(n){return String(n).padStart(2,"0")}
+function fmt(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function today(){return fmt(new Date())}
+function shift(s,n){const d=new Date(s+"T12:00:00");d.setDate(d.getDate()+n);return fmt(d)}
+const money=n=>"₹"+Math.round(n*100)/100;
+const live=()=>entries.filter(e=>!e.del);
+function save(){ls.set("money_entries",JSON.stringify(entries))}
+
+function merge(a,b){const m=new Map();for(const e of [...a,...b]){const o=m.get(e.id);if(!o||(e.ts||0)>=(o.ts||0))m.set(e.id,e)}return [...m.values()]}
+
+function render(){
+  $("date").value=day;
+  $("bOut").classList.toggle("on",type==="out");$("bIn").classList.toggle("on",type==="in");
+  const L=live(),de=L.filter(e=>e.date===day);
+  const sum=(arr,t)=>arr.filter(e=>e.type===t).reduce((s,e)=>s+e.amount,0);
+  const i=sum(de,"in"),o=sum(de,"out");
+  $("tin").textContent=money(i);$("tout").textContent=money(o);
+  $("tnet").textContent=money(i-o);$("tnet").className=i-o<0?"out":"in";
+  const mp=day.slice(0,7),me=L.filter(e=>e.date.startsWith(mp));
+  $("mo").textContent="This month: "+money(sum(me,"in"))+" in, "+money(sum(me,"out"))+" spent, net "+money(sum(me,"in")-sum(me,"out"));
+  $("list").innerHTML=de.length?de.sort((a,b)=>b.ts-a.ts).map(e=>`<li><div class="m">${esc(e.note||e.cat||(e.type==="in"?"Income":"Spent"))}</div><span class="a ${e.type}">${e.type==="in"?"+":"−"}${money(e.amount)}</span><button data-d="${e.id}" aria-label="Delete">×</button></li>`).join(""):'<div class="empty">Nothing logged for this day.</div>';
+  let h="";for(let k=0;k<14;k++){const d=shift(today(),-k),x=L.filter(e=>e.date===d),a=sum(x,"in")-sum(x,"out");h+=`<li><button data-g="${d}" style="flex:1;text-align:left;color:var(--ink)">${k===0?"Today":d}</button><span class="a ${a<0?"out":"in"}">${x.length?money(a):"–"}</span></li>`}
+  $("days").innerHTML=h;
+  const s=$("st");s.textContent=!syncOn()?"Sync off":busy?"Syncing…":lastErr?"Sync error":"Synced";s.title=lastErr;
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+/* ---- GitHub sync ---- */
+const b64e=s=>btoa(unescape(encodeURIComponent(s)));
+const b64d=s=>decodeURIComponent(escape(atob(s.replace(/\s/g,""))));
+const api=()=>`https://api.github.com/repos/${repo}/contents/${PATH}`;
+const hdr=()=>({Authorization:"Bearer "+tok,Accept:"application/vnd.github+json"});
+
+async function sync(){
+  if(!syncOn())return render();
+  if(busy){dirty=true;return}
+  busy=true;lastErr="";render();
+  try{
+    for(let tries=0;tries<3;tries++){
+      dirty=false;
+      const r=await fetch(api()+"?t="+Date.now(),{headers:hdr(),cache:"no-store"});
+      let remote=[];sha=null;
+      if(r.status===200){const j=await r.json();sha=j.sha;try{remote=JSON.parse(b64d(j.content)).entries||[]}catch(e){}}
+      else if(r.status!==404)throw new Error("GitHub "+r.status+(r.status===401?" (bad token)":""));
+      const before=JSON.stringify(entries);
+      entries=merge(entries,remote);save();
+      const need=!sha||JSON.stringify(sortE(entries))!==JSON.stringify(sortE(remote));
+      if(need){
+        const body={message:"money log",content:b64e(JSON.stringify({entries:sortE(entries)},null,1))};
+        if(sha)body.sha=sha;
+        const p=await fetch(api(),{method:"PUT",headers:{...hdr(),"Content-Type":"application/json"},body:JSON.stringify(body)});
+        if(p.status===409||p.status===422){continue}
+        if(!p.ok)throw new Error("GitHub "+p.status);
+      }
+      if(before!==JSON.stringify(entries))render();
+      if(!dirty)break;
+    }
+  }catch(e){lastErr=String(e.message||e)}
+  busy=false;render();
+}
+const sortE=a=>[...a].sort((x,y)=>x.id<y.id?-1:1);
+
+/* ---- UI ---- */
+function add(){
+  const amount=parseFloat($("amt").value);
+  if(!(amount>0)){$("amt").focus();return}
+  const ts=Date.now();
+  entries.push({id:ts.toString(36)+Math.random().toString(36).slice(2,6),type,amount,note:$("note").value.trim(),date:day,ts});
+  save();$("amt").value="";$("note").value="";render();sync();$("amt").focus();
+}
+$("add").onclick=add;
+[$("amt"),$("note")].forEach(i=>i.addEventListener("keydown",e=>{if(e.key==="Enter")add()}));
+$("bOut").onclick=()=>{type="out";render()};$("bIn").onclick=()=>{type="in";render()};
+$("prev").onclick=()=>{day=shift(day,-1);render()};$("next").onclick=()=>{day=shift(day,1);render()};
+$("today").onclick=()=>{day=today();render()};$("date").onchange=e=>{if(e.target.value){day=e.target.value;render()}};
+document.addEventListener("click",e=>{
+  const d=e.target.dataset;
+  if(d.d){const x=entries.find(v=>v.id===d.d);if(x){x.del=true;x.ts=Date.now();save();render();sync()}}
+  if(d.g){day=d.g;render();scrollTo(0,0)}
+});
+$("st").onclick=()=>{$("repo").value=repo;$("tok").value=tok;$("dlg").showModal()};
+$("close").onclick=()=>$("dlg").close();
+$("save").onclick=()=>{repo=$("repo").value.trim();tok=$("tok").value.trim();if(!repo||!tok)return;ls.set("money_repo",repo);ls.set("money_tok",tok);ls.set("money_sync","1");$("dlg").close();sync()};
+$("off").onclick=()=>{ls.del("money_sync");$("dlg").close();render()};
+
+setInterval(()=>{if(!document.hidden)sync()},15000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)sync()});
+addEventListener("online",sync);
+render();sync();
+</script>
+</body>
+</html>
