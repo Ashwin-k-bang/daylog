@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793105952258,"gone":false},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"c0f4c160-4447-4d14-ba6a-bc50086b04c8","title":"Paper","cat":"Timepass","t0":1793164237063,"u":1793164237063},
+"run":{"none":true,"u":1793164648078},
 "entries":[
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Chill","u":1793105952258},
@@ -28,6 +28,7 @@
 {"id":"abc76874-b3d4-412a-8f59-5e1269630261","title":"Angel      Netflix Netflix Netflix and Netflix and chill","date":"2026-10-26","start":"10:00","end":"10:30","mins":30,"cat":"Chill","u":1793105952258},
 {"id":"b2088b9b-1921-45c4-a824-4f002b403529","title":"Ses assignment","date":"2026-10-27","start":"19:26","end":"20:23","mins":56,"cat":"College","u":1793112785843},
 {"id":"beca0026-630e-4afe-aa18-15edbb9200c1","del":true,"u":1793112810337},
+{"id":"c0f4c160-4447-4d14-ba6a-bc50086b04c8","title":"Paper","date":"2026-10-28","start":"10:40","end":"10:47","mins":7,"cat":"Timepass","u":1793164648067},
 {"id":"c10617a5-cf4e-4318-8b52-e2aca54ca4c9","title":"Untitled session","date":"2026-10-26","start":"11:10","end":"11:10","mins":1,"cat":"Chill","u":1793105952258},
 {"id":"c37a6caa-cef3-4712-be80-50754b07ffc5","title":"CHill","date":"2026-10-26","start":"17:46","end":"17:46","mins":1,"cat":"Chill","u":1793105952258},
 {"id":"cbf63576-2fa9-4a17-9186-f8298d68b531","title":"Sleep","date":"2026-10-27","start":"23:26","end":"07:30","mins":485,"cat":"Chill","u":1793152836299},
