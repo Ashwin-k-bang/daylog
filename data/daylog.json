@@ -2,10 +2,11 @@
 "v":1,
 "cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793105952258,"gone":false},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"21538b50-b670-4947-8f62-d3e928636bec","title":"Paper","cat":"Timepass","t0":1793165189300,"u":1793165189300},
+"run":{"none":true,"u":1793168413149},
 "entries":[
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Chill","u":1793105952258},
+{"id":"21538b50-b670-4947-8f62-d3e928636bec","title":"Paper","date":"2026-10-28","start":"10:56","end":"11:50","mins":54,"cat":"Timepass","u":1793168413139},
 {"id":"24efce54-cda7-4846-803a-00eee0132286","title":"Going to college.","date":"2026-10-26","start":"18:25","end":"18:25","mins":1,"cat":"Chill","u":1793105952258},
 {"id":"2abd24e8-24fc-4725-8bce-8e8b8c20a8b9","title":"Housework","date":"2026-10-27","start":"17:05","end":"17:21","mins":16,"cat":"Chill","u":1793105952258},
 {"id":"2b00ad21-71c9-40df-a3bc-ec15c954f465","title":"Ses assignment","date":"2026-10-27","start":"14:35","end":"14:45","mins":10,"cat":"Chill","u":1793105952258},
