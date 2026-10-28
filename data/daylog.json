@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793105952258,"gone":false},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"595ab658-a9bb-4b76-8f50-35d7ff07ba7b","title":"💦","cat":"Timepass","t0":1793213316486,"u":1793213316486},
+"run":{"none":true,"u":1793214024090},
 "entries":[
 {"id":"050bc7d3-846a-4d1c-90d1-f250da233203","title":"Google cloud","date":"2026-10-28","start":"21:10","end":"21:28","mins":18,"cat":"College","u":1793203111192},
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
@@ -20,6 +20,7 @@
 {"id":"50b3fa6c-7984-490d-afbb-3aa40b9685d1","title":"Maths FC","date":"2026-10-28","start":"13:17","end":"13:50","mins":33,"cat":"SSC","u":1793177333682},
 {"id":"51ab2b5d-31fa-48ac-899c-556d7c6449bf","title":"hiding hiding at hiding at home","date":"2026-10-26","start":"11:11","end":"11:11","mins":1,"cat":"Chill","u":1793105952258},
 {"id":"52fabfaf-44bb-4ebd-931e-92ee79833105","del":true,"u":1793104357907},
+{"id":"595ab658-a9bb-4b76-8f50-35d7ff07ba7b","title":"💦","date":"2026-10-29","start":"00:18","end":"00:30","mins":12,"cat":"Timepass","u":1793214024069},
 {"id":"5d127909-333d-4e0a-bff3-05424362eb29","title":"cleaning and ready/ Ssc formulas fc","date":"2026-10-27","start":"07:13","end":"08:20","mins":67,"cat":"Chill","u":1793105968632},
 {"id":"65e6ca7e-6162-485c-bb32-7a5d81ddde9a","title":"Bai assihnment","date":"2026-10-27","start":"12:22","end":"13:39","mins":77,"cat":"Chill","u":1793105952258},
 {"id":"72104012-f56a-4de7-bb3f-baef97261d82","title":"Chill","date":"2026-10-27","start":"14:47","end":"17:01","mins":134,"cat":"Chill","u":1793105952258},
