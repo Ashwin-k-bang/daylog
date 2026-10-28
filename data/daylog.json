@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Chill":"#64748B","College":"#8B5CF6","Health":"#16A34A","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793105952258,"gone":false},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"9c5038e2-ed27-46c1-bff9-f09234c79cfa","title":"Eat and chill and mummy acchan talks","cat":"Timepass","t0":1793186153445,"u":1793187525070},
+"run":{"none":true,"u":1793187532395},
 "entries":[
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"Chill","u":1793105952258},
@@ -27,6 +27,7 @@
 {"id":"8f343eba-8a60-4b8d-96c7-9fb05c269f7d","title":"Ses test","date":"2026-10-28","start":"10:02","end":"10:40","mins":38,"cat":"College","u":1793164225478},
 {"id":"90f9bcef-5f36-4955-a018-7e8a58c1768e","title":"Ml project","date":"2026-10-28","start":"14:20","end":"14:38","mins":18,"cat":"College","u":1793178508634},
 {"id":"9a3397fb-9612-44c2-81e7-bf2b0c89e194","title":"Winddown + h","date":"2026-10-27","start":"22:37","end":"23:25","mins":48,"cat":"Chill","u":1793123757572},
+{"id":"9c5038e2-ed27-46c1-bff9-f09234c79cfa","title":"Eat and chill and mummy acchan talks","date":"2026-10-28","start":"16:45","end":"17:08","mins":23,"cat":"Timepass","u":1793187532387},
 {"id":"a6ab1f4f-2fb2-4989-8af2-a663df274a11","title":"Hello","date":"2026-10-26","start":"10:21","end":"11:21","mins":60,"cat":"Chill","u":1793105952258},
 {"id":"a877c0c8-a175-4583-8106-a3804a347473","title":"Bai assignment","date":"2026-10-27","start":"11:21","end":"12:21","mins":60,"cat":"Chill","u":1793105952258},
 {"id":"abc76874-b3d4-412a-8f59-5e1269630261","title":"Angel      Netflix Netflix Netflix and Netflix and chill","date":"2026-10-26","start":"10:00","end":"10:30","mins":30,"cat":"Chill","u":1793105952258},
