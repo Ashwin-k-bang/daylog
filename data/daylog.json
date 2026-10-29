@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"753f911f-d0d0-468e-858a-9d0e62f85985","title":"Paper","cat":"PlanA","t0":1793240248360,"u":1793240248360},
+"run":{"none":true,"u":1793240548216},
 "entries":[
 {"id":"050bc7d3-846a-4d1c-90d1-f250da233203","title":"Google cloud","date":"2026-10-28","start":"21:10","end":"21:28","mins":18,"cat":"College","u":1793203111192},
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
@@ -25,6 +25,7 @@
 {"id":"5d127909-333d-4e0a-bff3-05424362eb29","title":"cleaning and ready/ Ssc formulas fc","date":"2026-10-27","start":"07:13","end":"08:20","mins":67,"cat":"PlanA","u":1793240221812},
 {"id":"65e6ca7e-6162-485c-bb32-7a5d81ddde9a","title":"Bai assihnment","date":"2026-10-27","start":"12:22","end":"13:39","mins":77,"cat":"PlanA","u":1793240221812},
 {"id":"72104012-f56a-4de7-bb3f-baef97261d82","title":"Chill","date":"2026-10-27","start":"14:47","end":"17:01","mins":134,"cat":"PlanA","u":1793240221812},
+{"id":"753f911f-d0d0-468e-858a-9d0e62f85985","title":"Paper","date":"2026-10-29","start":"07:47","end":"07:52","mins":5,"cat":"PlanA","u":1793240548205},
 {"id":"77c86054-33bc-42f8-b5c1-bc93b05124a2","title":"SES assignment + Breaking bad","date":"2026-10-27","start":"18:31","end":"19:02","mins":31,"cat":"College","u":1793107940233},
 {"id":"856d060a-b638-4f52-91c5-e94a87755913","title":"College ready","date":"2026-10-28","start":"08:28","end":"09:21","mins":53,"cat":"College","u":1793159517031},
 {"id":"87c129a3-2f0d-45c1-aa0f-d18a6e0d032e","title":"Untitled session","date":"2026-10-26","start":"18:20","end":"18:21","mins":1,"cat":"PlanA","u":1793240221812},
