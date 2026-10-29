@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"251b411e-10b8-45a0-b9d0-2b7f66204191","title":"Meaning Cubes","cat":"SSC","t0":1793240554712,"u":1793242130020},
+"run":{"none":true,"u":1793243679549},
 "entries":[
 {"id":"050bc7d3-846a-4d1c-90d1-f250da233203","title":"Google cloud","date":"2026-10-28","start":"21:10","end":"21:28","mins":18,"cat":"College","u":1793203111192},
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
@@ -10,6 +10,7 @@
 {"id":"21538b50-b670-4947-8f62-d3e928636bec","title":"Paper","date":"2026-10-28","start":"10:56","end":"11:50","mins":54,"cat":"Timepass","u":1793168413139},
 {"id":"249c623d-0f3f-44a6-9df0-cb132b5bb1f5","title":"Clean house + Maths FC","date":"2026-10-29","start":"07:28","end":"07:46","mins":18,"cat":"SSC","u":1793240197527},
 {"id":"24efce54-cda7-4846-803a-00eee0132286","title":"Going to college.","date":"2026-10-26","start":"18:25","end":"18:25","mins":1,"cat":"PlanA","u":1793240221812},
+{"id":"251b411e-10b8-45a0-b9d0-2b7f66204191","title":"Meaning Cubes","date":"2026-10-29","start":"07:52","end":"08:44","mins":52,"cat":"SSC","u":1793243679527},
 {"id":"2abd24e8-24fc-4725-8bce-8e8b8c20a8b9","title":"Housework","date":"2026-10-27","start":"17:05","end":"17:21","mins":16,"cat":"PlanA","u":1793240221812},
 {"id":"2b00ad21-71c9-40df-a3bc-ec15c954f465","title":"Ses assignment","date":"2026-10-27","start":"14:35","end":"14:45","mins":10,"cat":"PlanA","u":1793240221812},
 {"id":"2b0e1188-ea13-4b5c-921c-c3cd62dc20ba","title":"Ml project + Breaking Bad + Many projects","date":"2026-10-28","start":"21:28","end":"00:13","mins":165,"cat":"College","u":1793212998522},
