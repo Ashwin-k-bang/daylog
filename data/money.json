@@ -12,6 +12,7 @@
 {"id":"mvtha5mtx9i45","type":"out","amount":60,"note":"Note books for aaro, gurdeep and me","date":"2026-10-29","u":1793274408965},
 {"id":"mvthamizg11z2","type":"out","amount":30,"note":"Banana","date":"2026-10-29","u":1793274430859},
 {"id":"mvthat72q3f6u","del":true,"u":1793274517341},
-{"id":"mvthcmz6x69fw","type":"out","amount":150,"note":"Puncture","date":"2026-10-29","u":1793274524754}
+{"id":"mvthcmz6x69fw","type":"out","amount":150,"note":"Puncture","date":"2026-10-29","u":1793274524754},
+{"id":"mvtigturntyka","type":"in","amount":150,"note":"Puncture reclaim from mummy","date":"2026-10-29","u":1793276399907}
 ]
 }
