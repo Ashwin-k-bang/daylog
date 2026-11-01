@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"2edc9ac7-9c11-44c3-a7ee-aa9ecc174fc8","title":"SES","cat":"College","t0":1793551737853,"u":1793551737853},
+"run":{"none":true,"u":1793552697950},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"050bc7d3-846a-4d1c-90d1-f250da233203","title":"Google cloud","date":"2026-10-28","start":"21:10","end":"21:28","mins":18,"cat":"College","u":1793203111192},
@@ -17,6 +17,7 @@
 {"id":"2b00ad21-71c9-40df-a3bc-ec15c954f465","title":"Ses assignment","date":"2026-10-27","start":"14:35","end":"14:45","mins":10,"cat":"PlanA","u":1793240221812},
 {"id":"2b0e1188-ea13-4b5c-921c-c3cd62dc20ba","title":"Ml project + Breaking Bad + Many projects","date":"2026-10-28","start":"21:28","end":"00:13","mins":165,"cat":"College","u":1793212998522},
 {"id":"2bbdbb49-206e-448b-9919-d799cdb49ead","title":"Aaro pohewala","date":"2026-10-28","start":"16:02","end":"16:19","mins":18,"cat":"Timepass","u":1793184582375},
+{"id":"2edc9ac7-9c11-44c3-a7ee-aa9ecc174fc8","title":"SES","date":"2026-11-01","start":"22:18","end":"22:34","mins":16,"cat":"College","u":1793552697948},
 {"id":"313711ec-4f2c-4acb-bfa6-a71d7c69ec76","title":"College drive and maths fc","date":"2026-10-28","start":"09:22","end":"10:02","mins":40,"cat":"SSC","u":1793161936862},
 {"id":"43ad7e14-e2bb-4a01-bbdd-507151ce4ff1","title":"Revise Software Development","date":"2026-11-01","start":"14:34","end":"15:00","mins":27,"cat":"SSC","u":1793525453408},
 {"id":"4733909e-30df-4367-ae92-29ff643c1511","title":"Ses","date":"2026-11-01","start":"15:34","end":"16:05","mins":32,"cat":"College","u":1793529359866},
