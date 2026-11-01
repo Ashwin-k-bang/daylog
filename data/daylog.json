@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"da814a5e-bf56-4f59-98a6-801bcae9ffc7","title":"ses","cat":"College","t0":1793519221473,"u":1793519221473},
+"run":{"none":true,"u":1793523821911},
 "entries":[
 {"id":"050bc7d3-846a-4d1c-90d1-f250da233203","title":"Google cloud","date":"2026-10-28","start":"21:10","end":"21:28","mins":18,"cat":"College","u":1793203111192},
 {"id":"06561f28-2eb5-4efd-b540-5ac3a8243667","title":"Aaro talk","date":"2026-10-27","start":"21:07","end":"21:16","mins":9,"cat":"Timepass","u":1793115992917},
@@ -56,6 +56,7 @@
 {"id":"cf0d916b-7ea5-4383-945d-365791138c85","title":"GenAi ma'am problem solve forced","date":"2026-10-27","start":"10:48","end":"10:56","mins":8,"cat":"PlanA","u":1793240221812},
 {"id":"d0882a70-8c52-4039-92de-bfacd7bbe2f2","title":"College drive and maths fc","date":"2026-10-28","start":"16:20","end":"16:35","mins":15,"cat":"SSC","u":1793185532059},
 {"id":"d71ed0a6-d888-4252-81d0-953d11c12829","title":"Google Cloud","date":"2026-10-27","start":"20:23","end":"21:07","mins":44,"cat":"College","u":1793115432770},
+{"id":"da814a5e-bf56-4f59-98a6-801bcae9ffc7","title":"ses","date":"2026-11-01","start":"13:17","end":"14:33","mins":77,"cat":"College","u":1793523821909},
 {"id":"dc93ab1b-f64b-4df1-a86c-96aacd0a3c01","title":"Going home for dress for photoshoot / maths fc","date":"2026-10-28","start":"11:50","end":"13:16","mins":86,"cat":"SSC","u":1793173602179},
 {"id":"dd54b047-bc72-4e51-92ae-df22048b7f1a","title":"Google Cloud","date":"2026-10-27","start":"21:16","end":"21:49","mins":33,"cat":"College","u":1793117992269},
 {"id":"de25fb78-7ca5-4e0c-bc50-f45ce1e34e01","title":"College drive / MATHS FC","date":"2026-10-27","start":"09:30","end":"10:06","mins":36,"cat":"PlanA","u":1793240221812},
