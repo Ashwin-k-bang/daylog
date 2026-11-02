@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"47615452-2d7a-4b14-81db-0bcc75384e59","title":"RM retest prep","cat":"College","t0":1793619818619,"u":1793619818619},
+"run":{"none":true,"u":1793621128463},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"050bc7d3-846a-4d1c-90d1-f250da233203","title":"Google cloud","date":"2026-10-28","start":"21:10","end":"21:28","mins":18,"cat":"College","u":1793203111192},
@@ -21,6 +21,7 @@
 {"id":"313711ec-4f2c-4acb-bfa6-a71d7c69ec76","title":"College drive and maths fc","date":"2026-10-28","start":"09:22","end":"10:02","mins":40,"cat":"SSC","u":1793161936862},
 {"id":"43ad7e14-e2bb-4a01-bbdd-507151ce4ff1","title":"Revise Software Development","date":"2026-11-01","start":"14:34","end":"15:00","mins":27,"cat":"SSC","u":1793525453408},
 {"id":"4733909e-30df-4367-ae92-29ff643c1511","title":"Ses","date":"2026-11-01","start":"15:34","end":"16:05","mins":32,"cat":"College","u":1793529359866},
+{"id":"47615452-2d7a-4b14-81db-0bcc75384e59","title":"RM retest prep","date":"2026-11-02","start":"17:13","end":"17:35","mins":22,"cat":"College","u":1793621128462},
 {"id":"47a88015-0f29-4d8f-986e-b1c07f1b76a3","title":"Daa assessment","date":"2026-10-27","start":"19:00","end":"19:30","mins":30,"cat":"College","u":1793109327156},
 {"id":"4c5f2206-3712-4ee2-91c2-011066778024","title":"BAI assisgnment","date":"2026-10-27","start":"10:07","end":"10:48","mins":41,"cat":"PlanA","u":1793240221812},
 {"id":"4c8633ec-8e12-4976-8ef5-91f6aae4561b","title":"Meditation 15mins","date":"2026-11-02","start":"09:28","end":"09:43","mins":15,"cat":"PlanA","u":1793592812665},
