@@ -16,6 +16,7 @@
 {"id":"mvtigturntyka","type":"in","amount":150,"note":"Puncture reclaim from mummy","date":"2026-10-29","u":1793276399907},
 {"id":"mvxnlg7zqgo0l","del":true,"u":1793526882364},
 {"id":"mvxnlqvu5nn6y","type":"in","amount":2000,"note":"Amma Diwali","date":"2026-11-01","u":1793526892122},
-{"id":"mvz4odjs38jof","type":"out","amount":55,"note":"Eggs","date":"2026-11-02","u":1793616034456}
+{"id":"mvz4odjs38jof","type":"out","amount":55,"note":"Eggs","date":"2026-11-02","u":1793616034456},
+{"id":"mvz4on8bw9d10","type":"out","amount":10,"note":"gathiya puda","date":"2026-11-02","u":1793616047003}
 ]
 }
