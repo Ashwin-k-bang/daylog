@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"a0064a06-c34a-456e-8949-783882b9dfb9","title":"RM paper tomorrow","cat":"College","t0":1793699686929,"u":1793699686929},
+"run":{"none":true,"u":1793699769431},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -59,6 +59,7 @@
 {"id":"998a6be9-8289-4069-ad4a-8a7e53289e18","title":"Barbeque","date":"2026-10-28","start":"19:25","end":"20:46","mins":80,"cat":"Timepass","u":1793200565642},
 {"id":"9a3397fb-9612-44c2-81e7-bf2b0c89e194","title":"Winddown + h","date":"2026-10-27","start":"22:37","end":"23:25","mins":48,"cat":"PlanA","u":1793240221812},
 {"id":"9c5038e2-ed27-46c1-bff9-f09234c79cfa","title":"Eat and chill and mummy acchan talks","date":"2026-10-28","start":"16:45","end":"17:08","mins":23,"cat":"Timepass","u":1793187532387},
+{"id":"a0064a06-c34a-456e-8949-783882b9dfb9","title":"RM paper tomorrow","date":"2026-11-03","start":"15:24","end":"15:26","mins":1,"cat":"College","u":1793699769430},
 {"id":"a54d97c5-76ce-478f-a36f-6d4dcf907d72","title":"TP","date":"2026-10-29","start":"09:30","end":"10:00","mins":30,"cat":"Timepass","u":1793247854278},
 {"id":"a6ab1f4f-2fb2-4989-8af2-a663df274a11","title":"Hello","date":"2026-10-26","start":"10:21","end":"11:21","mins":60,"cat":"PlanA","u":1793240221812},
 {"id":"a877c0c8-a175-4583-8106-a3804a347473","title":"Bai assignment","date":"2026-10-27","start":"11:21","end":"12:21","mins":60,"cat":"PlanA","u":1793240221812},
