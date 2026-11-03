@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"876ac13e-b2dc-42f8-8ff0-0cb16aed96fe","title":"RM paper tomorrow","cat":"College","t0":1793689543129,"u":1793689543129},
+"run":{"none":true,"u":1793692845139},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -47,6 +47,7 @@
 {"id":"77c86054-33bc-42f8-b5c1-bc93b05124a2","title":"SES assignment + Breaking bad","date":"2026-10-27","start":"18:31","end":"19:02","mins":31,"cat":"College","u":1793107940233},
 {"id":"78d94f85-6aaa-4439-94f5-a5a2c113d307","title":"RM retest prep","date":"2026-11-02","start":"15:33","end":"16:57","mins":84,"cat":"College","u":1793618847933},
 {"id":"856d060a-b638-4f52-91c5-e94a87755913","title":"College ready","date":"2026-10-28","start":"08:28","end":"09:21","mins":53,"cat":"College","u":1793159517031},
+{"id":"876ac13e-b2dc-42f8-8ff0-0cb16aed96fe","title":"RM paper tomorrow","date":"2026-11-03","start":"12:35","end":"13:30","mins":55,"cat":"College","u":1793692845137},
 {"id":"87c129a3-2f0d-45c1-aa0f-d18a6e0d032e","title":"Untitled session","date":"2026-10-26","start":"18:20","end":"18:21","mins":1,"cat":"PlanA","u":1793240221812},
 {"id":"8f343eba-8a60-4b8d-96c7-9fb05c269f7d","title":"Ses test","date":"2026-10-28","start":"10:02","end":"10:40","mins":38,"cat":"College","u":1793164225478},
 {"id":"90658005-9af3-43cb-92be-7e2665a2f708","title":"Newspaper","date":"2026-10-29","start":"10:02","end":"10:15","mins":13,"cat":"PlanA","u":1793249106489},
