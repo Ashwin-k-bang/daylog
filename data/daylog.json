@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"6c7bbd13-637e-4c94-b401-2fd869f984f1","title":"Quant practice","cat":"SSC","t0":1793800456045,"u":1793800456045},
+"run":{"paused":true,"id":"4873672a-754a-420f-9d14-b20a32c2c508","title":"Quant practice","cat":"SSC","u":1793802677995},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -47,6 +47,7 @@
 {"id":"650b63ca-0703-4670-a785-a94fd388028f","title":"Eating","date":"2026-11-02","start":"14:45","end":"15:30","mins":45,"cat":"Timepass","u":1793612647814},
 {"id":"65cb6820-001c-4b6a-a2d3-4a4c1c2fc3d0","title":"Revise GenAI presentation","date":"2026-11-02","start":"11:05","end":"12:00","mins":55,"cat":"College","u":1793603978073},
 {"id":"65e6ca7e-6162-485c-bb32-7a5d81ddde9a","title":"Bai assihnment","date":"2026-10-27","start":"12:22","end":"13:39","mins":77,"cat":"PlanA","u":1793240221812},
+{"id":"6c7bbd13-637e-4c94-b401-2fd869f984f1","title":"Quant practice","date":"2026-11-04","start":"19:24","end":"20:01","mins":37,"cat":"SSC","u":1793802677991},
 {"id":"70d5a55f-0f96-4b57-a2fe-57d8cfe1cc73","title":"Cleaning + Bath","date":"2026-11-04","start":"11:30","end":"12:23","mins":53,"cat":"Timepass","u":1793775235414},
 {"id":"72104012-f56a-4de7-bb3f-baef97261d82","title":"Chill","date":"2026-10-27","start":"14:47","end":"17:01","mins":134,"cat":"PlanA","u":1793240221812},
 {"id":"73f9a79e-5f39-4e5b-8847-9301b931d2e0","title":"REVISION SOFTWARE","date":"2026-11-01","start":"22:35","end":"23:35","mins":60,"cat":"PlanA","u":1793556311249},
