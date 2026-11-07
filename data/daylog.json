@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"ea21f53b-168a-4009-8d00-2017c97dfb66","title":"Newspaper","cat":"College","t0":1794015298899,"u":1794016072991},
+"run":{"none":true,"u":1794016079950},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -102,6 +102,7 @@
 {"id":"de5828bb-4f20-48a1-a396-205fde412f6a","title":"Application making daylog","date":"2026-10-27","start":"17:22","end":"17:40","mins":18,"cat":"PlanA","u":1793240221812},
 {"id":"e3e40155-676d-42ea-98ea-b28ed447f736","del":true,"u":1793193332125},
 {"id":"e499cec0-adde-4182-ba70-23005c0d51b4","title":"RM paper tomorrow","date":"2026-11-03","start":"14:02","end":"14:41","mins":39,"cat":"College","u":1793697070835},
+{"id":"ea21f53b-168a-4009-8d00-2017c97dfb66","title":"Capgemini Form","date":"2026-11-07","start":"07:04","end":"07:17","mins":13,"cat":"College","u":1794016079949},
 {"id":"ec18327c-7a71-40eb-83b1-6dd1cc67e876","title":"Newspaper","date":"2026-11-03","start":"08:00","end":"08:55","mins":55,"cat":"PlanA","u":1793676302019},
 {"id":"ec3e5e87-7fb9-4652-8cf9-6e88567b6580","title":"RM Retest Prep","date":"2026-11-02","start":"12:53","end":"13:23","mins":30,"cat":"College","u":1793605982727},
 {"id":"ee76e73c-6729-4f19-96ff-bdc7ef9ce3af","title":"Going college/ mandir/chakki","date":"2026-10-27","start":"09:20","end":"09:30","mins":10,"cat":"PlanA","u":1793240221812},
