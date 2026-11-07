@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"5e19683b-7d17-4219-ba49-a9c09b8e4d90","title":"Maths Quant","cat":"SSC","t0":1794044992334,"u":1794044992334},
+"run":{"none":true,"u":1794049107395},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -47,6 +47,7 @@
 {"id":"595ab658-a9bb-4b76-8f50-35d7ff07ba7b","title":"💦","date":"2026-10-29","start":"00:18","end":"00:30","mins":12,"cat":"Timepass","u":1793214024069},
 {"id":"5a2fd01c-e7c7-482b-b87a-5b2a6b5da38e","title":"cleaning + Maths quant FC","date":"2026-11-07","start":"08:14","end":"09:42","mins":87,"cat":"PlanA","u":1794024732779},
 {"id":"5d127909-333d-4e0a-bff3-05424362eb29","title":"cleaning and ready/ Ssc formulas fc","date":"2026-10-27","start":"07:13","end":"08:20","mins":67,"cat":"PlanA","u":1793240221812},
+{"id":"5e19683b-7d17-4219-ba49-a9c09b8e4d90","title":"Maths Quant","date":"2026-11-07","start":"15:19","end":"16:28","mins":69,"cat":"SSC","u":1794049107393},
 {"id":"61d2467f-be14-480d-a9e5-0b5232304dc7","title":"AS work","date":"2026-11-03","start":"17:14","end":"17:25","mins":11,"cat":"Pishach 😊","u":1793706926806},
 {"id":"650b63ca-0703-4670-a785-a94fd388028f","title":"Eating","date":"2026-11-02","start":"14:45","end":"15:30","mins":45,"cat":"Timepass","u":1793612647814},
 {"id":"65cb6820-001c-4b6a-a2d3-4a4c1c2fc3d0","title":"Revise GenAI presentation","date":"2026-11-02","start":"11:05","end":"12:00","mins":55,"cat":"College","u":1793603978073},
