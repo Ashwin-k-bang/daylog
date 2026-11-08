@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"2847cad6-f023-4ea1-bd06-9fe07a38d6dd","title":"Maths Quant","cat":"SSC","t0":1794066436019,"u":1794066436019},
+"run":{"none":true,"u":1794104258823},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -20,6 +20,7 @@
 {"id":"251b411e-10b8-45a0-b9d0-2b7f66204191","title":"Meaning Cubes","date":"2026-10-29","start":"07:52","end":"08:44","mins":52,"cat":"SSC","u":1793243679527},
 {"id":"2567d942-46f8-4d75-a85e-006e71a7252f","title":"RM paper revise","date":"2026-11-04","start":"10:43","end":"10:45","mins":3,"cat":"College","u":1793769357588},
 {"id":"27b433d7-33d2-4c7f-8595-bd7bf233aca5","title":"Diwali Cleaning","date":"2026-11-02","start":"17:36","end":"20:44","mins":188,"cat":"Timepass","u":1793632468066},
+{"id":"2847cad6-f023-4ea1-bd06-9fe07a38d6dd","title":"Maths Quant","date":"2026-11-07","start":"21:17","end":"07:47","mins":630,"cat":"SSC","u":1794104258816},
 {"id":"2abd24e8-24fc-4725-8bce-8e8b8c20a8b9","title":"Housework","date":"2026-10-27","start":"17:05","end":"17:21","mins":16,"cat":"PlanA","u":1793240221812},
 {"id":"2b00ad21-71c9-40df-a3bc-ec15c954f465","title":"Ses assignment","date":"2026-10-27","start":"14:35","end":"14:45","mins":10,"cat":"PlanA","u":1793240221812},
 {"id":"2b0e1188-ea13-4b5c-921c-c3cd62dc20ba","title":"Ml project + Breaking Bad + Many projects","date":"2026-10-28","start":"21:28","end":"00:13","mins":165,"cat":"College","u":1793212998522},
