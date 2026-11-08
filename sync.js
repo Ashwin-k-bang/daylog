@@ -3,6 +3,8 @@
    Data lives in the repo at data/daylog.json and is read/written through the GitHub API. */
 
 const DL_VER='v6';
+/* Built-in access token: every device uses it automatically, so no sync setup is ever needed. A token saved in a device's settings still takes priority. */
+const DEFAULT_TOKEN='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';
 /* ----- helpers ----- */
 const $=s=>document.querySelector(s), pad=n=>String(n).padStart(2,'0');
 const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -81,7 +83,7 @@ const Sync=(()=>{
     let s={};try{s=JSON.parse(localStorage.getItem('dl-sync')||'{}')}catch(e){}
     const m=location.hostname.match(/^([^.]+)\.github\.io$/);
     return{owner:s.owner||(m?m[1]:''),repo:s.repo||(m?(location.pathname.split('/')[1]||''):''),
-      branch:s.branch||'',path:s.path||'data/daylog.json',token:(s.token||'').trim()};
+      branch:s.branch||'',path:s.path||'data/daylog.json',token:(s.token||DEFAULT_TOKEN).trim()};
   };
   const save=o=>{localStorage.setItem('dl-sync',JSON.stringify(o));etag=null;sha=null;remote=null;pause=0;last=0};
   const set=(s,m)=>{st=s;msg=m||'';statL.forEach(f=>f(st,msg))};
