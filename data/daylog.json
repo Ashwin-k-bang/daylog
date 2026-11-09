@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"2fec20eb-1665-456b-8d3a-38117da1fe94","title":"ML Study","cat":"SSC","t0":1794211279078,"u":1794211279078},
+"run":{"none":true,"u":1794215229616},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -31,6 +31,7 @@
 {"id":"2bbdbb49-206e-448b-9919-d799cdb49ead","title":"Aaro pohewala","date":"2026-10-28","start":"16:02","end":"16:19","mins":18,"cat":"Timepass","u":1793184582375},
 {"id":"2edc9ac7-9c11-44c3-a7ee-aa9ecc174fc8","title":"SES","date":"2026-11-01","start":"22:18","end":"22:34","mins":16,"cat":"College","u":1793552697948},
 {"id":"2f4acfef-4de6-4b45-9252-2ec2c760caa8","title":"RM paper revise","date":"2026-11-04","start":"10:46","end":"10:46","mins":1,"cat":"College","u":1793769363017},
+{"id":"2fec20eb-1665-456b-8d3a-38117da1fe94","title":"ML Study","date":"2026-11-09","start":"13:31","end":"14:37","mins":66,"cat":"SSC","u":1794215229612},
 {"id":"313711ec-4f2c-4acb-bfa6-a71d7c69ec76","title":"College drive and maths fc","date":"2026-10-28","start":"09:22","end":"10:02","mins":40,"cat":"SSC","u":1793161936862},
 {"id":"3270f9db-f2a7-4450-9102-32da4c0855f0","title":"ML assignment TA2","date":"2026-11-07","start":"18:03","end":"18:30","mins":27,"cat":"College","u":1794065724474},
 {"id":"329b67cd-e23d-4ef7-ad68-71317596bd4d","title":"ML project submission","date":"2026-11-03","start":"09:06","end":"10:20","mins":74,"cat":"College","u":1793681429395},
