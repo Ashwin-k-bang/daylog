@@ -16,7 +16,7 @@
 {"id":"1d5e56d5-4be4-45a7-9853-748b24625c94","title":"RM paper tomorrow","date":"2026-11-03","start":"15:30","end":"16:51","mins":81,"cat":"College","u":1793704888079},
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"PlanA","u":1793240221812},
 {"id":"21538b50-b670-4947-8f62-d3e928636bec","title":"Paper","date":"2026-10-28","start":"10:56","end":"11:50","mins":54,"cat":"Timepass","u":1793168413139},
-{"id":"217acb8a-28df-41bd-b1bf-ba42d99f8f2b","title":"diwali cleaning","date":"2026-11-06","start":"08:04","end":"14:36","mins":4712,"cat":"Timepass","u":1794215181481},
+{"id":"217acb8a-28df-41bd-b1bf-ba42d99f8f2b","del":true,"u":1794220700368},
 {"id":"2263da9f-a262-4664-97d4-c9b0de823bf4","title":"Maths Quant Questions","date":"2026-11-07","start":"12:10","end":"13:00","mins":50,"cat":"SSC","u":1794038452633},
 {"id":"249c623d-0f3f-44a6-9df0-cb132b5bb1f5","title":"Clean house + Maths FC","date":"2026-10-29","start":"07:28","end":"07:46","mins":18,"cat":"SSC","u":1793240197527},
 {"id":"24efce54-cda7-4846-803a-00eee0132286","title":"Going to college.","date":"2026-10-26","start":"18:25","end":"18:25","mins":1,"cat":"PlanA","u":1793240221812},
