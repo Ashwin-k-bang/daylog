@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"77d7c2b9-495b-41ce-842e-1e26b8a4df24","title":"Ml End Sem complete","cat":"College","t0":1794399402839,"u":1794399402839},
+"run":{"paused":true,"id":"311470aa-94e0-46fc-924c-3098535c3d1e","title":"Ml End Sem complete","cat":"College","u":1794403605888},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -76,6 +76,7 @@
 {"id":"73f9a79e-5f39-4e5b-8847-9301b931d2e0","title":"REVISION SOFTWARE","date":"2026-11-01","start":"22:35","end":"23:35","mins":60,"cat":"PlanA","u":1793556311249},
 {"id":"753f911f-d0d0-468e-858a-9d0e62f85985","title":"Paper","date":"2026-10-29","start":"07:47","end":"07:52","mins":5,"cat":"PlanA","u":1793240548205},
 {"id":"77c86054-33bc-42f8-b5c1-bc93b05124a2","title":"SES assignment + Breaking bad","date":"2026-10-27","start":"18:31","end":"19:02","mins":31,"cat":"College","u":1793107940233},
+{"id":"77d7c2b9-495b-41ce-842e-1e26b8a4df24","title":"Ml End Sem complete","date":"2026-11-11","start":"17:46","end":"18:56","mins":70,"cat":"College","u":1794403605866},
 {"id":"78d94f85-6aaa-4439-94f5-a5a2c113d307","title":"RM retest prep","date":"2026-11-02","start":"15:33","end":"16:57","mins":84,"cat":"College","u":1793618847933},
 {"id":"7969f80b-ce26-4f33-bd64-08f2a2e2e426","title":"Quant practice","date":"2026-11-04","start":"17:53","end":"18:58","mins":66,"cat":"SSC","u":1793798937297},
 {"id":"7f59c150-ef03-44ae-a0b0-d1810a83c3cb","title":"RM paper tomorrow","date":"2026-11-03","start":"20:26","end":"21:44","mins":78,"cat":"College","u":1793722498258},
