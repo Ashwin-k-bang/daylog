@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"a6c0c0d8-3803-48d1-a4d1-46b76d5d93b3","title":"ML End Sem Completion","cat":"College","t0":1794460191739,"u":1794460191739},
+"run":{"none":true,"u":1794464398018},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -99,6 +99,7 @@
 {"id":"a0064a06-c34a-456e-8949-783882b9dfb9","del":true,"u":1793699773335},
 {"id":"a54d97c5-76ce-478f-a36f-6d4dcf907d72","title":"TP","date":"2026-10-29","start":"09:30","end":"10:00","mins":30,"cat":"Timepass","u":1793247854278},
 {"id":"a6ab1f4f-2fb2-4989-8af2-a663df274a11","title":"Hello","date":"2026-10-26","start":"10:21","end":"11:21","mins":60,"cat":"PlanA","u":1793240221812},
+{"id":"a6c0c0d8-3803-48d1-a4d1-46b76d5d93b3","title":"ML End Sem Completion","date":"2026-11-12","start":"10:39","end":"11:49","mins":70,"cat":"College","u":1794464398016},
 {"id":"a877c0c8-a175-4583-8106-a3804a347473","title":"Bai assignment","date":"2026-10-27","start":"11:21","end":"12:21","mins":60,"cat":"PlanA","u":1793240221812},
 {"id":"abc76874-b3d4-412a-8f59-5e1269630261","title":"Angel      Netflix Netflix Netflix and Netflix and chill","date":"2026-10-26","start":"10:00","end":"10:30","mins":30,"cat":"PlanA","u":1793240221812},
 {"id":"afbed629-73c9-4cf6-990b-ff4c859932bb","title":"RM Retest Prep","date":"2026-11-02","start":"14:08","end":"14:28","mins":20,"cat":"College","u":1793609908592},
