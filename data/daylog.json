@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"41b985ba-286e-4f0d-a4e9-4913d196b19b","title":"ML END SEM completion","cat":"College","t0":1794469359654,"u":1794469359654},
+"run":{"paused":true,"id":"116f2fe4-2ec3-4fc2-b717-271047c07478","title":"ML END SEM completion","cat":"College","u":1794496551448},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -42,6 +42,7 @@
 {"id":"3d20e5de-2369-46d7-939e-0cdbe344c6b8","title":"Maths Quant","date":"2026-11-08","start":"10:25","end":"11:30","mins":65,"cat":"SSC","u":1794117610423},
 {"id":"3df19106-c74c-42c6-b889-8b5b22ed9e27","title":"Newspaper","date":"2026-11-04","start":"08:01","end":"09:26","mins":84,"cat":"PlanA","u":1793764583618},
 {"id":"402581cb-5143-4c60-8234-1c38a4d68374","title":"ML Notes","date":"2026-11-09","start":"11:18","end":"12:18","mins":60,"cat":"College","u":1794206896121},
+{"id":"41b985ba-286e-4f0d-a4e9-4913d196b19b","title":"ML END SEM completion","date":"2026-11-12","start":"13:12","end":"20:45","mins":453,"cat":"College","u":1794496551447},
 {"id":"43ad7e14-e2bb-4a01-bbdd-507151ce4ff1","title":"Revise Software Development","date":"2026-11-01","start":"14:34","end":"15:00","mins":27,"cat":"SSC","u":1793525453408},
 {"id":"44d89b19-f3c5-4963-bf0f-4a1cb9885036","title":"Ml End Sem complete","date":"2026-11-11","start":"15:24","end":"15:32","mins":8,"cat":"College","u":1794391351410},
 {"id":"46d0ef82-5bb1-4c0d-8840-1a27176843a6","title":"Quant Formula","date":"2026-11-09","start":"08:24","end":"09:16","mins":51,"cat":"SSC","u":1794195969257},
