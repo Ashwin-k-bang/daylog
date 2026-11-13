@@ -197,12 +197,14 @@ body{padding-bottom:84px}
 #cdReset{color:var(--mute)}
 #cdPop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);width:min(320px,92vw);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 8px 24px #0005}
 #cdPop h4{margin:0 0 8px;font-size:13px;color:var(--mute);font-weight:600}
-.cdp{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.cdp button{min-height:40px;padding:0;border-radius:10px;font-variant-numeric:tabular-nums}
-.cdp button.sel{background:var(--acc);border-color:var(--acc);color:var(--bg);font-weight:600}
-.cdc{display:flex;gap:6px;margin-top:8px}
-.cdc input{flex:1;min-width:0;min-height:40px}
-.cdc button{min-height:40px}
+.wh{position:relative;display:flex;gap:6px;height:160px}
+.wh::before{content:"";position:absolute;left:0;right:0;top:60px;height:40px;border-radius:10px;background:color-mix(in srgb,var(--acc) 16%,var(--card));border:1px solid color-mix(in srgb,var(--acc) 50%,var(--line));pointer-events:none}
+.wh::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(var(--card),transparent 35%,transparent 65%,var(--card))}
+.wc{flex:1;min-width:0;height:160px;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:none;padding:60px 0;position:relative;z-index:1}
+.wc::-webkit-scrollbar{display:none}
+.wc div{height:40px;line-height:40px;text-align:center;font-size:22px;font-variant-numeric:tabular-nums;scroll-snap-align:center;cursor:pointer;user-select:none}
+.wl{display:flex;gap:6px;margin:0 0 4px}.wl span{flex:1;text-align:center;font-size:12px;color:var(--mute)}
+#cdSetBtn{width:100%;margin-top:10px;min-height:44px}
 @media(max-width:430px){header{gap:6px;padding-left:12px;padding-right:12px}header h1{margin-right:0;font-size:19px}header button:not(.i){padding-left:9px;padding-right:9px;font-size:15px}.menu summary{padding:7px 11px}.fab{bottom:calc(78px + env(safe-area-inset-bottom))}body{padding-bottom:calc(140px + env(safe-area-inset-bottom))}}
 </style>
 </head>
@@ -260,9 +262,10 @@ body{padding-bottom:84px}
 
 <div id="float" role="group" aria-label="Floating countdown timer">
   <div id="cdPop" hidden>
-    <h4>Countdown length (minutes)</h4>
-    <div class="cdp" id="cdPre"></div>
-    <form class="cdc" id="cdForm" novalidate><input id="cdMin" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" autocomplete="off" placeholder="Custom min" aria-label="Custom minutes"><button type="submit" id="cdSetBtn" class="pri">Set</button></form>
+    <h4>Set countdown</h4>
+    <div class="wl"><span>hours</span><span>min</span><span>sec</span></div>
+    <div class="wh" id="cdWheels"><div class="wc" data-max="23"></div><div class="wc" data-max="59"></div><div class="wc" data-max="59"></div></div>
+    <button type="button" id="cdSetBtn" class="pri">Set</button>
   </div>
   <button id="cdReset" class="ic" type="button" hidden aria-label="Reset countdown"></button>
   <button id="cdSet" type="button" aria-label="Set countdown length">25:00</button>
@@ -575,14 +578,15 @@ $('#cdGo').onclick=()=>{
   cdSave();cdPaint();
 };
 $('#cdReset').onclick=()=>{cd.end=0;cd.left=0;cd.done=false;cdStopAlarm();cdSave();cdPaint()};
-function cdSetMin(m){m=Math.round(+m);if(!(m>=1&&m<=999))return false;cd.dur=m*60000;cd.end=0;cd.left=0;cd.done=false;cdSave();$('#cdPop').hidden=true;cdPaint();return true}
-$('#cdPre').innerHTML=[5,10,15,25,30,45,60,90].map(m=>`<button type="button" data-m="${m}">${m}</button>`).join('');
-$('#cdPre').onclick=e=>{const b=e.target.closest('button');if(b)cdSetMin(b.dataset.m)};
-$('#cdSet').onclick=()=>{const p=$('#cdPop');p.hidden=!p.hidden;if(!p.hidden){$('#cdMin').value='';[...$('#cdPre').children].forEach(b=>b.classList.toggle('sel',+b.dataset.m*60000===cd.dur))}};
-// A form submit covers the Set button AND the phone keyboard's Go/Done key. Pressing Set must not blur the input first:
-// on phones the keyboard closing shifts the layout and the tap lands on nothing.
-$('#cdForm').onsubmit=e=>{e.preventDefault();const v=$('#cdMin').value.replace(/\D/g,'');if(cdSetMin(v))$('#cdMin').blur();else $('#cdMin').focus()};
-$('#cdSetBtn').addEventListener('pointerdown',e=>e.preventDefault());
+const WH=40,wheels=[...document.querySelectorAll('#cdWheels .wc')];
+wheels.forEach(w=>{w.innerHTML=Array.from({length:+w.dataset.max+1},(_,i)=>`<div>${String(i).padStart(2,'0')}</div>`).join('');
+  w.onclick=e=>{const d=e.target.closest('div');if(d&&d.parentNode===w)w.scrollTo({top:[...w.children].indexOf(d)*WH,behavior:'smooth'})}});
+const wheelVal=w=>Math.max(0,Math.min(+w.dataset.max,Math.round(w.scrollTop/WH)));
+function cdWheelsTo(ms){const t=Math.round(ms/1000),v=[Math.floor(t/3600),Math.floor(t%3600/60),t%60];wheels.forEach((w,i)=>{w.style.scrollSnapType='none';w.scrollTop=v[i]*WH;requestAnimationFrame(()=>w.style.scrollSnapType='')})}
+$('#cdSet').onclick=()=>{const p=$('#cdPop');p.hidden=!p.hidden;if(!p.hidden)cdWheelsTo(cd.dur)};
+$('#cdSetBtn').onclick=()=>{const [h,m,sc]=wheels.map(wheelVal),ms=((h*60+m)*60+sc)*1000;
+  if(ms<1000){wheels[2].scrollTo({top:WH*10,behavior:'smooth'});return} // need at least a second
+  cd.dur=ms;cd.end=0;cd.left=0;cd.done=false;cdSave();$('#cdPop').hidden=true;cdPaint()};
 document.addEventListener('pointerdown',e=>{if(!$('#cdPop').hidden&&!$('#float').contains(e.target))$('#cdPop').hidden=true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#cdPop').hidden=true});
 document.addEventListener('visibilitychange',cdTick);
