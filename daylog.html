@@ -158,7 +158,7 @@ header{padding-top:calc(10px + env(safe-area-inset-top))}
 #sMsg{font-size:13px;min-height:18px;margin-top:8px}
 #cats{order:5}
 /* ===== Plus button (inserts + into the title) ===== */
-#plusBtn{width:84px;height:84px;border-radius:50%;border:2px solid var(--line);background:var(--card);color:var(--ink);font-size:44px;font-weight:300;line-height:1;display:grid;place-items:center;margin:0 auto;padding:0}
+#plusBtn{width:48px;height:48px;border-radius:50%;border:2px solid var(--line);background:var(--card);color:var(--ink);font-size:30px;font-weight:300;line-height:1;display:grid;place-items:center;margin:8px 0 0;padding:0}
 #plusBtn:active{background:color-mix(in srgb,var(--acc) 18%,var(--card));border-color:var(--acc)}
 /* ===== Sync indicator: ring spinner while syncing, ring + tick when synced ===== */
 #syncb.i{display:inline-grid;place-items:center;width:44px;height:38px;padding:0}
@@ -208,13 +208,13 @@ body{padding-bottom:84px}
       <div class="pair">
         <div><button id="timer" aria-label="Start or stop the session timer">&#9201;</button><div class="note" id="tLabel">Start timer</div></div>
         <div id="pWrap" hidden><button id="pauseBtn" aria-label="Pause or resume the session timer">&#9208;</button><div class="note" id="pLabel">Pause</div></div>
-        <div><button type="button" id="plusBtn" aria-label="Insert a plus sign in the title">+</button><div class="note">Add +</div></div>
       </div>
       <div id="clock">00:00:00</div>
       <div class="tc"><div class="note" style="text-align:left;margin-bottom:6px">Category for this task</div>
         <select id="tcat" hidden aria-hidden="true" tabindex="-1"></select>
         <div class="gal" id="tgal" role="radiogroup" aria-label="Category for this task"></div></div>
       <input id="typed" placeholder="Session title" style="width:100%;margin-top:8px">
+      <div style="text-align:left"><button type="button" id="plusBtn" aria-label="Insert a plus sign in the title" title="Insert + in the title">+</button></div>
       <div id="live" aria-live="polite">Pick a category, type a title, then tap the clock button to start timing.</div>
     </section>
     <section class="card" id="flt">
