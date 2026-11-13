@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#EEF1EF">
+<meta name="theme-color" content="#050505">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -15,8 +15,8 @@
 <title>Daylog</title>
 <style>
 /* ===== THEME TOKENS: edit colors here ===== */
-:root{--bg:#EEF1EF;--card:#fff;--ink:#17302D;--mute:#667A77;--line:#D9E0DD;--acc:#0F766E;--rec:#E5484D;--r:14px}
-:root[data-theme=dark]{--bg:#0E1514;--card:#16201F;--ink:#E4EEEC;--mute:#8CA19E;--line:#263433;--acc:#2DD4BF;--rec:#FF6369}
+:root{--bg:#050505;--card:#0F0E0B;--ink:#F7EDD0;--mute:#A8996F;--line:#2C2512;--acc:#FFB800;--rec:#E8590C;--r:14px;color-scheme:dark}
+:root[data-theme=dark]{--bg:#050505;--card:#0F0E0B;--ink:#F7EDD0;--mute:#A8996F;--line:#2C2512;--acc:#FFB800;--rec:#E8590C}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Avenir Next","Segoe UI",system-ui,sans-serif}
 button,input,select{font:inherit;color:inherit}
@@ -41,7 +41,7 @@ main>*,.stack,.card,#view{min-width:0}
 .pair{display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;gap:18px;margin:4px 0 10px}
 .pair .note{margin-top:6px}
 #timer{width:84px;height:84px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font-size:38px;display:grid;place-items:center;margin:0 auto;transition:background .2s}
-#timer{background:var(--ink);font-size:30px}
+#timer{background:var(--acc);font-size:30px}
 #timer.on{background:var(--rec);color:#fff}
 #timer.on{animation:pulse 1.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--rec) 55%,transparent)}100%{box-shadow:0 0 0 26px transparent}}
@@ -173,13 +173,19 @@ header{padding-top:calc(10px + env(safe-area-inset-top))}
 @keyframes draw{to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.sy.spin{animation-duration:2.4s}.sy-ring,.sy-tick{animation:none;stroke-dashoffset:0}}
 /* ===== Category gallery ===== */
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;max-height:236px;overflow-y:auto;padding:3px}
-.gt{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 4px;min-height:0;border-radius:12px;border:2px solid var(--line);background:var(--card);min-width:0}
-.gt .ga{width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:700;font-size:16px}
-.gt .gn{font-size:12px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.gt.sel{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--card));box-shadow:0 0 0 1px var(--c)}
-.gt.sel .ga{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--c)}
-.gt.gnew .ga{background:transparent;color:var(--mute);border:2px dashed var(--mute);font-weight:400;font-size:20px}
+.gal{display:flex;flex-wrap:wrap;gap:2px 4px;border-bottom:1px solid var(--line);padding:0;max-height:none;overflow:visible}
+.gt{flex:0 0 auto;display:block;min-height:44px;padding:10px 14px;margin-bottom:-1px;border:0;border-bottom:3px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:10px 10px 0 0;background:none;color:var(--mute);font-weight:500}
+.gt:hover{border-color:transparent;border-bottom-color:var(--c)}
+.gt .ga{display:none}
+.gt .gn{font-size:15px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.gt.sel{color:var(--ink);font-weight:700;border-bottom-color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent)}
+.gt.gnew{--c:var(--mute)}
+.gt.gnew .gn::before{content:"+ "}
+/* ===== Faint looping video behind the timer / title card ===== */
+.cap{position:relative;overflow:hidden;isolation:isolate}
+.cap>*:not(.bgv){position:relative;z-index:1}
+.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;filter:blur(1.5px);transform:scale(1.04);z-index:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.bgv{display:none}}
 /* ===== Floating countdown timer: fixed, centred, just above the bottom edge ===== */
 body{padding-bottom:84px}
 #float{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:9;display:flex;align-items:center;gap:6px;padding:6px 8px;background:var(--card);border:1px solid var(--line);border-radius:99px;box-shadow:0 8px 24px #0004;touch-action:manipulation}
@@ -213,13 +219,14 @@ body{padding-bottom:84px}
   <h1><img src="icon-192.png" alt="" width="30" height="30">Daylog</h1>
   <span class="sp"></span>
   <button id="syncb" aria-label="Sync settings">Sync</button>
-  <button id="theme" aria-label="Toggle light or dark mode">Theme</button>
+  
   <details class="menu" id="menu"><summary aria-label="Export and import">&#8943;</summary><div class="mpop"><button id="exJ">Export JSON</button><button id="exC">Export CSV</button><button id="imp">Import</button><input type="file" id="impF" accept=".json,.csv" hidden></div></details>
 </header>
 
 <main>
   <div class="stack">
     <section class="card cap">
+      <video class="bgv" src="daylog-bg.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
       <div class="pair">
         <div><button id="timer" aria-label="Start or stop the session timer">&#9201;</button><div class="note" id="tLabel">Start timer</div></div>
         <div id="pWrap" hidden><button id="pauseBtn" aria-label="Pause or resume the session timer">&#9208;</button><div class="note" id="pLabel">Pause</div></div>
@@ -634,9 +641,7 @@ $('#view').onclick=ev=>{ // one handler for every clickable thing in the views
   if(ent)openEditor(entries.find(e=>e.id===ent.dataset.id));
   else if(d){ev.preventDefault();cur=parseD(d.dataset.d);view='day';render()}
 };
-$('#theme').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.setItem('dl-theme',t);tc()};
-const tc=()=>document.querySelector('meta[name=theme-color]')?.setAttribute('content',document.documentElement.dataset.theme==='dark'?'#0E1514':'#EEF1EF');
-document.documentElement.dataset.theme=localStorage.getItem('dl-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');tc();
+document.documentElement.dataset.theme='dark';
 openDB().then(async()=>{await refresh();bootRun();Sync.start(3000)});
 
 /* ===== MOBILE / INSTALLED APP ===== */
@@ -662,7 +667,7 @@ $('#view').addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clie
 // Installable app: runtime manifest (so it works from any file name) plus an offline service worker
 if(location.protocol.startsWith('http')){
   const base=location.href.split('#')[0].split('?')[0];
-  const mf={name:'Daylog',short_name:'Daylog',start_url:base,scope:new URL('./',base).href,display:'standalone',orientation:'portrait',background_color:'#EEF1EF',theme_color:'#0F766E',
+  const mf={name:'Daylog',short_name:'Daylog',start_url:base,scope:new URL('./',base).href,display:'standalone',orientation:'portrait',background_color:'#050505',theme_color:'#050505',
     icons:[{src:new URL('icon-192.png',base).href,sizes:'192x192',type:'image/png',purpose:'any'},{src:new URL('icon-512.png',base).href,sizes:'512x512',type:'image/png',purpose:'any'},{src:new URL('icon-maskable-512.png',base).href,sizes:'512x512',type:'image/png',purpose:'maskable'}]};
   const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}));document.head.appendChild(l);
   navigator.serviceWorker?.register('sw.js').catch(()=>{});
