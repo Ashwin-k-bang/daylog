@@ -109,10 +109,10 @@ dialog label{display:block;font-size:13px;color:var(--mute);margin-top:10px}
 dialog input,dialog select{width:100%}
 .err{color:var(--rec);font-size:13px;min-height:18px}
 /* ===== Mobile / installed app ===== */
-html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
-body{overflow-x:hidden;max-width:100vw}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{overflow-x:clip;max-width:100%} /* clip, not hidden: hidden on html+body turns body into its own scroller and breaks touch scrolling */
 img,svg,canvas{max-width:100%}
-body{overscroll-behavior-y:contain;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
 header{padding-top:calc(10px + env(safe-area-inset-top))}
 .menu{position:relative}
 .menu summary{list-style:none;cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 14px;font-size:18px;line-height:1.2;user-select:none}
@@ -132,7 +132,8 @@ header{padding-top:calc(10px + env(safe-area-inset-top))}
   #timer,#pauseBtn{width:84px;height:84px}
   #live{min-height:36px}
   .bar h2{flex:1 1 100%;order:-1;margin:0 0 4px}
-  .tgb{max-height:min(640px,62dvh)}
+  .tgb{max-height:none;overflow-y:visible} /* no nested vertical scroller on phones: it trapped the finger, so the page could not scroll */
+  .tg{touch-action:pan-x pan-y}
   .day{min-height:60px}
   body{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
   .fab{display:grid;place-items:center;position:fixed;right:calc(16px + env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));width:60px;height:60px;min-height:0;border-radius:50%;border:0;padding:0;background:var(--acc);color:var(--bg);font-size:34px;line-height:1;box-shadow:0 6px 18px #0005;z-index:8}
@@ -179,17 +180,29 @@ header{padding-top:calc(10px + env(safe-area-inset-top))}
 .gt.sel{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--card));box-shadow:0 0 0 1px var(--c)}
 .gt.sel .ga{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--c)}
 .gt.gnew .ga{background:transparent;color:var(--mute);border:2px dashed var(--mute);font-weight:400;font-size:20px}
-/* ===== Floating stopwatch: fixed, centred, just above the bottom edge (above the Android home bar) ===== */
+/* ===== Floating countdown timer: fixed, centred, just above the bottom edge ===== */
 body{padding-bottom:84px}
-#float{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:9;display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--card);border:1px solid var(--line);border-radius:99px;box-shadow:0 8px 24px #0004}
-#float.on{border-color:var(--rec)}
-#fClock{font-size:20px;font-weight:500;font-variant-numeric:tabular-nums;min-width:88px;text-align:center}
-#float button{width:42px;height:42px;min-height:0;padding:0;border-radius:50%;display:grid;place-items:center}
+#float{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:9;display:flex;align-items:center;gap:6px;padding:6px 8px;background:var(--card);border:1px solid var(--line);border-radius:99px;box-shadow:0 8px 24px #0004;touch-action:manipulation}
+#float.run{border-color:var(--acc)}
+#float.done{border-color:var(--rec);animation:cdflash .7s infinite alternate}
+@keyframes cdflash{to{background:color-mix(in srgb,var(--rec) 30%,var(--card))}}
+@media(prefers-reduced-motion:reduce){#float.done{animation:none;background:color-mix(in srgb,var(--rec) 30%,var(--card))}}
+#cdSet{border:0;background:none;min-height:42px;min-width:96px;padding:0 6px;border-radius:99px;font-size:22px;font-weight:500;font-variant-numeric:tabular-nums;text-align:center}
+#float.pause #cdSet{opacity:.6}
+#float button.ic{width:42px;height:42px;min-height:0;padding:0;border-radius:50%;display:grid;place-items:center}
 #float [hidden]{display:none}
 #float svg{width:18px;height:18px;fill:currentColor}
-#fMain{background:var(--acc);border-color:var(--acc);color:var(--bg)}
-#fMain.on{background:var(--rec);border-color:var(--rec);color:#fff}
-#fPause{color:var(--acc);border:2px solid var(--acc)}
+#cdGo{background:var(--acc);border-color:var(--acc);color:var(--bg)}
+#float.done #cdGo{background:var(--rec);border-color:var(--rec);color:#fff}
+#cdReset{color:var(--mute)}
+#cdPop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);width:min(320px,92vw);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 8px 24px #0005}
+#cdPop h4{margin:0 0 8px;font-size:13px;color:var(--mute);font-weight:600}
+.cdp{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.cdp button{min-height:40px;padding:0;border-radius:10px;font-variant-numeric:tabular-nums}
+.cdp button.sel{background:var(--acc);border-color:var(--acc);color:var(--bg);font-weight:600}
+.cdc{display:flex;gap:6px;margin-top:8px}
+.cdc input{flex:1;min-width:0;min-height:40px}
+.cdc button{min-height:40px}
 @media(max-width:430px){header{gap:6px;padding-left:12px;padding-right:12px}header h1{margin-right:0;font-size:19px}header button:not(.i){padding-left:9px;padding-right:9px;font-size:15px}.menu summary{padding:7px 11px}.fab{bottom:calc(78px + env(safe-area-inset-bottom))}body{padding-bottom:calc(140px + env(safe-area-inset-bottom))}}
 </style>
 </head>
@@ -245,10 +258,15 @@ body{padding-bottom:84px}
 
 <button class="fab" id="fab" aria-label="Add entry">+</button>
 
-<div id="float" role="group" aria-label="Floating stopwatch">
-  <button id="fMain" type="button" aria-label="Start timer"></button>
-  <span id="fClock">00:00:00</span>
-  <button id="fPause" type="button" hidden aria-label="Pause"></button>
+<div id="float" role="group" aria-label="Floating countdown timer">
+  <div id="cdPop" hidden>
+    <h4>Countdown length (minutes)</h4>
+    <div class="cdp" id="cdPre"></div>
+    <div class="cdc"><input id="cdMin" type="number" inputmode="numeric" min="1" max="999" placeholder="Custom min" aria-label="Custom minutes"><button type="button" id="cdSetBtn" class="pri">Set</button></div>
+  </div>
+  <button id="cdReset" class="ic" type="button" hidden aria-label="Reset countdown"></button>
+  <button id="cdSet" type="button" aria-label="Set countdown length">25:00</button>
+  <button id="cdGo" class="ic" type="button" aria-label="Start countdown"></button>
 </div>
 
 <dialog id="sdlg">
@@ -434,14 +452,14 @@ function showRun(r){ // put the UI into "timer running" state from a run record
   if(cats[r.cat])$('#tcat').value=r.cat;
   $('#live').textContent=`Timing "${r.title||'Untitled session'}" in ${r.cat}, started ${hm(new Date(r.t0))}.`;
   $('#clock').textContent=clock(Date.now()-t0);
-  tick=setInterval(()=>{$('#clock').textContent=clock(Date.now()-t0);$('#fClock').textContent=$('#clock').textContent},500); // timestamp based, accurate for hours
+  tick=setInterval(()=>{$('#clock').textContent=clock(Date.now()-t0)},500); // timestamp based, accurate for hours
   navigator.wakeLock?.request('screen').then(l=>lock=l).catch(()=>{});
-  paintFloat();catLinks();
+  catLinks();
 }
 function idleUI(msg){
   timing=false;paused=false;pausedId=null;$('#pWrap').hidden=true;clearInterval(tick);lock?.release().catch(()=>{});
   $('#timer').classList.remove('on');$('#tLabel').textContent='Start timer';$('#clock').textContent='00:00:00';
-  if(msg)$('#live').textContent=msg;paintFloat();catLinks();
+  if(msg)$('#live').textContent=msg;catLinks();
 }
 const pausedRun=()=>{const r=getRun();return r&&r.paused?r:null}; // a paused session: {paused:true,id,title,cat,u}
 function showPaused(p){ // timer stopped, previous segment already saved; Resume starts a new timer for the same title and category
@@ -451,7 +469,7 @@ function showPaused(p){ // timer stopped, previous segment already saved; Resume
   if(cats[p.cat])$('#tcat').value=p.cat;
   $('#pWrap').hidden=false;$('#pauseBtn').classList.add('on');$('#pauseBtn').textContent='▶';$('#pLabel').textContent='Resume';
   $('#live').textContent=`Paused "${p.title||'Untitled session'}" in ${p.cat}. Tap Resume to start a new timer for it.`;
-  paintFloat();catLinks();
+  catLinks();
 }
 async function pauseTimer(){ // save the time so far as an entry, then wait for Resume
   stopping=true;const en=new Date();
@@ -508,22 +526,65 @@ $('#timer').onclick=()=>timing?stopTimer():startTimer();
 $('#pauseBtn').onclick=()=>{if(stopping)return;if(timing)pauseTimer();else if(paused)startTimer()}; // pause saves the segment; resume = fresh timer from zero, same title and category
 $('#tcat').onchange=()=>{localStorage.setItem('dl-lastcat',$('#tcat').value);updateRun({cat:$('#tcat').value})}; // switching while timing moves the live task to that category page
 
-/* ===== FLOATING STOPWATCH: mirrors the main timer; its buttons press the main ones ===== */
+/* ===== FLOATING COUNTDOWN TIMER: independent of the session timer. Stores an end timestamp, so it stays
+   accurate when the phone locks or the tab sleeps, and survives a reload. ===== */
 const IC_PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+  IC_PAUSE='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
   IC_STOP='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>',
-  IC_PAUSE='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
-let fSt='';
-function paintFloat(){
-  const st=timing?'run':paused?'pause':'idle';
-  if(st!==fSt){fSt=st;
-    $('#float').classList.toggle('on',timing);$('#fMain').classList.toggle('on',timing);
-    $('#fMain').innerHTML=timing?IC_STOP:IC_PLAY;$('#fMain').setAttribute('aria-label',timing?'Stop and save':'Start timer');
-    $('#fPause').hidden=st==='idle';$('#fPause').innerHTML=paused?IC_PLAY:IC_PAUSE;$('#fPause').setAttribute('aria-label',paused?'Resume':'Pause')}
-  $('#fClock').textContent=$('#clock').textContent;
+  IC_RESET='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6.5 12 11V8a5 5 0 1 1-5 5H5a7 7 0 1 0 7-8z"/></svg>';
+const CD_KEY='dl-cd';
+let cd={dur:25*60000,end:0,left:0,done:false};
+try{Object.assign(cd,JSON.parse(localStorage.getItem(CD_KEY))||{})}catch(e){}
+const cdSave=()=>{try{localStorage.setItem(CD_KEY,JSON.stringify(cd))}catch(e){}};
+const cdState=()=>cd.done?'done':cd.end?'run':cd.left?'pause':'idle';
+const cdRemain=()=>cd.end?Math.max(0,cd.end-Date.now()):cd.left||cd.dur;
+function cdFmt(ms){const s=Math.ceil(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=s%60,z=n=>String(n).padStart(2,'0');return h?`${h}:${z(m)}:${z(r)}`:`${z(m)}:${z(r)}`}
+let cdSt='',cdAudio=null,cdRing=null;
+function cdPaint(){
+  const st=cdState(),f=$('#float');
+  if(st!==cdSt){cdSt=st;
+    f.className=st==='idle'?'':st;
+    $('#cdGo').innerHTML=st==='run'?IC_PAUSE:st==='done'?IC_STOP:IC_PLAY;
+    $('#cdGo').setAttribute('aria-label',{idle:'Start countdown',run:'Pause countdown',pause:'Resume countdown',done:'Stop alarm'}[st]);
+    $('#cdReset').hidden=!(st==='run'||st==='pause');$('#cdReset').innerHTML=IC_RESET;
+    $('#cdSet').disabled=st==='run'||st==='done'}
+  const t=st==='done'?'00:00':cdFmt(cdRemain());
+  if($('#cdSet').textContent!==t){$('#cdSet').textContent=t;document.title=st==='run'?t+' · Daylog':'Daylog'}
 }
-$('#fMain').onclick=()=>$('#timer').click();
-$('#fPause').onclick=()=>$('#pauseBtn').click();
-paintFloat();
+function cdBeep(){ // three short beeps
+  try{if(!cdAudio)return;const t=cdAudio.currentTime;
+    [0,.25,.5].forEach(d=>{const o=cdAudio.createOscillator(),g=cdAudio.createGain();o.type='sine';o.frequency.value=880;o.connect(g);g.connect(cdAudio.destination);
+      g.gain.setValueAtTime(.0001,t+d);g.gain.exponentialRampToValueAtTime(.4,t+d+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d+.18);o.start(t+d);o.stop(t+d+.2)})}catch(e){}
+}
+function cdAlarm(){
+  let n=0;const go=()=>{cdBeep();try{navigator.vibrate&&navigator.vibrate([300,150,300,150,300])}catch(e){}if(++n>=20)cdStopAlarm()};
+  go();cdRing=setInterval(go,2000);
+}
+function cdStopAlarm(){clearInterval(cdRing);cdRing=null;try{navigator.vibrate&&navigator.vibrate(0)}catch(e){}}
+function cdTick(){
+  if(cd.end&&Date.now()>=cd.end){const late=Date.now()-cd.end>5000;cd.end=0;cd.left=0;cd.done=true;cdSave();if(!late)cdAlarm()} // finished while the app was closed: show it silently
+  cdPaint();
+}
+$('#cdGo').onclick=()=>{
+  const st=cdState();
+  if(st==='idle'||st==='pause'){
+    try{cdAudio=cdAudio||new(window.AudioContext||window.webkitAudioContext)();cdAudio.resume&&cdAudio.resume()}catch(e){} // unlock sound on this tap
+    cd.end=Date.now()+(st==='pause'?cd.left:cd.dur);cd.left=0;
+  }else if(st==='run'){cd.left=Math.max(1000,cd.end-Date.now());cd.end=0}
+  else{cd.done=false;cdStopAlarm()}
+  cdSave();cdPaint();
+};
+$('#cdReset').onclick=()=>{cd.end=0;cd.left=0;cd.done=false;cdStopAlarm();cdSave();cdPaint()};
+function cdSetMin(m){m=Math.round(+m);if(!(m>=1&&m<=999))return false;cd.dur=m*60000;cd.end=0;cd.left=0;cd.done=false;cdSave();$('#cdPop').hidden=true;cdPaint();return true}
+$('#cdPre').innerHTML=[5,10,15,25,30,45,60,90].map(m=>`<button type="button" data-m="${m}">${m}</button>`).join('');
+$('#cdPre').onclick=e=>{const b=e.target.closest('button');if(b)cdSetMin(b.dataset.m)};
+$('#cdSet').onclick=()=>{const p=$('#cdPop');p.hidden=!p.hidden;if(!p.hidden){$('#cdMin').value='';[...$('#cdPre').children].forEach(b=>b.classList.toggle('sel',+b.dataset.m*60000===cd.dur))}};
+$('#cdSetBtn').onclick=()=>{if(!cdSetMin($('#cdMin').value))$('#cdMin').focus()};
+$('#cdMin').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#cdSetBtn').click()}};
+document.addEventListener('pointerdown',e=>{if(!$('#cdPop').hidden&&!$('#float').contains(e.target))$('#cdPop').hidden=true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#cdPop').hidden=true});
+document.addEventListener('visibilitychange',cdTick);
+setInterval(cdTick,250);cdTick();
 
 /* ===== EXPORT / IMPORT ===== */
 const dl=(name,txt,type)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click()};
