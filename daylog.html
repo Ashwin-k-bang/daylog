@@ -262,7 +262,7 @@ body{padding-bottom:84px}
   <div id="cdPop" hidden>
     <h4>Countdown length (minutes)</h4>
     <div class="cdp" id="cdPre"></div>
-    <div class="cdc"><input id="cdMin" type="number" inputmode="numeric" min="1" max="999" placeholder="Custom min" aria-label="Custom minutes"><button type="button" id="cdSetBtn" class="pri">Set</button></div>
+    <form class="cdc" id="cdForm" novalidate><input id="cdMin" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" autocomplete="off" placeholder="Custom min" aria-label="Custom minutes"><button type="submit" id="cdSetBtn" class="pri">Set</button></form>
   </div>
   <button id="cdReset" class="ic" type="button" hidden aria-label="Reset countdown"></button>
   <button id="cdSet" type="button" aria-label="Set countdown length">25:00</button>
@@ -579,8 +579,10 @@ function cdSetMin(m){m=Math.round(+m);if(!(m>=1&&m<=999))return false;cd.dur=m*6
 $('#cdPre').innerHTML=[5,10,15,25,30,45,60,90].map(m=>`<button type="button" data-m="${m}">${m}</button>`).join('');
 $('#cdPre').onclick=e=>{const b=e.target.closest('button');if(b)cdSetMin(b.dataset.m)};
 $('#cdSet').onclick=()=>{const p=$('#cdPop');p.hidden=!p.hidden;if(!p.hidden){$('#cdMin').value='';[...$('#cdPre').children].forEach(b=>b.classList.toggle('sel',+b.dataset.m*60000===cd.dur))}};
-$('#cdSetBtn').onclick=()=>{if(!cdSetMin($('#cdMin').value))$('#cdMin').focus()};
-$('#cdMin').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#cdSetBtn').click()}};
+// A form submit covers the Set button AND the phone keyboard's Go/Done key. Pressing Set must not blur the input first:
+// on phones the keyboard closing shifts the layout and the tap lands on nothing.
+$('#cdForm').onsubmit=e=>{e.preventDefault();const v=$('#cdMin').value.replace(/\D/g,'');if(cdSetMin(v))$('#cdMin').blur();else $('#cdMin').focus()};
+$('#cdSetBtn').addEventListener('pointerdown',e=>e.preventDefault());
 document.addEventListener('pointerdown',e=>{if(!$('#cdPop').hidden&&!$('#float').contains(e.target))$('#cdPop').hidden=true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#cdPop').hidden=true});
 document.addEventListener('visibilitychange',cdTick);
