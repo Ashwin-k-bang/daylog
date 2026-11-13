@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"5c4acc26-7e43-4915-a37b-2e34e93a54cd","title":"Gadi servicing","cat":"Timepass","t0":1794550007370,"u":1794550007370},
+"run":{"none":true,"u":1794550952544},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -64,6 +64,7 @@
 {"id":"595ab658-a9bb-4b76-8f50-35d7ff07ba7b","title":"💦","date":"2026-10-29","start":"00:18","end":"00:30","mins":12,"cat":"Timepass","u":1793214024069},
 {"id":"5a2fd01c-e7c7-482b-b87a-5b2a6b5da38e","title":"cleaning + Maths quant FC","date":"2026-11-07","start":"08:14","end":"09:42","mins":87,"cat":"PlanA","u":1794024732779},
 {"id":"5ad79ba5-59fc-4370-93f3-341b1c8c2b20","title":"Maths FC","date":"2026-11-08","start":"07:30","end":"08:15","mins":45,"cat":"SSC","u":1794106270206},
+{"id":"5c4acc26-7e43-4915-a37b-2e34e93a54cd","title":"Gadi servicing","date":"2026-11-13","start":"11:36","end":"11:52","mins":16,"cat":"Timepass","u":1794550952513},
 {"id":"5d127909-333d-4e0a-bff3-05424362eb29","title":"cleaning and ready/ Ssc formulas fc","date":"2026-10-27","start":"07:13","end":"08:20","mins":67,"cat":"PlanA","u":1793240221812},
 {"id":"5e19683b-7d17-4219-ba49-a9c09b8e4d90","title":"Maths Quant","date":"2026-11-07","start":"15:19","end":"16:28","mins":69,"cat":"SSC","u":1794049107393},
 {"id":"5ff34055-70f5-419b-a404-8053ba7169e1","title":"Maths Quant","date":"2026-11-09","start":"21:41","end":"22:20","mins":38,"cat":"SSC","u":1794243013156},
