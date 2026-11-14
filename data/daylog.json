@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"52077b3d-00d4-4a58-82d5-5fbdb2ac5494","title":"ML Numericals","cat":"Pishach 😊","t0":1794645037982,"u":1794645037982},
+"run":{"none":true,"u":1794646693863},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -60,6 +60,7 @@
 {"id":"50b3fa6c-7984-490d-afbb-3aa40b9685d1","title":"Maths FC","date":"2026-10-28","start":"13:17","end":"13:50","mins":33,"cat":"SSC","u":1793177333682},
 {"id":"51ab2b5d-31fa-48ac-899c-556d7c6449bf","title":"hiding hiding at hiding at home","date":"2026-10-26","start":"11:11","end":"11:11","mins":1,"cat":"PlanA","u":1793240221812},
 {"id":"51bd94ed-f3a5-47b2-ac01-c34f47fcf3e5","title":"Aarohi Project","date":"2026-11-03","start":"12:12","end":"12:35","mins":23,"cat":"Timepass","u":1793689530511},
+{"id":"52077b3d-00d4-4a58-82d5-5fbdb2ac5494","title":"ML Numericals","date":"2026-11-14","start":"14:00","end":"14:28","mins":28,"cat":"Pishach 😊","u":1794646693862},
 {"id":"52fabfaf-44bb-4ebd-931e-92ee79833105","del":true,"u":1793104357907},
 {"id":"553cfdff-3cd9-4354-95ea-9d4b936b6bd2","title":"Quant Speed solving","date":"2026-11-09","start":"18:00","end":"19:06","mins":66,"cat":"SSC","u":1794231391238},
 {"id":"585b74f0-fdce-4919-b823-398895743e57","title":"newspaper","date":"2026-11-02","start":"07:33","end":"08:53","mins":80,"cat":"PlanA","u":1793589821535},
