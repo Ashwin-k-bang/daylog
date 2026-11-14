@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"c6304a4b-f340-4d0c-ab7f-2e30a337b737","title":"Tired, resting","cat":"Timepass","t0":1794647090913,"u":1794647090913},
+"run":{"none":true,"u":1794649500135},
 "entries":[
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
 {"id":"04533078-c90c-46dc-98be-cdd7fff569c1","title":"Quant","date":"2026-11-02","start":"21:29","end":"22:34","mins":64,"cat":"SSC","u":1793639061449},
@@ -131,6 +131,7 @@
 {"id":"c37a6caa-cef3-4712-be80-50754b07ffc5","title":"CHill","date":"2026-10-26","start":"17:46","end":"17:46","mins":1,"cat":"PlanA","u":1793240221812},
 {"id":"c5c5ff4d-7fcf-4a98-8317-eb436f867b9d","title":"ML Numericals","date":"2026-11-14","start":"10:13","end":"11:23","mins":70,"cat":"College","u":1794636546880},
 {"id":"c628b753-097f-470e-bf9e-d8d7a79e98c6","title":"Quant FC making","date":"2026-11-07","start":"09:42","end":"10:40","mins":58,"cat":"SSC","u":1794028230168},
+{"id":"c6304a4b-f340-4d0c-ab7f-2e30a337b737","title":"Tired, resting","date":"2026-11-14","start":"14:34","end":"15:15","mins":40,"cat":"Timepass","u":1794649500133},
 {"id":"c7d188b7-576d-446e-bfa0-9c50994761e4","title":"Figuring out Note places","date":"2026-11-02","start":"08:53","end":"09:28","mins":34,"cat":"PlanA","u":1793591885016},
 {"id":"cbf63576-2fa9-4a17-9186-f8298d68b531","title":"Sleep","date":"2026-10-27","start":"23:26","end":"07:30","mins":485,"cat":"PlanA","u":1793240221812},
 {"id":"ccf29eb2-2021-43d2-aa7f-3b9092a4c61b","title":"Maths Quant","date":"2026-11-07","start":"13:30","end":"14:57","mins":87,"cat":"SSC","u":1794045002363},
