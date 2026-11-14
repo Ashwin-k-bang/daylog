@@ -15,7 +15,7 @@
 {"id":"106f4d08-6f74-4a06-86a0-d1e4f525343c","title":"youtube","date":"2026-11-03","start":"10:20","end":"10:21","mins":1,"cat":"Timepass","u":1793681482398},
 {"id":"11b35bd1-566d-466a-baf0-d8a160fdeba2","del":true,"u":1794630092711},
 {"id":"11c9082e-e8cc-4843-bf18-384eea741c88","del":true,"u":1794642424368},
-{"id":"159a934c-9477-4b59-aea0-766b44f62350","title":"ML Numericals","date":"2026-11-14","start":"15:15","end":"15:47","mins":32,"cat":"College","u":1794651436888},
+{"id":"159a934c-9477-4b59-aea0-766b44f62350","del":true,"u":1794651440330},
 {"id":"1939316a-942b-4f41-be10-a359b21f8422","title":"SES","date":"2026-11-01","start":"10:21","end":"11:12","mins":51,"cat":"College","u":1793511729853},
 {"id":"1d5e56d5-4be4-45a7-9853-748b24625c94","title":"RM paper tomorrow","date":"2026-11-03","start":"15:30","end":"16:51","mins":81,"cat":"College","u":1793704888079},
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"PlanA","u":1793240221812},
