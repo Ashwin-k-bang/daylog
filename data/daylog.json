@@ -148,7 +148,7 @@
 {"id":"e3e40155-676d-42ea-98ea-b28ed447f736","del":true,"u":1793193332125},
 {"id":"e499cec0-adde-4182-ba70-23005c0d51b4","title":"RM paper tomorrow","date":"2026-11-03","start":"14:02","end":"14:41","mins":39,"cat":"College","u":1793697070835},
 {"id":"e699d837-ff5b-49e8-b940-f07f98a84549","title":"Ml End Sem complete","date":"2026-11-11","start":"14:30","end":"15:14","mins":44,"cat":"College","u":1794390280524},
-{"id":"e8d28425-e535-4b47-a031-6dd745cd5ff8","title":"ML Numericals","date":"2026-11-14","start":"09:52","end":"09:54","mins":3,"cat":"College","u":1794630272231},
+{"id":"e8d28425-e535-4b47-a031-6dd745cd5ff8","del":true,"u":1794630280223},
 {"id":"ea21f53b-168a-4009-8d00-2017c97dfb66","title":"Capgemini Form","date":"2026-11-07","start":"07:04","end":"07:17","mins":13,"cat":"College","u":1794016079949},
 {"id":"ec18327c-7a71-40eb-83b1-6dd1cc67e876","title":"Newspaper","date":"2026-11-03","start":"08:00","end":"08:55","mins":55,"cat":"PlanA","u":1793676302019},
 {"id":"ec3e5e87-7fb9-4652-8cf9-6e88567b6580","title":"RM Retest Prep","date":"2026-11-02","start":"12:53","end":"13:23","mins":30,"cat":"College","u":1793605982727},
