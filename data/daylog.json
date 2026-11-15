@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"3dd85df3-9f86-4f78-9777-1c8682572e3a","title":"Sleep + mas","cat":"Health","t0":1794730557152,"u":1794747380420},
+"run":{"none":true,"u":1794747384362},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"03408533-d6ff-48c5-8bde-9b0656990488","title":"SES","date":"2026-11-01","start":"22:06","end":"22:12","mins":5,"cat":"College","u":1793551339040},
@@ -49,7 +49,7 @@
 {"id":"3321e86c-6ce9-471c-b858-57b61d0b056a","del":true,"u":1794230515413},
 {"id":"34f86674-162b-43fb-b0fd-6423d23e3313","title":"Meditate","date":"2026-11-12","start":"09:06","end":"09:21","mins":15,"cat":"Health","u":1794455493159},
 {"id":"3d20e5de-2369-46d7-939e-0cdbe344c6b8","title":"Maths Quant","date":"2026-11-08","start":"10:25","end":"11:30","mins":65,"cat":"SSC","u":1794117610423},
-{"id":"3dd85df3-9f86-4f78-9777-1c8682572e3a","title":"Sleep + mas","date":"2026-11-15","start":"13:45","end":"14:44","mins":59,"cat":"Health","u":1794734093913},
+{"id":"3dd85df3-9f86-4f78-9777-1c8682572e3a","title":"Sleep + mas","date":"2026-11-15","start":"13:45","end":"18:26","mins":280,"cat":"Health","u":1794747384349},
 {"id":"3df19106-c74c-42c6-b889-8b5b22ed9e27","title":"Newspaper","date":"2026-11-04","start":"08:01","end":"09:26","mins":84,"cat":"PlanA","u":1793764583618},
 {"id":"402581cb-5143-4c60-8234-1c38a4d68374","title":"ML Notes","date":"2026-11-09","start":"11:18","end":"12:18","mins":60,"cat":"College","u":1794206896121},
 {"id":"41b985ba-286e-4f0d-a4e9-4913d196b19b","title":"ML END SEM completion","date":"2026-11-12","start":"13:12","end":"14:15","mins":63,"cat":"College","u":1794496567432},
