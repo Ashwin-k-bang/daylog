@@ -1,6 +1,6 @@
 {
 "v":1,
-"cats":{"Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
+"cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
 "run":{"none":true,"u":1794673394380},
 "entries":[
@@ -171,6 +171,7 @@
 {"id":"f94f3a42-f973-4ddb-86eb-86b8f2772b55","title":"Ml project + relationship podcast","date":"2026-10-27","start":"21:49","end":"22:37","mins":47,"cat":"College","u":1793120842366},
 {"id":"fa3d289d-46b7-4cae-b5c5-89a1d59c0f3d","title":"Newspaper","date":"2026-11-07","start":"07:18","end":"08:14","mins":57,"cat":"PlanA","u":1794019484206},
 {"id":"fe9d11ce-06da-4cbf-b809-ab9b9cc44823","title":"RM retest prep","date":"2026-11-02","start":"15:28","end":"15:29","mins":1,"cat":"College","u":1793613790821},
+{"id":"fee77676-592c-47a5-b499-a084e574f8fd","title":"Cleaning + bath","date":"2026-11-15","start":"09:00","end":"10:30","mins":90,"cat":"","u":1794719978762},
 {"id":"ff26f582-d99e-4520-97ab-6c869bcfa080","title":"SES Paper Revision","date":"2026-11-05","start":"07:39","end":"22:45","mins":906,"cat":"College","u":1793898932550},
 {"id":"ffeaa16d-23fc-45b0-b17c-527796bf3be8","title":"Quant Practice","date":"2026-11-03","start":"17:25","end":"19:35","mins":130,"cat":"SSC","u":1793714727866}
 ]
