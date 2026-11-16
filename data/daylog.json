@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"bada31b6-c5f7-43fa-8821-680e42115a9d","title":"DAA","cat":"College","t0":1794842267552,"u":1794842268290},
+"run":{"none":true,"u":1794846229568},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -137,6 +137,7 @@
 {"id":"b5f93478-3c14-4230-8484-c6c0dae5c199","title":"ML EndSem Completion","date":"2026-11-12","start":"09:21","end":"10:11","mins":50,"cat":"College","u":1794458498502},
 {"id":"b5fddf28-3c4a-45b8-93da-92aeacc1e558","title":"SES","date":"2026-11-01","start":"18:05","end":"21:30","mins":205,"cat":"College","u":1793548856642},
 {"id":"b893ce9f-567a-4ba7-b7c3-36f3e3e909d8","title":"ML study","date":"2026-11-09","start":"14:50","end":"15:26","mins":37,"cat":"College","u":1794218208836},
+{"id":"bada31b6-c5f7-43fa-8821-680e42115a9d","title":"DAA","date":"2026-11-16","start":"20:47","end":"21:53","mins":66,"cat":"College","u":1794846229567},
 {"id":"bd24f2e4-c8e1-45d6-8c45-6f1f26907228","title":"RM paper revise","date":"2026-11-04","start":"09:26","end":"10:10","mins":44,"cat":"College","u":1793769183371},
 {"id":"be018e3e-a6b2-4acb-84df-c78a7719418a","title":"Google cloud","date":"2026-10-28","start":"20:46","end":"20:58","mins":12,"cat":"College","u":1793201316100},
 {"id":"beca0026-630e-4afe-aa18-15edbb9200c1","del":true,"u":1793112810337},
