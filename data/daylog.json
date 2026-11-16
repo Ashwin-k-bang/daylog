@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"none":true,"u":1794827247296},
+"run":{"paused":true,"id":"f503ee5e-d3bc-4e0e-b69c-6afe47a030ab","title":"Food + TP","cat":"College","u":1794830043608},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -170,6 +170,7 @@
 {"id":"e3729384-f1d1-440f-920b-cfa71129bc0e","title":"Maths Quant","date":"2026-11-08","start":"11:44","end":"12:30","mins":46,"cat":"SSC","u":1794140213108},
 {"id":"e3e40155-676d-42ea-98ea-b28ed447f736","del":true,"u":1793193332125},
 {"id":"e499cec0-adde-4182-ba70-23005c0d51b4","title":"RM paper tomorrow","date":"2026-11-03","start":"14:02","end":"14:41","mins":39,"cat":"College","u":1793697070835},
+{"id":"e49c0205-f20a-4134-9d2b-75e9dee0424f","title":"Food + TP","date":"2026-11-16","start":"17:24","end":"17:24","mins":1,"cat":"College","u":1794830043605},
 {"id":"e699d837-ff5b-49e8-b940-f07f98a84549","title":"Ml End Sem complete","date":"2026-11-11","start":"14:30","end":"15:14","mins":44,"cat":"College","u":1794390280524},
 {"id":"e8d28425-e535-4b47-a031-6dd745cd5ff8","del":true,"u":1794630280223},
 {"id":"ea21f53b-168a-4009-8d00-2017c97dfb66","title":"Capgemini Form","date":"2026-11-07","start":"07:04","end":"07:17","mins":13,"cat":"College","u":1794016079949},
