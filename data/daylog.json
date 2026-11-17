@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"a76658ed-896d-48d8-bef5-de8e8869e252","title":"Daa","cat":"College","t0":1794922112587,"u":1794922112587},
+"run":{"none":true,"u":1794925022741},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -133,6 +133,7 @@
 {"id":"a54d97c5-76ce-478f-a36f-6d4dcf907d72","title":"TP","date":"2026-10-29","start":"09:30","end":"10:00","mins":30,"cat":"Timepass","u":1793247854278},
 {"id":"a6ab1f4f-2fb2-4989-8af2-a663df274a11","title":"Hello","date":"2026-10-26","start":"10:21","end":"11:21","mins":60,"cat":"PlanA","u":1793240221812},
 {"id":"a6c0c0d8-3803-48d1-a4d1-46b76d5d93b3","title":"ML End Sem Completion","date":"2026-11-12","start":"10:39","end":"11:49","mins":70,"cat":"College","u":1794464398016},
+{"id":"a76658ed-896d-48d8-bef5-de8e8869e252","title":"Daa","date":"2026-11-17","start":"18:58","end":"19:47","mins":49,"cat":"College","u":1794925022740},
 {"id":"a877c0c8-a175-4583-8106-a3804a347473","title":"Bai assignment","date":"2026-10-27","start":"11:21","end":"12:21","mins":60,"cat":"PlanA","u":1793240221812},
 {"id":"ab4831ff-cfbb-49c0-8b5d-ecc3f7167ba2","title":"ML END SEM completion","date":"2026-11-12","start":"21:30","end":"22:40","mins":70,"cat":"College","u":1794501387298},
 {"id":"abc76874-b3d4-412a-8f59-5e1269630261","title":"Angel      Netflix Netflix Netflix and Netflix and chill","date":"2026-10-26","start":"10:00","end":"10:30","mins":30,"cat":"PlanA","u":1793240221812},
