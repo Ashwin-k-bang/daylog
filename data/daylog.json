@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"cff9fe9e-4e0b-474b-b145-b2bf7c6d2217","title":"","cat":"College","t0":1794900771979,"u":1794900771979},
+"run":{"none":true,"u":1794900773832},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -162,6 +162,7 @@
 {"id":"ce89c9d1-fa6a-41c8-b348-39b75ab0b5cf","title":"DAA Studies  🎯","date":"2026-11-16","start":"15:07","end":"16:37","mins":90,"cat":"College","u":1794827247293},
 {"id":"cf0d916b-7ea5-4383-945d-365791138c85","title":"GenAi ma'am problem solve forced","date":"2026-10-27","start":"10:48","end":"10:56","mins":8,"cat":"PlanA","u":1793240221812},
 {"id":"cf35ed9b-2669-48e9-955c-e5189279966b","title":"ML Numericals","date":"2026-11-14","start":"17:31","end":"18:47","mins":75,"cat":"College","u":1794662242319},
+{"id":"cff9fe9e-4e0b-474b-b145-b2bf7c6d2217","title":"Untitled session","date":"2026-11-17","start":"13:02","end":"13:02","mins":1,"cat":"College","u":1794900773830},
 {"id":"d0882a70-8c52-4039-92de-bfacd7bbe2f2","title":"College drive and maths fc","date":"2026-10-28","start":"16:20","end":"16:35","mins":15,"cat":"SSC","u":1793185532059},
 {"id":"d58acea0-fcb9-435e-8402-a3fa6c7ec141","title":"RM Retest Prep","date":"2026-11-02","start":"13:29","end":"14:03","mins":34,"cat":"College","u":1793608435979},
 {"id":"d5dd1216-ab12-4fbc-b65a-f9a4c5ee05f4","title":"Quant","date":"2026-11-10","start":"16:21","end":"17:24","mins":62,"cat":"SSC","u":1794311651194},
