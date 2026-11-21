@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"272ea618-ab7b-448a-84a3-03e9e6bc2456","title":"Bai","cat":"College","t0":1795237675119,"u":1795237675119},
+"run":{"paused":true,"id":"61e40515-9c0d-40b3-a795-10461bc9d107","title":"Bai","cat":"College","u":1795279836470},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -36,6 +36,7 @@
 {"id":"2567d942-46f8-4d75-a85e-006e71a7252f","title":"RM paper revise","date":"2026-11-04","start":"10:43","end":"10:45","mins":3,"cat":"College","u":1793769357588},
 {"id":"25738bfd-e494-4f1f-8fd8-3a3b1fe029e2","title":"Jacket","date":"2026-11-16","start":"13:45","end":"14:44","mins":59,"cat":"Timepass","u":1794820503149},
 {"id":"2644cab9-62c0-453c-a2c6-cac886d79753","title":"stupid family dinner (with tpoint)","date":"2026-11-13","start":"19:08","end":"21:45","mins":157,"cat":"Timepass","u":1794630085549},
+{"id":"272ea618-ab7b-448a-84a3-03e9e6bc2456","title":"Bai","date":"2026-11-21","start":"10:37","end":"22:20","mins":703,"cat":"College","u":1795279836465},
 {"id":"27b433d7-33d2-4c7f-8595-bd7bf233aca5","title":"Diwali Cleaning","date":"2026-11-02","start":"17:36","end":"20:44","mins":188,"cat":"Timepass","u":1793632468066},
 {"id":"2847cad6-f023-4ea1-bd06-9fe07a38d6dd","title":"Maths Quant","date":"2026-11-07","start":"21:17","end":"22:30","mins":73,"cat":"SSC","u":1794104275913},
 {"id":"298843ab-6952-47c8-8b14-97bf827d1d46","title":"DAA 🎯","date":"2026-11-16","start":"10:14","end":"11:25","mins":71,"cat":"College","u":1794808537982},
