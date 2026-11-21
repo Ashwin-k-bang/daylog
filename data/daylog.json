@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"c28e7048-08c8-4bf6-8289-20ac2eaf96db","title":"Bai","cat":"College","t0":1795281476088,"u":1795281476088},
+"run":{"none":true,"u":1795286801446},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -159,6 +159,7 @@
 {"id":"c0f4c160-4447-4d14-ba6a-bc50086b04c8","title":"Paper","date":"2026-10-28","start":"10:40","end":"10:47","mins":7,"cat":"Timepass","u":1793164648067},
 {"id":"c10617a5-cf4e-4318-8b52-e2aca54ca4c9","title":"Untitled session","date":"2026-10-26","start":"11:10","end":"11:10","mins":1,"cat":"PlanA","u":1793240221812},
 {"id":"c21f34ab-fd63-4d01-844d-f5ec32e166f6","title":"sleep","date":"2026-11-01","start":"11:12","end":"11:47","mins":35,"cat":"Timepass","u":1793517104343},
+{"id":"c28e7048-08c8-4bf6-8289-20ac2eaf96db","title":"Bai","date":"2026-11-21","start":"22:47","end":"00:16","mins":89,"cat":"College","u":1795286801445},
 {"id":"c37a6caa-cef3-4712-be80-50754b07ffc5","title":"CHill","date":"2026-10-26","start":"17:46","end":"17:46","mins":1,"cat":"PlanA","u":1793240221812},
 {"id":"c5c5ff4d-7fcf-4a98-8317-eb436f867b9d","title":"ML Numericals","date":"2026-11-14","start":"10:13","end":"11:23","mins":70,"cat":"College","u":1794636546880},
 {"id":"c628b753-097f-470e-bf9e-d8d7a79e98c6","title":"Quant FC making","date":"2026-11-07","start":"09:42","end":"10:40","mins":58,"cat":"SSC","u":1794028230168},
