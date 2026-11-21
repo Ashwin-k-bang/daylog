@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"4c5248b3-7bb9-4a4d-9bc9-3843f381a9f4","title":"DAA","cat":"College","t0":1794937732893,"u":1794937732893},
+"run":{"none":true,"u":1795237057665},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -66,6 +66,7 @@
 {"id":"47615452-2d7a-4b14-81db-0bcc75384e59","title":"RM retest prep","date":"2026-11-02","start":"17:13","end":"17:35","mins":22,"cat":"College","u":1793621128462},
 {"id":"47a88015-0f29-4d8f-986e-b1c07f1b76a3","title":"Daa assessment","date":"2026-10-27","start":"19:00","end":"19:30","mins":30,"cat":"College","u":1793109327156},
 {"id":"488bf08d-e66e-4853-87a4-378ea72d8ad1","title":"DAA","date":"2026-11-17","start":"20:21","end":"21:15","mins":54,"cat":"College","u":1794932948387},
+{"id":"4c5248b3-7bb9-4a4d-9bc9-3843f381a9f4","title":"DAA","date":"2026-11-17","start":"23:18","end":"10:27","mins":4989,"cat":"College","u":1795237057659},
 {"id":"4c5f2206-3712-4ee2-91c2-011066778024","title":"BAI assisgnment","date":"2026-10-27","start":"10:07","end":"10:48","mins":41,"cat":"PlanA","u":1793240221812},
 {"id":"4c8633ec-8e12-4976-8ef5-91f6aae4561b","title":"Meditation 15mins","date":"2026-11-02","start":"09:28","end":"09:43","mins":15,"cat":"PlanA","u":1793592812665},
 {"id":"4f7d97d6-2100-4a60-bae4-65f9f1b13c07","title":"Cleaning","date":"2026-11-02","start":"09:43","end":"11:05","mins":82,"cat":"Timepass","u":1793597714393},
