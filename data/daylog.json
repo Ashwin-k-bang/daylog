@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"9dcbb22c-4ce0-4124-9205-5d242aa0dfbf","title":"BAI","cat":"College","t0":1795319604360,"u":1795319604360},
+"run":{"paused":true,"id":"ba1efe75-6086-462b-a358-64ebe202d617","title":"BAI","cat":"College","u":1795319859108},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -133,6 +133,7 @@
 {"id":"9a3397fb-9612-44c2-81e7-bf2b0c89e194","title":"Winddown + h","date":"2026-10-27","start":"22:37","end":"23:25","mins":48,"cat":"PlanA","u":1793240221812},
 {"id":"9acc53bc-beb0-4e6b-94ea-423a4b3301d0","title":"Daa","date":"2026-11-16","start":"23:30","end":"23:55","mins":25,"cat":"College","u":1794853444585},
 {"id":"9c5038e2-ed27-46c1-bff9-f09234c79cfa","title":"Eat and chill and mummy acchan talks","date":"2026-10-28","start":"16:45","end":"17:08","mins":23,"cat":"Timepass","u":1793187532387},
+{"id":"9dcbb22c-4ce0-4124-9205-5d242aa0dfbf","title":"BAI","date":"2026-11-22","start":"09:23","end":"09:27","mins":4,"cat":"College","u":1795319859105},
 {"id":"a0064a06-c34a-456e-8949-783882b9dfb9","del":true,"u":1793699773335},
 {"id":"a29cfe4c-224f-400e-ab68-9187e3f8c10a","del":true,"u":1794907469830},
 {"id":"a54d97c5-76ce-478f-a36f-6d4dcf907d72","title":"TP","date":"2026-10-29","start":"09:30","end":"10:00","mins":30,"cat":"Timepass","u":1793247854278},
