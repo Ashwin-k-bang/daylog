@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"3345ada1-1d69-4f92-948e-0bd72532e6b0","title":"Quant  🎯","cat":"SSC","t0":1795442999517,"u":1795442999517},
+"run":{"paused":true,"id":"dd94e7fd-ff41-496b-bc24-dbc6acfd3bfc","title":"Quant  🎯","cat":"SSC","u":1795443861113},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -54,6 +54,7 @@
 {"id":"3270f9db-f2a7-4450-9102-32da4c0855f0","title":"ML assignment TA2","date":"2026-11-07","start":"18:03","end":"18:30","mins":27,"cat":"College","u":1794065724474},
 {"id":"329b67cd-e23d-4ef7-ad68-71317596bd4d","title":"ML project submission","date":"2026-11-03","start":"09:06","end":"10:20","mins":74,"cat":"College","u":1793681429395},
 {"id":"3321e86c-6ce9-471c-b858-57b61d0b056a","del":true,"u":1794230515413},
+{"id":"3345ada1-1d69-4f92-948e-0bd72532e6b0","title":"Quant  🎯","date":"2026-11-23","start":"19:39","end":"19:54","mins":14,"cat":"SSC","u":1795443861110},
 {"id":"34f86674-162b-43fb-b0fd-6423d23e3313","title":"Meditate","date":"2026-11-12","start":"09:06","end":"09:21","mins":15,"cat":"Health","u":1794455493159},
 {"id":"3d20e5de-2369-46d7-939e-0cdbe344c6b8","title":"Maths Quant","date":"2026-11-08","start":"10:25","end":"11:30","mins":65,"cat":"SSC","u":1794117610423},
 {"id":"3dd85df3-9f86-4f78-9777-1c8682572e3a","title":"Sleep + mas","date":"2026-11-15","start":"13:45","end":"14:45","mins":60,"cat":"Health","u":1794747422132},
