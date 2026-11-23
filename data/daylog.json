@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"982fc231-e0dc-4410-912e-e6ff2558f1f7","title":"Quant + aaro","cat":"SSC","t0":1795444499749,"u":1795444499749},
+"run":{"paused":true,"id":"6f4cd9ca-614c-41b8-81c6-53d08bdb5ffe","title":"Quant + aaro","cat":"SSC","u":1795446621014},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -130,6 +130,7 @@
 {"id":"93767735-7443-44ee-8845-4d54a898b76b","title":"Quant","date":"2026-11-10","start":"17:40","end":"18:41","mins":61,"cat":"SSC","u":1794316319879},
 {"id":"95b2daa8-89ae-4c98-95fc-6887f5e2b79e","del":true,"u":1793548852091},
 {"id":"96f2b269-c239-4e67-a75a-e8ea4905374b","title":"Getting ready","date":"2026-10-29","start":"08:44","end":"09:30","mins":46,"cat":"Timepass","u":1793247836431},
+{"id":"982fc231-e0dc-4410-912e-e6ff2558f1f7","title":"Quant + aaro","date":"2026-11-23","start":"20:04","end":"20:40","mins":35,"cat":"SSC","u":1795446621011},
 {"id":"998a6be9-8289-4069-ad4a-8a7e53289e18","title":"Barbeque","date":"2026-10-28","start":"19:25","end":"20:46","mins":80,"cat":"Timepass","u":1793200565642},
 {"id":"9a3397fb-9612-44c2-81e7-bf2b0c89e194","title":"Winddown + h","date":"2026-10-27","start":"22:37","end":"23:25","mins":48,"cat":"PlanA","u":1793240221812},
 {"id":"9acc53bc-beb0-4e6b-94ea-423a4b3301d0","title":"Daa","date":"2026-11-16","start":"23:30","end":"23:55","mins":25,"cat":"College","u":1794853444585},
