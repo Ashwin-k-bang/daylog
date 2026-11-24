@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"f04335ca-5381-4c91-98dc-ff3ada7fd4e6","title":"RM","cat":"College","t0":1795520545629,"u":1795520545629},
+"run":{"paused":true,"id":"65175728-3bfd-498d-a97b-9c0ef639a56b","title":"RM","cat":"College","u":1795527443416},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -208,6 +208,7 @@
 {"id":"ee76e73c-6729-4f19-96ff-bdc7ef9ce3af","title":"Going college/ mandir/chakki","date":"2026-10-27","start":"09:20","end":"09:30","mins":10,"cat":"PlanA","u":1793240221812},
 {"id":"eea03683-4aa7-43bb-afbb-0c58d3cfb5e2","title":"game","date":"2026-11-04","start":"10:10","end":"10:42","mins":32,"cat":"Timepass","u":1793769178604},
 {"id":"ef86f1bc-f35d-43bb-a744-0f9d6caaa0a7","title":"ML End Sem Complete","date":"2026-11-11","start":"20:45","end":"21:15","mins":30,"cat":"College","u":1794412379711},
+{"id":"f04335ca-5381-4c91-98dc-ff3ada7fd4e6","title":"RM","date":"2026-11-24","start":"17:12","end":"19:07","mins":115,"cat":"College","u":1795527443389},
 {"id":"f2afa986-9228-45bf-a2ca-49a04eeadc7d","title":"ML END SEM","date":"2026-11-13","start":"13:43","end":"13:57","mins":14,"cat":"College","u":1794558447019},
 {"id":"f2b2e8ed-cddc-4aaa-b6de-c1f0887d40ca","title":"House Cleaning + bath + mandir","date":"2026-11-03","start":"10:21","end":"12:12","mins":111,"cat":"Timepass","u":1793688124676},
 {"id":"f340d522-84bb-4c4e-8dcd-85981502da04","title":"Running","date":"2026-11-15","start":"18:27","end":"19:28","mins":62,"cat":"Health","u":1794751123706},
