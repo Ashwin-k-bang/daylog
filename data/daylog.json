@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"21369630-5741-453a-b745-94bba70e76ae","title":"RM Study","cat":"College","t0":1795488748021,"u":1795491151310},
+"run":{"none":true,"u":1795493443594},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -25,6 +25,7 @@
 {"id":"1939316a-942b-4f41-be10-a359b21f8422","title":"SES","date":"2026-11-01","start":"10:21","end":"11:12","mins":51,"cat":"College","u":1793511729853},
 {"id":"1d5e56d5-4be4-45a7-9853-748b24625c94","title":"RM paper tomorrow","date":"2026-11-03","start":"15:30","end":"16:51","mins":81,"cat":"College","u":1793704888079},
 {"id":"1f50c1d2-d8de-4f24-8874-fbe12e3dcdef","title":"Daylog application","date":"2026-10-27","start":"17:01","end":"17:05","mins":4,"cat":"PlanA","u":1793240221812},
+{"id":"21369630-5741-453a-b745-94bba70e76ae","title":"RM Study","date":"2026-11-24","start":"08:22","end":"09:40","mins":78,"cat":"College","u":1795493443592},
 {"id":"21538b50-b670-4947-8f62-d3e928636bec","title":"Paper","date":"2026-10-28","start":"10:56","end":"11:50","mins":54,"cat":"Timepass","u":1793168413139},
 {"id":"217acb8a-28df-41bd-b1bf-ba42d99f8f2b","del":true,"u":1794220700368},
 {"id":"2263da9f-a262-4664-97d4-c9b0de823bf4","title":"Maths Quant Questions","date":"2026-11-07","start":"12:10","end":"13:00","mins":50,"cat":"SSC","u":1794038452633},
