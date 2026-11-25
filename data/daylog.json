@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"862e84fd-a236-42ac-b661-c83bf56f8b64","title":"Average 🎯","cat":"SSC","t0":1795614980740,"u":1795615918008},
+"run":{"paused":true,"id":"3fe832de-7a10-4808-81ca-f8dd6edc8a9a","title":"Average 🎯","cat":"SSC","u":1795619456264},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -119,6 +119,7 @@
 {"id":"7f59c150-ef03-44ae-a0b0-d1810a83c3cb","title":"RM paper tomorrow","date":"2026-11-03","start":"20:26","end":"21:44","mins":78,"cat":"College","u":1793722498258},
 {"id":"852a0c61-6db7-4238-9fec-4dd517dce91d","title":"temple + Mummy work","date":"2026-11-15","start":"10:30","end":"10:50","mins":20,"cat":"SSC","u":1794720015767},
 {"id":"856d060a-b638-4f52-91c5-e94a87755913","title":"College ready","date":"2026-10-28","start":"08:28","end":"09:21","mins":53,"cat":"College","u":1793159517031},
+{"id":"862e84fd-a236-42ac-b661-c83bf56f8b64","title":"Average 🎯","date":"2026-11-25","start":"19:26","end":"20:40","mins":75,"cat":"SSC","u":1795619456247},
 {"id":"869701cd-3262-4199-a19d-ef668b2147d6","title":"Nap + dad work + TP","date":"2026-11-04","start":"10:46","end":"11:30","mins":44,"cat":"Timepass","u":1793772006212},
 {"id":"876ac13e-b2dc-42f8-8ff0-0cb16aed96fe","title":"RM paper tomorrow","date":"2026-11-03","start":"12:35","end":"13:30","mins":55,"cat":"College","u":1793692845137},
 {"id":"87c129a3-2f0d-45c1-aa0f-d18a6e0d032e","title":"Untitled session","date":"2026-10-26","start":"18:20","end":"18:21","mins":1,"cat":"PlanA","u":1793240221812},
