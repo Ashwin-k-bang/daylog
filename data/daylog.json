@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"7b532a68-6248-4486-add4-beb0bf7a271e","title":"SES 🎯","cat":"College","t0":1795622444142,"u":1795622444142},
+"run":{"none":true,"u":1795628506703},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -114,6 +114,7 @@
 {"id":"77d7c2b9-495b-41ce-842e-1e26b8a4df24","title":"Ml End Sem complete","date":"2026-11-11","start":"17:46","end":"18:56","mins":70,"cat":"College","u":1794403605866},
 {"id":"78d94f85-6aaa-4439-94f5-a5a2c113d307","title":"RM retest prep","date":"2026-11-02","start":"15:33","end":"16:57","mins":84,"cat":"College","u":1793618847933},
 {"id":"7969f80b-ce26-4f33-bd64-08f2a2e2e426","title":"Quant practice","date":"2026-11-04","start":"17:53","end":"18:58","mins":66,"cat":"SSC","u":1793798937297},
+{"id":"7b532a68-6248-4486-add4-beb0bf7a271e","title":"SES 🎯","date":"2026-11-25","start":"21:30","end":"23:11","mins":101,"cat":"College","u":1795628506690},
 {"id":"7d3c9133-0638-48da-909c-ca5558aeb0d6","title":"Untitled session","date":"2026-11-16","start":"22:10","end":"23:12","mins":62,"cat":"College","u":1794850973415},
 {"id":"7e03c7ee-2905-4911-b97d-6561c22a25e6","title":"Bai","date":"2026-11-21","start":"22:20","end":"22:47","mins":27,"cat":"College","u":1795281475711},
 {"id":"7f59c150-ef03-44ae-a0b0-d1810a83c3cb","title":"RM paper tomorrow","date":"2026-11-03","start":"20:26","end":"21:44","mins":78,"cat":"College","u":1793722498258},
