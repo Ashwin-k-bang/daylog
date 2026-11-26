@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"b10312fe-ec22-4bb4-8dfa-0d8192db33da","title":"SES","cat":"College","t0":1795672948796,"u":1795672948796},
+"run":{"paused":true,"id":"394138b1-0464-4d81-bd5b-13559c7fb6e6","title":"SES","cat":"College","u":1795672962021},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -156,6 +156,7 @@
 {"id":"abc76874-b3d4-412a-8f59-5e1269630261","title":"Angel      Netflix Netflix Netflix and Netflix and chill","date":"2026-10-26","start":"10:00","end":"10:30","mins":30,"cat":"PlanA","u":1793240221812},
 {"id":"ae3e30d7-ba10-46d3-9def-454678921c75","title":"RM","date":"2026-11-25","start":"09:45","end":"11:00","mins":75,"cat":"College","u":1795612224430},
 {"id":"afbed629-73c9-4cf6-990b-ff4c859932bb","title":"RM Retest Prep","date":"2026-11-02","start":"14:08","end":"14:28","mins":20,"cat":"College","u":1793609908592},
+{"id":"b10312fe-ec22-4bb4-8dfa-0d8192db33da","title":"SES","date":"2026-11-26","start":"11:32","end":"11:32","mins":1,"cat":"College","u":1795672962016},
 {"id":"b2088b9b-1921-45c4-a824-4f002b403529","title":"Ses assignment","date":"2026-10-27","start":"19:26","end":"20:23","mins":56,"cat":"College","u":1793112785843},
 {"id":"b4b86d37-2760-4048-a457-3e0ad9c15d2e","title":"Running","date":"2026-11-11","start":"19:12","end":"19:45","mins":33,"cat":"Health","u":1794410133685},
 {"id":"b592bb42-1f7e-48f5-8f0e-15f2c7cf1484","title":"DAA Study  🎯","date":"2026-11-15","start":"11:00","end":"12:11","mins":71,"cat":"College","u":1794742257235},
