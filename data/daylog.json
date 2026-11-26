@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"e0e3c3f2-07c0-4b04-ae97-a5eba102c380","title":"SES","cat":"College","t0":1795702218984,"u":1795702218984},
+"run":{"paused":true,"id":"203c0e57-fd2d-4ea2-93dc-a133912ec7b8","title":"SES","cat":"College","u":1795706285054},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"0306a71f-e989-46c8-9b50-bb6a124eb436","title":"Bath + TP","date":"2026-11-16","start":"09:28","end":"10:14","mins":47,"cat":"Timepass","u":1794804282892},
@@ -205,6 +205,7 @@
 {"id":"de25fb78-7ca5-4e0c-bc50-f45ce1e34e01","title":"College drive / MATHS FC","date":"2026-10-27","start":"09:30","end":"10:06","mins":36,"cat":"PlanA","u":1793240221812},
 {"id":"de5828bb-4f20-48a1-a396-205fde412f6a","title":"Application making daylog","date":"2026-10-27","start":"17:22","end":"17:40","mins":18,"cat":"PlanA","u":1793240221812},
 {"id":"dea99016-80f3-4ccb-a88d-0a0e94e88ecb","title":"BAI","date":"2026-11-22","start":"00:58","end":"01:22","mins":24,"cat":"College","u":1795319599211},
+{"id":"e0e3c3f2-07c0-4b04-ae97-a5eba102c380","title":"SES","date":"2026-11-26","start":"19:40","end":"20:48","mins":68,"cat":"College","u":1795706285052},
 {"id":"e3729384-f1d1-440f-920b-cfa71129bc0e","title":"Maths Quant","date":"2026-11-08","start":"11:44","end":"12:30","mins":46,"cat":"SSC","u":1794140213108},
 {"id":"e3e40155-676d-42ea-98ea-b28ed447f736","del":true,"u":1793193332125},
 {"id":"e499cec0-adde-4182-ba70-23005c0d51b4","title":"RM paper tomorrow","date":"2026-11-03","start":"14:02","end":"14:41","mins":39,"cat":"College","u":1793697070835},
