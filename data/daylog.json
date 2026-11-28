@@ -2,7 +2,7 @@
 "v":1,
 "cats":{"":"#64748B","Bussiness":"#EA580C","College":"#8B5CF6","Health":"#16A34A","Pishach 😊":"#06B6D4","PlanA":"#64748B","SSC":"#2F6FED","Timepass":"#F59E0B"},
 "catDel":{"Chill":{"u":1793240221812,"gone":true},"College":{"u":1793105883118,"gone":false},"Other":{"u":1793105952258,"gone":true},"Personal":{"u":1793105907608,"gone":true},"Pishach":{"u":1793706920900,"gone":true},"Pishach 😊":{"u":1793706920900,"gone":false},"PlanA":{"u":1793240221812,"gone":false},"SSC":{"u":1793105870562,"gone":false},"Study":{"u":1793105883118,"gone":true},"Timepass":{"u":1793105907608,"gone":false},"Work":{"u":1793105862748,"gone":true},"ssc":{"u":1793105870562,"gone":true}},
-"run":{"id":"8a226611-ce7c-4c83-92f5-584732a4c766","title":"GenAi","cat":"College","t0":1795858030725,"u":1795858030756},
+"run":{"paused":true,"id":"dcdb9b06-8813-4ef7-8973-6b8a5dcf90f4","title":"GenAi","cat":"College","u":1795862806078},
 "entries":[
 {"id":"00689530-6a6e-4e43-b55c-c586b8441f05","title":"Running","date":"2026-11-14","start":"19:01","end":"19:45","mins":44,"cat":"Health","u":1794667965560},
 {"id":"00c65ca3-16d7-4c41-a258-cfe9e989e013","title":"GenAi","date":"2026-11-28","start":"12:44","end":"14:00","mins":76,"cat":"College","u":1795858020232},
@@ -131,6 +131,7 @@
 {"id":"87c129a3-2f0d-45c1-aa0f-d18a6e0d032e","title":"Untitled session","date":"2026-10-26","start":"18:20","end":"18:21","mins":1,"cat":"PlanA","u":1793240221812},
 {"id":"88e05d30-71d7-49ce-b9c1-f00905259c9c","title":"Aaro talk","date":"2026-11-14","start":"13:23","end":"14:00","mins":37,"cat":"Pishach 😊","u":1794645028494},
 {"id":"893ce6c6-1d18-4ff2-b0b8-6fa16dd53a44","title":"DAA","date":"2026-11-17","start":"21:59","end":"23:05","mins":66,"cat":"College","u":1794936929491},
+{"id":"8a226611-ce7c-4c83-92f5-584732a4c766","title":"GenAi","date":"2026-11-28","start":"14:57","end":"16:16","mins":80,"cat":"College","u":1795862806075},
 {"id":"8f343eba-8a60-4b8d-96c7-9fb05c269f7d","title":"Ses test","date":"2026-10-28","start":"10:02","end":"10:40","mins":38,"cat":"College","u":1793164225478},
 {"id":"90658005-9af3-43cb-92be-7e2665a2f708","title":"Newspaper","date":"2026-10-29","start":"10:02","end":"10:15","mins":13,"cat":"PlanA","u":1793249106489},
 {"id":"908784ab-d7a3-47b6-8957-6921dfdf4bf6","title":"Maths Quant","date":"2026-11-07","start":"17:45","end":"18:03","mins":18,"cat":"SSC","u":1794054817655},
